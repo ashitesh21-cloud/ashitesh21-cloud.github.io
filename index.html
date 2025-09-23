@@ -830,6 +830,43 @@ audio { display: none; }
 
 @media (min-width: 481px) and (max-width: 768px) { .content-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 769px) { .content-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* Custom styles for the International Day of Non-Violence card */
+#non-violence-card {
+  position: relative; /* Needed for the overlay */
+  background-image: url('https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png');
+  background-size: cover;
+  background-position: center;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* This adds a dark overlay to make text more readable */
+#non-violence-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px; /* This should match your card's border-radius */
+  z-index: 1;
+}
+
+/* This makes sure the content appears on top of the overlay */
+#non-violence-card .fact-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* This increases the text color and adds a shadow for contrast */
+#non-violence-card h4, 
+#non-violence-card p,
+#non-violence-card .fact-audio-title,
+#non-violence-card .fact-time-display {
+  color: #ffffff; /* Bright white */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
 </style>
 </head>
 
@@ -1257,7 +1294,7 @@ audio { display: none; }
         </div>
         
         <div class="gandhi-grid">
-          <div class="gandhi-fact-card">
+          <div class="gandhi-fact-card" id="non-violence-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
