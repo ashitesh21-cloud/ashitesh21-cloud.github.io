@@ -858,6 +858,31 @@ audio { display: none; }
       <div class="article-list">
 
         <div class="content-card featured-article">
+          <h3>Remembering Lal Bahadur Shastri</h3>
+          <p style="font-style: italic; margin-top: -0.5rem; color: var(--text-gray);">From Commoner to Commander: India's Humble Hero</p>
+          <div class="author-credit">- Pavani Maurya X E</div>
+
+          <div class="audio-player">
+            <div class="audio-controls">
+              <button class="play-btn" id="play-btn-8">
+                <i class="fas fa-play"></i>
+              </button>
+              <div class="audio-info">
+                <div class="audio-title">Remembering Lal Bahadur Shastri</div>
+                <div class="progress-container">
+                  <span class="time-display" id="current-time-8">0:00</span>
+                  <div class="progress-bar" id="progress-bar-8"></div>
+                  <span class="time-display" id="duration-8">0:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <audio id="shastri-audio" src="PASTE_YOUR_NEW_AUDIO_URL_HERE.mp3"></audio>
+          <div id="shastri-article-text" class="animated-text"></div>
+        </div>
+        
+        <div class="content-card featured-article">
           <h3>A Prayer from the Heart of a Kid</h3>
           <div class="author-credit">- Aarav Jaiswal LKG F</div>
           
@@ -1927,6 +1952,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const hindiAudio = setupAudioPlayer('hindi-article-audio', 'play-btn-4', 'progress-bar-4', 'current-time-4', 'duration-4');
   const karmayuddhAudio = setupAudioPlayer('karmayuddh-audio', 'play-btn-6', 'progress-bar-6', 'current-time-6', 'duration-6');
   const hindiPoemAudio = setupAudioPlayer('hindi-poem-audio', 'play-btn-7', 'progress-bar-7', 'current-time-7', 'duration-7');
+  const shastriAudio = setupAudioPlayer('shastri-audio', 'play-btn-8', 'progress-bar-8', 'current-time-8', 'duration-8');
 
   // Setup Saint Thérèse Fact Audio Players (No text synchronization)
   const youngestAudio = setupFactAudioPlayer('youngest-audio', 'youngest-play-btn', 'youngest-progress-bar', 'youngest-current-time', 'youngest-duration');
@@ -1950,6 +1976,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Setup Text Synchronization ONLY for articles and poems (not fact cards)
   
+  if (shastriAudio) {
+    const shastriText = `From Commoner to Commander: India's Humble Hero Born on the same day as Mahatma Gandhi, Lal Bahadur Shastri was an immensely impactful independence activist and politician of our country. Yet, unlike other leaders, he is often overlooked in the pages of history. He was born in Mughalsarai, Uttar Pradesh, on 2nd October 1904. At merely 18 months old, he lost his father to the bubonic plague. Growing up, poverty was his constant companion. These hardships shaped his personality, making him resilient and simple. Influenced by the patriotic figures surrounding him, Shastri ji started actively participating in national activism in the early 1920s. He was imprisoned twice in this pursuit. He also dropped his surname 'Srivastava' and took the title 'Shastri' awarded by his degree institution instead of opining caste distinctions. After the independence, he served as the Minister of Railways from 1952 to 1956. He later resigned from this post, deeming himself responsible for the 1956 Ariyalur train accident. Such acts of honesty are, to this date, rarely seen in politicians. Later, he served as the Prime Minister of India from 1964 to 1966. In this brief duration, he managed to achieve feats that others could only dream of. He fuelled the Green Revolution and the White Revolution, bringing sustainable changes to the country. When India faced a severe food shortage, he asked citizens to skip one meal a week to save food and even practiced it himself. During the Indo-Pakistani War of 1965, he inspired the nation with his famous slogan, "Jai Jawan, Jai Kisan," which still echoes in every patriot's heart. After the war, Shastri ji and President Ayub Khan of Pakistan met in Tashkent, USSR, under Soviet mediation. On 10 January 1966, they signed the Tashkent Declaration, formally ending the conflict. Lal Bahadur Shastri's story teaches us that true leadership isn't about power or fame, but about selflessness, humility, and unwavering integrity. His life, though tragically cut short, serves as a powerful lesson for every student. He showed us that a simple person, driven by a deep love for their country, can achieve extraordinary things. His slogan, "Jai Jawan, Jai Kisan," continues to remind us to honor both the soldier who defends our borders and the farmer who feeds our nation. Let's remember Shastri Ji not just as a former Prime Minister, but as a humble hero who showed us the path to a better India through his actions. You led with a humble yet fearless heart, And lived with the attitude of a commoner. You left behind values of humility so high And a legacy too great for us to honour.`;
+    setupAudioText('shastri-article-text', shastriAudio, shastriText);
+  }
+
   if (prayerAudio) {
     const prayerText = `Dear St. Little Flower, Please pick me a rose from the "Heavenly Garden" and send it to me with a message of your love. Please ask God to bless me and everyone. Tell Him that I will love Him more and more each day. Amen.`;
     setupAudioText('prayer-text', prayerAudio, prayerText);
@@ -1971,7 +2002,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (karmayuddhAudio) {
-    const karmayuddhText = `कब तक कर्म को अपने तुम टालते रहोगे, कब तक जीवन के सुखी पल तुम काटते रहोगे? कब तक हार का तुम अभ्यास करते रहोगे? कब तक संसार के तानों को तुम सुनते रहोगे? कब तक अपने अवगुणों को बातों से भरते रहोगे? अरे! चल पड़ो उस राह पर जो ले चले आकाश पर, चुप बैठो तुम मत अब यहाँ इस दुनिया की आवाज़ पर। कर चलो नर्दन अपने कर्मों की आवाज़ से, मत दबो समाज के इस कटाक्षों के दबावों से। कर चलो कुछ ऐसा लोग जल उठें जलन से, लड़ चलो इस दुनिया के स्वार्थी चलन से। दिखा दो उनको तुम कोई गुजरा हुआ वक्त नहीं, जान जाएँ सब कि तुम-सा न कोई शख्स कहीं। हार मानना न तुम इस पथ पर चलते समय कभी, केशव को याद रखना तुम हारोगे न फिर कभी। घोर विपदाओं का समय अब छा गया है, घोर विपदाओं का समय अब छा गया है। लड़ने को तैयार हो, युद्ध का वक्त आ गया है। युद्ध का वक्त आ गया है।`;
+    const karmayuddhText = `कब तक कर्म को अपने तुम टालते रहोगे, कब तक जीवन के सुखी पल तुम काटते रहोगे? कब तक हार का तुम अभ्यास करते रहोगे? कब तक संसार के तानों को तुम सुनते रहोगे? कब तक अपने अवगुणों को बातों से भरते रहोगे? अरे! चल पड़ो उस राह पर जो ले चले आकाश पर, चुप बैठो तुम मत अब यहाँ इस दुनिया की आवाज़ पर। कर चलो नर्दन अपने कर्मों की आवाज़ से, मत दबो समाज के इस कटाक्षों के दबावों से। कर चलो कुछ ऐसा लोग जल उठें जलन से, लड़ चलो इस दुनिया के स्वार्थी चलन से। दिखा दो उनको तुम कोई गुजरा हुआ वक्त नहीं, जान जाएँ सब कि तुम-sa न कोई शख्स कहीं। हार मानना न तुम इस पथ पर चलते समय कभी, केशव को याद रखना तुम हारोगे न फिर कभी। घोर विपदाओं का समय अब छा गया है, घोर विपदाओं का समय अब छा गया है। लड़ने को तैयार हो, युद्ध का वक्त आ गया है। युद्ध का वक्त आ गया है।`;
     setupAudioText('karmayuddh-text', karmayuddhAudio, karmayuddhText);
   }
 
