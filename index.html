@@ -927,6 +927,63 @@ audio { display: none; }
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
+
+/* NEW STYLES FOR ST. THERESE CARDS */
+#youngest-doctor-card,
+#little-way-card,
+#early-life-therese-card,
+#nun-card,
+#soul-card,
+#death-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+#youngest-doctor-card { background-image: url('https://i.ibb.co/6cwn4hQQ/St-Theresyounger.jpg'); }
+#little-way-card { background-image: url('https://i.ibb.co/0Vf0SyzV/thelittleway.jpg'); }
+#early-life-therese-card { background-image: url('https://i.ibb.co/zVLPtR3W/early.jpg'); }
+#nun-card { background-image: url('https://i.ibb.co/Y7yKQXDb/nunat15.jpg'); }
+#soul-card { background-image: url('https://i.ibb.co/xK8nQnjB/autobiogarphy.jpg'); }
+#death-card { background-image: url('https://i.ibb.co/RpHrFNXW/death23.jpg'); }
+
+#youngest-doctor-card::before,
+#little-way-card::before,
+#early-life-therese-card::before,
+#nun-card::before,
+#soul-card::before,
+#death-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  z-index: 1;
+}
+
+#youngest-doctor-card .fact-content,
+#little-way-card .fact-content,
+#early-life-therese-card .fact-content,
+#nun-card .fact-content,
+#soul-card .fact-content,
+#death-card .fact-content {
+  position: relative;
+  z-index: 2;
+}
+
+#youngest-doctor-card h4, #youngest-doctor-card p, #youngest-doctor-card .fact-audio-title, #youngest-doctor-card .fact-time-display,
+#little-way-card h4, #little-way-card p, #little-way-card .fact-audio-title, #little-way-card .fact-time-display,
+#early-life-therese-card h4, #early-life-therese-card p, #early-life-therese-card .fact-audio-title, #early-life-therese-card .fact-time-display,
+#nun-card h4, #nun-card p, #nun-card .fact-audio-title, #nun-card .fact-time-display,
+#soul-card h4, #soul-card p, #soul-card .fact-audio-title, #soul-card .fact-time-display,
+#death-card h4, #death-card p, #death-card .fact-audio-title, #death-card .fact-time-display {
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+/* END OF NEW STYLES */
+
+
 /* Gallery Section Styles */
 .gallery-subsection h3 {
   font-family: var(--heading-font);
@@ -1170,7 +1227,7 @@ audio { display: none; }
         </div>
         
         <div class="therese-grid">
-          <div class="therese-fact-card text-only-card">
+          <div class="therese-fact-card text-only-card" id="youngest-doctor-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1202,7 +1259,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card text-only-card">
+          <div class="therese-fact-card text-only-card" id="little-way-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1234,7 +1291,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card text-only-card">
+          <div class="therese-fact-card text-only-card" id="early-life-therese-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1266,7 +1323,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card text-only-card">
+          <div class="therese-fact-card text-only-card" id="nun-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1298,7 +1355,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card text-only-card">
+          <div class="therese-fact-card text-only-card" id="soul-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1330,7 +1387,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card text-only-card">
+          <div class="therese-fact-card text-only-card" id="death-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
