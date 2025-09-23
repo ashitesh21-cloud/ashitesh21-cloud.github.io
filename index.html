@@ -858,6 +858,54 @@ audio { display: none; }
       <div class="article-list">
 
         <div class="content-card featured-article">
+          <h3>लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</h3>
+          <div class="author-credit">-देवांश मणि त्रिपाठी कक्षा X - E</div>
+
+          <div class="audio-player">
+            <div class="audio-controls">
+              <button class="play-btn" id="play-btn-9">
+                <i class="fas fa-play"></i>
+              </button>
+              <div class="audio-info">
+                <div class="audio-title">लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</div>
+                <div class="progress-container">
+                  <span class="time-display" id="current-time-9">0:00</span>
+                  <div class="progress-bar" id="progress-bar-9"></div>
+                  <span class="time-display" id="duration-9">0:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <audio id="hindi-shastri-audio" src="PASTE_HINDI_AUDIO_URL_HERE.mp3"></audio>
+          <div id="hindi-shastri-text" class="animated-text"></div>
+        </div>
+        
+        <div class="content-card featured-article">
+          <h3>The Boy Who Loved a Peach Tree</h3>
+          <div class="author-credit">-Suryansh Pandey Class VI B</div>
+
+          <div class="audio-player">
+            <div class="audio-controls">
+              <button class="play-btn" id="play-btn-10">
+                <i class="fas fa-play"></i>
+              </button>
+              <div class="audio-info">
+                <div class="audio-title">The Boy Who Loved a Peach Tree</div>
+                <div class="progress-container">
+                  <span class="time-display" id="current-time-10">0:00</span>
+                  <div class="progress-bar" id="progress-bar-10"></div>
+                  <span class="time-display" id="duration-10">0:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <audio id="peach-tree-audio" src="PASTE_PEACH_TREE_AUDIO_URL_HERE.mp3"></audio>
+          <div id="peach-tree-text" class="animated-text"></div>
+        </div>
+
+        <div class="content-card featured-article">
           <h3>Remembering Lal Bahadur Shastri</h3>
           <p style="font-style: italic; margin-top: -0.5rem; color: var(--text-gray);">From Commoner to Commander: India's Humble Hero</p>
           <div class="author-credit">- Pavani Maurya X E</div>
@@ -986,7 +1034,7 @@ audio { display: none; }
       <div class="therese-comprehensive">
         <div class="therese-header">
           <h2>Saint Thérèse: The Little Flower</h2>
-          <p>"I will spend my heaven doing good on earth."</p>
+          <p>"I will spend my heaven doing good on earth"</p>
         </div>
         
         <div class="therese-grid">
@@ -1953,6 +2001,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const karmayuddhAudio = setupAudioPlayer('karmayuddh-audio', 'play-btn-6', 'progress-bar-6', 'current-time-6', 'duration-6');
   const hindiPoemAudio = setupAudioPlayer('hindi-poem-audio', 'play-btn-7', 'progress-bar-7', 'current-time-7', 'duration-7');
   const shastriAudio = setupAudioPlayer('shastri-audio', 'play-btn-8', 'progress-bar-8', 'current-time-8', 'duration-8');
+  const hindiShastriAudio = setupAudioPlayer('hindi-shastri-audio', 'play-btn-9', 'progress-bar-9', 'current-time-9', 'duration-9');
+  const peachTreeAudio = setupAudioPlayer('peach-tree-audio', 'play-btn-10', 'progress-bar-10', 'current-time-10', 'duration-10');
+
 
   // Setup Saint Thérèse Fact Audio Players (No text synchronization)
   const youngestAudio = setupFactAudioPlayer('youngest-audio', 'youngest-play-btn', 'youngest-progress-bar', 'youngest-current-time', 'youngest-duration');
@@ -1975,6 +2026,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const god2Audio = setupFactAudioPlayer('god2-audio', 'god2-play-btn', 'god2-progress-bar', 'god2-current-time', 'god2-duration', 'var(--dussehra-red)');
 
   // Setup Text Synchronization ONLY for articles and poems (not fact cards)
+  
+  if (hindiShastriAudio) {
+    const hindiShastriText = `लालबहादुर शास्त्री जी का नाम भारतीय राजनीति में सादगी, ईमानदारी और राष्ट्रभक्ति के प्रतीक के रूप में अमर है। उनका जन्म 2 अक्टूबर, 1904 को उत्तर प्रदेश के मुगलसराय में हुआ था। बचपन में ही पिता का निधन हो गया, जिससे परिवार पर आर्थिक कठिनाइयाँ आ गईं। फिर भी उन्होंने  साहस और परिश्रम से अपनी शिक्षा जारी रखी। काशी विद्यापीठ से पढ़ाई पूरी करने के बाद उन्हें ‘शास्त्री’ की उपाधि प्राप्त हुई।         शास्त्री जी का जीवन स्वतंत्रता आंदोलन से गहराई से जुड़ा रहा। महात्मा गांधी के विचारों से प्रेरित होकर उन्होंने असहयोग आंदोलन, नमक आंदोलन (सत्याग्रह) और भारत छोड़ो आंदोलन में भाग लिया। अंग्रेजों के विरुद्ध संघर्ष करते हुए  वे कई बार जेल गए। उनका जीवन इस बात का प्रमाण है कि कठिनाइयों और बाधाओं के बावजूद यदि मन में देशभक्ति और सत्य का सहारा हो तो कोई भी लक्ष्य कठिन नहीं रहता।  स्वतंत्रता के बाद शास्त्री जी को विभिन्न जिम्मेदारियाँ निभाने का अवसर मिला। उन्होंने रेल मंत्री, परिवहन एवं संचार मंत्री, वाणिज्य मंत्री और गृह मंत्री के रूप में उल्लेखनीय कार्य किए। उनकी सादगी और ईमानदारी ने उन्हें जनता का प्रिय बना दिया। 1964 में पंडित नेहरू के निधन के बाद उन्हें भारत का प्रधानमंत्री चुना गया। इस पद पर आसीन होकर उन्होंने देशभक्ति को सर्वोपरि माना और हमेशा आम जन के हित के लिए निर्णय लिए। यद्यपि उनका प्रधानमंत्री पद का कार्यकाल अल्पकालिक रहा, किन्तु वह अत्यंत प्रभावशाली था। 1965 में भारत-पाक युद्ध के समय उन्होंने पूरे देश को एकजुट किया और सैनिकों का उत्साह बढ़ाया। उन्होंने “जय जवान,जय किसान” का नारा दिया जिसने सैनिकों और किसानों दोनों को देश निर्माण में योगदान करने के लिए प्रेरित किया। उनके नेतृत्व ने यह सिद्ध कर दिया कि सच्चा प्रधानमंत्री वही है जो संकट की घड़ी में जनता का मार्गदर्शन कर सके।        शास्त्री जी अपने जीवन में अत्यंत सरल और मितव्ययी रहे। प्रधानमंत्री बनने के बाद भी वे सामान्य नागरिक की तरह जीवन व्यतीत करते थे। वे दिखावे और विलासिता से दूर रहते थे तथा देशहित को सर्वोपरि मानते थे।10 जनवरी, 1966 को ताशकंद में भारत-पाक शांति समझौता हुआ, किंतु दुर्भाग्यवश 11 जनवरी की सुबह वहीं पर उनका निधन हो गया। उनकी मृत्यु आज भी रहस्यमयी मानी जाती है। यद्यपि उनका जीवनकाल छोटा रहा, लेकिन अपने आदर्शो, नीतियों और विचारों से उन्होंने देशवासियों को सदा के लिए प्रेरणा दी। लाल बहादुर शास्त्री जी ने यह सिद्ध कर दिया कि महानता पद या शक्ति से नहीं, बल्कि सादगी, ईमानदारी और राष्ट्र सेवा से मिलती है।  वे एक सच्चे देशभक्त,आदर्श नेता और जनता के प्रधानमंत्री थे।`;
+    setupAudioText('hindi-shastri-text', hindiShastriAudio, hindiShastriText);
+  }
+
+  if (peachTreeAudio) {
+    const peachTreeText = `In a small village, a kind boy named Danish lovingly cared for a little peach sapling until it grew into a magnificent tree. The tree was a marvel! Its branches were heavy with peaches as sweet as sugar. The fruit had a delightful, rich flavour that made anyone who tasted it fall in love. Danish was incredibly proud of his tree. Soon, a group of students came running to the tree. Without asking Danish's permission, they climbed the branches like unruly monkeys. They plucked and ate more peaches than they could possibly finish, leaving half-eaten fruit scattered on the ground. After they had had their fill, the students vanished as quickly as they had appeared. Later that evening, Danish was heartbroken when he saw the mess. His beautiful tree was stripped bare, and the ground was littered with wasted peaches. From that day on, Danish felt a new protectiveness over his tree, hoping no one would ever treat it so carelessly again. Moral: Treat nature with respect and care, and remember to ask before you take what doesn't belong to you.`;
+    setupAudioText('peach-tree-text', peachTreeAudio, peachTreeText);
+  }
   
   if (shastriAudio) {
     const shastriText = `From Commoner to Commander: India's Humble Hero Born on the same day as Mahatma Gandhi, Lal Bahadur Shastri was an immensely impactful independence activist and politician of our country. Yet, unlike other leaders, he is often overlooked in the pages of history. He was born in Mughalsarai, Uttar Pradesh, on 2nd October 1904. At merely 18 months old, he lost his father to the bubonic plague. Growing up, poverty was his constant companion. These hardships shaped his personality, making him resilient and simple. Influenced by the patriotic figures surrounding him, Shastri ji started actively participating in national activism in the early 1920s. He was imprisoned twice in this pursuit. He also dropped his surname 'Srivastava' and took the title 'Shastri' awarded by his degree institution instead of opining caste distinctions. After the independence, he served as the Minister of Railways from 1952 to 1956. He later resigned from this post, deeming himself responsible for the 1956 Ariyalur train accident. Such acts of honesty are, to this date, rarely seen in politicians. Later, he served as the Prime Minister of India from 1964 to 1966. In this brief duration, he managed to achieve feats that others could only dream of. He fuelled the Green Revolution and the White Revolution, bringing sustainable changes to the country. When India faced a severe food shortage, he asked citizens to skip one meal a week to save food and even practiced it himself. During the Indo-Pakistani War of 1965, he inspired the nation with his famous slogan, "Jai Jawan, Jai Kisan," which still echoes in every patriot's heart. After the war, Shastri ji and President Ayub Khan of Pakistan met in Tashkent, USSR, under Soviet mediation. On 10 January 1966, they signed the Tashkent Declaration, formally ending the conflict. Lal Bahadur Shastri's story teaches us that true leadership isn't about power or fame, but about selflessness, humility, and unwavering integrity. His life, though tragically cut short, serves as a powerful lesson for every student. He showed us that a simple person, driven by a deep love for their country, can achieve extraordinary things. His slogan, "Jai Jawan, Jai Kisan," continues to remind us to honor both the soldier who defends our borders and the farmer who feeds our nation. Let's remember Shastri Ji not just as a former Prime Minister, but as a humble hero who showed us the path to a better India through his actions. You led with a humble yet fearless heart, And lived with the attitude of a commoner. You left behind values of humility so high And a legacy too great for us to honour.`;
