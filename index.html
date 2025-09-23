@@ -404,7 +404,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.text-only-card .fact-header {
+.therese-fact-card.text-only-card .fact-header {
   grid-template-columns: 1fr;
   text-align: center;
 }
@@ -836,19 +836,22 @@ audio { display: none; }
 @media (min-width: 481px) and (max-width: 768px) { .content-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 769px) { .content-grid { grid-template-columns: repeat(3, 1fr); } }
 
-/* Custom styles for the Gandhi fact cards with backgrounds */
+/* Custom styles for the International Day of Non-Violence card */
 #non-violence-card,
 #nobel-card,
 #early-life-card,
 #dandi-card,
 #satyagraha-card,
 #assassination-card {
-  position: relative; 
+  position: relative; /* Needed for the overlay */
   background-size: cover;
   background-position: center;
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+#non-violence-card {
+  background-image: url('https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png');
+}
 #nobel-card {
   background-image: url('https://i.ibb.co/Y4dJXMM2/GANDHI-NOBEL.jpg');
 }
@@ -879,8 +882,8 @@ audio { display: none; }
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
-  border-radius: 20px; 
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px; /* This should match your card's border-radius */
   z-index: 1;
 }
 
@@ -895,7 +898,7 @@ audio { display: none; }
   z-index: 2;
 }
 
-/* This makes the text white with a shadow for contrast */
+/* This increases the text color and adds a shadow for contrast */
 #non-violence-card h4, 
 #non-violence-card p,
 #non-violence-card .fact-audio-title,
@@ -921,42 +924,7 @@ audio { display: none; }
 #assassination-card .fact-audio-title,
 #assassination-card .fact-time-display {
   color: #ffffff; /* Bright white */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-/* Gallery Section Styles */
-.gallery-subsection h3 {
-  font-family: var(--heading-font);
-  color: var(--accent-gold);
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  text-align: center;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.gallery-item {
-  border: 2px solid #404040;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  display: block;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 </style>
 </head>
@@ -970,7 +938,6 @@ audio { display: none; }
         <li><a href="#videos">Videos</a></li>
         <li><a href="#poems">Poems</a></li>
         <li><a href="#paintings">Paintings</a></li>
-        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#ebulletin">E-Bulletin</a></li>
       </ul>
     </nav>
@@ -1146,7 +1113,7 @@ audio { display: none; }
     </section>
 
     <section id="ebulletin" class="content-section">
-      <h2 class="section-title">E-Bulletin -Arpit Kumar Gupta XII-B</h2>
+      <h2 class="section-title">E-Bulletin</h2>
       
       <div class="ebulletin-section">
         <div class="ebulletin-content">
@@ -1368,11 +1335,14 @@ audio { display: none; }
         </div>
         
         <div class="gandhi-grid">
-          <div class="gandhi-fact-card text-only-card" id="non-violence-card">
+          <div class="gandhi-fact-card" id="non-violence-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
                   <h4>International Day of Non-Violence</h4>
+                </div>
+                <div class="fact-image">
+                  <img src="https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png" alt="International Day of Non-Violence" />
                 </div>
               </div>
 
@@ -1400,7 +1370,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="nobel-card">
+          <div class="gandhi-fact-card" id="nobel-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1432,7 +1402,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="early-life-card">
+          <div class="gandhi-fact-card" id="early-life-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1464,7 +1434,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="dandi-card">
+          <div class="gandhi-fact-card" id="dandi-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1496,7 +1466,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="satyagraha-card">
+          <div class="gandhi-fact-card" id="satyagraha-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1528,7 +1498,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="assassination-card">
+          <div class="gandhi-fact-card" id="assassination-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1827,35 +1797,6 @@ the eternal shape of love.</div>
         </div>
       </div>
     </section>
-    
-    <section id="gallery" class="content-section">
-      <h2 class="section-title">Gallery</h2>
-
-      <div class="gallery-subsection">
-        <h3>Pope Francis - Condolences - 26th April</h3>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis Condolences Image 1" loading="lazy">
-          </div>
-          <div class="gallery-item">
-            <img src="https://i.ibb.co/HLD0TYN4/POPE-2.jpg" alt="Pope Francis Condolences Image 2" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-      <div class="gallery-subsection">
-        <h3>ICSE, ISC Result Declaration - 30 April</h3>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="ICSE Results" loading="lazy">
-          </div>
-          <div class="gallery-item">
-            <img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ISC Results" loading="lazy">
-          </div>
-        </div>
-      </div>
-    </section>
-
   </div>
 </main>
 
