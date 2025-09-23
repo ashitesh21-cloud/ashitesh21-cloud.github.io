@@ -398,10 +398,15 @@ body {
 
 .fact-header {
   display: grid;
-  grid-template-columns: 1fr; /* UPDATED: Changed from 1fr 120px */
+  grid-template-columns: 1fr 120px;
   gap: 1.5rem;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+.therese-fact-card.text-only-card .fact-header {
+  grid-template-columns: 1fr;
+  text-align: center;
 }
 
 .fact-text h4 {
@@ -832,16 +837,45 @@ audio { display: none; }
 @media (min-width: 769px) { .content-grid { grid-template-columns: repeat(3, 1fr); } }
 
 /* Custom styles for the International Day of Non-Violence card */
-#non-violence-card {
+#non-violence-card,
+#nobel-card,
+#early-life-card,
+#dandi-card,
+#satyagraha-card,
+#assassination-card {
   position: relative; /* Needed for the overlay */
-  background-image: url('https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png');
   background-size: cover;
   background-position: center;
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+#non-violence-card {
+  background-image: url('https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png');
+}
+#nobel-card {
+  background-image: url('https://i.ibb.co/Y4dJXMM2/GANDHI-NOBEL.jpg');
+}
+#early-life-card {
+  background-image: url('https://i.ibb.co/7xMr6041/early.jpg');
+}
+#dandi-card {
+  background-image: url('https://i.ibb.co/XZ1NjfNq/dandi.jpg');
+}
+#satyagraha-card {
+  background-image: url('https://i.ibb.co/HpTVMj6z/gandhi-satyagraha.png');
+}
+#assassination-card {
+  background-image: url('https://i.ibb.co/HTFHXZ01/assasination.webp');
+}
+
+
 /* This adds a dark overlay to make text more readable */
-#non-violence-card::before {
+#non-violence-card::before,
+#nobel-card::before,
+#early-life-card::before,
+#dandi-card::before,
+#satyagraha-card::before,
+#assassination-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -854,7 +888,12 @@ audio { display: none; }
 }
 
 /* This makes sure the content appears on top of the overlay */
-#non-violence-card .fact-content {
+#non-violence-card .fact-content,
+#nobel-card .fact-content,
+#early-life-card .fact-content,
+#dandi-card .fact-content,
+#satyagraha-card .fact-content,
+#assassination-card .fact-content {
   position: relative;
   z-index: 2;
 }
@@ -863,7 +902,27 @@ audio { display: none; }
 #non-violence-card h4, 
 #non-violence-card p,
 #non-violence-card .fact-audio-title,
-#non-violence-card .fact-time-display {
+#non-violence-card .fact-time-display,
+#nobel-card h4, 
+#nobel-card p,
+#nobel-card .fact-audio-title,
+#nobel-card .fact-time-display,
+#early-life-card h4, 
+#early-life-card p,
+#early-life-card .fact-audio-title,
+#early-life-card .fact-time-display,
+#dandi-card h4, 
+#dandi-card p,
+#dandi-card .fact-audio-title,
+#dandi-card .fact-time-display,
+#satyagraha-card h4, 
+#satyagraha-card p,
+#satyagraha-card .fact-audio-title,
+#satyagraha-card .fact-time-display,
+#assassination-card h4, 
+#assassination-card p,
+#assassination-card .fact-audio-title,
+#assassination-card .fact-time-display {
   color: #ffffff; /* Bright white */
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
@@ -1075,14 +1134,11 @@ audio { display: none; }
         </div>
         
         <div class="therese-grid">
-          <div class="therese-fact-card">
+          <div class="therese-fact-card text-only-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
                   <h4>Youngest Doctor of the Church</h4>
-                </div>
-                <div class="fact-image">
-                  <img src="https://i.ibb.co/MW8x7yd/stheresa.png" alt="Saint Thérèse of Lisieux" />
                 </div>
               </div>
 
@@ -1110,14 +1166,11 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card">
+          <div class="therese-fact-card text-only-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
                   <h4>The Little Way</h4>
-                </div>
-                <div class="fact-image">
-                  <img src="https://i.ibb.co/pNV7ny1/https://i.ibb.co/pNV7ny1/stlinux.png" alt="Saint Thérèse Little Way" />
                 </div>
               </div>
 
@@ -1145,14 +1198,11 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card">
+          <div class="therese-fact-card text-only-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
                   <h4>Early Life & Family</h4>
-                </div>
-                <div class="fact-image">
-                  <img src="https://i.ibb.co/XrvZH3Gb/https://i.ibb.co/XrvZH3Gb/out1.jpg" alt="Young Saint Thérèse" />
                 </div>
               </div>
 
@@ -1180,14 +1230,11 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card">
+          <div class="therese-fact-card text-only-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
                   <h4>Carmelite Nun at 15</h4>
-                </div>
-                <div class="fact-image">
-                  <img src="https://i.ibb.co/MDwJVkxC/https://i.ibb.co/MDwJVkxC/out2.jpg" alt="Carmelite Thérèse" />
                 </div>
               </div>
 
@@ -1215,14 +1262,11 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card">
+          <div class="therese-fact-card text-only-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
                   <h4>The Story of a Soul</h4>
-                </div>
-                <div class="fact-image">
-                  <img src="https://i.ibb.co/DHwSSWHd/https://i.ibb.co/DHwSSWHd/out3.jpg" alt="Story of a Soul" />
                 </div>
               </div>
 
@@ -1250,14 +1294,11 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="therese-fact-card">
+          <div class="therese-fact-card text-only-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
                   <h4>Death & Canonization</h4>
-                </div>
-                <div class="fact-image">
-                  <img src="https://i.ibb.co/jZVbwKZJ/https://i.ibb.co/jZVbwKZJ/out4.jpg" alt="Saint Thérèse Legacy" />
                 </div>
               </div>
 
@@ -1300,6 +1341,9 @@ audio { display: none; }
                 <div class="fact-text">
                   <h4>International Day of Non-Violence</h4>
                 </div>
+                <div class="fact-image">
+                  <img src="https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png" alt="International Day of Non-Violence" />
+                </div>
               </div>
 
               <div class="fact-audio-player">
@@ -1326,7 +1370,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card">
+          <div class="gandhi-fact-card" id="nobel-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1358,7 +1402,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card">
+          <div class="gandhi-fact-card" id="early-life-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1390,7 +1434,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card">
+          <div class="gandhi-fact-card" id="dandi-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1422,7 +1466,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card">
+          <div class="gandhi-fact-card" id="satyagraha-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
@@ -1454,7 +1498,7 @@ audio { display: none; }
             </div>
           </div>
 
-          <div class="gandhi-fact-card">
+          <div class="gandhi-fact-card" id="assassination-card">
             <div class="fact-content">
               <div class="fact-header">
                 <div class="fact-text">
