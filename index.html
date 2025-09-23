@@ -4,19 +4,22 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>Little Flower School | Digital Magazine</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link rel="preload" as="image" href="https://i.ibb.co/7tGFmm4B/lfs.jpg">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap">
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 <style>
 /* CSS Variables */
 :root {
-  /* Light Theme Variables */
-  --text-white: #212529;    /* Main text color is now dark */
-  --text-light: #495057;    /* Secondary text is dark gray */
-  --text-gray: #6c757d;     /* Tertiary text is medium gray */
-  
+  --text-white: #212529;
+  --text-light: #495057;
+  --text-gray: #6c757d;
   --accent-blue: #3e92cc;
   --accent-gold: #ffd700;
   --therese-rose: #f8b2c3;
@@ -35,8 +38,8 @@
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--body-font);
-  background-color: #f8f9fa; /* Light gray background for the whole page */
-  color: var(--text-white);   /* Default text color is now dark */
+  background-color: #f8f9fa;
+  color: var(--text-white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -48,7 +51,7 @@ body {
 
 /* Hero Section */
 .hero-section {
-  background: url('https://i.ibb.co/7tGFmm4B/https://i.ibb.co/7tGFmm4B/lfs.jpg') center center/cover no-repeat;
+  background: url('https://i.ibb.co/7tGFmm4B/lfs.jpg') center center/cover no-repeat;
   min-height: 100vh;
   padding: 1.5rem 1rem 3rem 1rem;
   text-align: center;
@@ -63,7 +66,7 @@ body {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.4); /* Keeping dark overlay for hero text readability */
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -79,7 +82,7 @@ body {
 }
 
 .site-nav a {
-  color: #ffffff; /* Keep nav links white for readability on hero image */
+  color: #ffffff;
   font-weight: 600;
   text-decoration: none;
   opacity: 0.9;
@@ -107,18 +110,18 @@ body {
   font-size: clamp(2rem, 8vw, 4.2rem); 
   margin-bottom: 1rem; 
   line-height: 1.1;
-  color: #ffffff; /* Keep hero title white */
+  color: #ffffff;
   text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.8);
 }
 .hero-subtitle { 
   font-size: clamp(0.9rem, 4vw, 1.2rem); 
-  color: #e0e0e0; /* Keep hero subtitle light */
+  color: #e0e0e0;
   line-height: 1.5; 
 }
 
 /* Content Area */
 .content-area {
-  background: transparent; /* Remove dark background, let body color show */
+  background: transparent;
   padding: 3rem 0.75rem 2rem;
   position: relative;
   z-index: 1;
@@ -137,18 +140,18 @@ body {
 .section-credit {
   text-align: center;
   font-style: italic;
-  color: var(--text-gray); /* Uses the new dark gray variable */
+  color: var(--text-gray);
   margin-top: -1.5rem;
   margin-bottom: 2rem;
 }
 
 /* Cards */
 .content-card {
-  background: #ffffff; /* White card background */
+  background: #ffffff;
   border-radius: 12px;
   padding: 1.25rem;
-  border: 1px solid #dee2e6; /* Light gray border */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Softer shadow */
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   width: 100%;
   transition: all 0.3s ease;
   margin-bottom: 1rem;
@@ -166,7 +169,6 @@ body {
   line-height: 1.3;
 }
 
-/* Author credit styling */
 .author-credit {
   font-size: 1rem;
   color: var(--accent-blue);
@@ -203,6 +205,7 @@ body {
   height: 100%;
   background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
   animation: floating 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes floating {
@@ -210,85 +213,61 @@ body {
   50% { transform: translateY(-10px) rotate(5deg); }
 }
 
-/* GANDHI COMPREHENSIVE SECTION */
-.gandhi-comprehensive {
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.05), rgba(138, 69, 19, 0.05), rgba(255, 215, 0, 0.08));
+/* Comprehensive Themed Sections */
+.gandhi-comprehensive, .therese-comprehensive, .dussehra-comprehensive {
   border-radius: 25px;
   padding: 4rem 3rem;
   margin: 3rem 0;
-  border: 2px solid rgba(255, 140, 0, 0.4);
   box-shadow: 0 15px 40px rgba(0,0,0,0.1);
   position: relative;
   overflow: hidden;
 }
+.gandhi-comprehensive {
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.05), rgba(138, 69, 19, 0.05), rgba(255, 215, 0, 0.08));
+  border: 2px solid rgba(255, 140, 0, 0.4);
+}
+.therese-comprehensive {
+  background: linear-gradient(135deg, rgba(248, 178, 195, 0.1), rgba(252, 228, 236, 0.08), rgba(173, 20, 87, 0.05));
+  border: 2px solid rgba(248, 178, 195, 0.4);
+}
+.dussehra-comprehensive {
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.05), rgba(255, 140, 0, 0.05), rgba(255, 215, 0, 0.08));
+  border: 2px solid rgba(255, 69, 0, 0.4);
+}
 
-.gandhi-comprehensive::before {
+.gandhi-comprehensive::before, .therese-comprehensive::before, .dussehra-comprehensive::before {
   content: '';
   position: absolute;
   top: -60%;
-  left: -50%;
   width: 200%;
   height: 200%;
+  will-change: transform;
+}
+
+.gandhi-comprehensive::before {
+  left: -50%;
   background: radial-gradient(circle, rgba(255, 140, 0, 0.1) 0%, transparent 50%);
   animation: gandhiFloat 8s ease-in-out infinite;
+}
+.therese-comprehensive::before {
+  right: -50%;
+  background: radial-gradient(circle, rgba(248, 178, 195, 0.15) 0%, transparent 50%);
+  animation: thereseFloat 10s ease-in-out infinite;
+}
+.dussehra-comprehensive::before {
+  right: -50%;
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.1) 0%, transparent 50%);
+  animation: dussehraFloat 9s ease-in-out infinite;
 }
 
 @keyframes gandhiFloat {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(10deg); }
 }
-
-/* SAINT THÉRÈSE COMPREHENSIVE SECTION */
-.therese-comprehensive {
-  background: linear-gradient(135deg, rgba(248, 178, 195, 0.1), rgba(252, 228, 236, 0.08), rgba(173, 20, 87, 0.05));
-  border-radius: 25px;
-  padding: 4rem 3rem;
-  margin: 3rem 0;
-  border: 2px solid rgba(248, 178, 195, 0.4);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.therese-comprehensive::before {
-  content: '';
-  position: absolute;
-  top: -60%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(248, 178, 195, 0.15) 0%, transparent 50%);
-  animation: thereseFloat 10s ease-in-out infinite;
-}
-
 @keyframes thereseFloat {
   0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
   50% { transform: translateY(-15px) rotate(-8deg) scale(1.05); }
 }
-
-/* DUSSEHRA COMPREHENSIVE SECTION */
-.dussehra-comprehensive {
-  background: linear-gradient(135deg, rgba(255, 69, 0, 0.05), rgba(255, 140, 0, 0.05), rgba(255, 215, 0, 0.08));
-  border-radius: 25px;
-  padding: 4rem 3rem;
-  margin: 3rem 0;
-  border: 2px solid rgba(255, 69, 0, 0.4);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.dussehra-comprehensive::before {
-  content: '';
-  position: absolute;
-  top: -60%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 69, 0, 0.1) 0%, transparent 50%);
-  animation: dussehraFloat 9s ease-in-out infinite;
-}
-
 @keyframes dussehraFloat {
   0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
   50% { transform: translateY(-18px) rotate(12deg) scale(1.03); }
@@ -301,29 +280,15 @@ body {
   z-index: 3;
 }
 
-.therese-header h2 {
+.therese-header h2, .gandhi-header h2, .dussehra-header h2 {
   font-family: var(--heading-font);
   font-size: clamp(2.5rem, 6vw, 4rem);
-  color: var(--therese-deep);
   text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
   margin-bottom: 1rem;
 }
-
-.gandhi-header h2 {
-  font-family: var(--heading-font);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  color: #ff8c00;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-  margin-bottom: 1rem;
-}
-
-.dussehra-header h2 {
-  font-family: var(--heading-font);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  color: var(--dussehra-red);
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-  margin-bottom: 1rem;
-}
+.therese-header h2 { color: var(--therese-deep); }
+.gandhi-header h2 { color: #ff8c00; }
+.dussehra-header h2 { color: var(--dussehra-red); }
 
 .therese-header p, .gandhi-header p, .dussehra-header p {
   font-size: clamp(1.1rem, 3vw, 1.4rem);
@@ -348,80 +313,25 @@ body {
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  will-change: transform, box-shadow;
 }
 
-.gandhi-fact-card {
-  border: 1px solid rgba(255, 140, 0, 0.4);
-}
+.gandhi-fact-card { border: 1px solid rgba(255, 140, 0, 0.4); }
+.therese-fact-card { border: 1px solid rgba(248, 178, 195, 0.4); }
+.dussehra-fact-card { border: 1px solid rgba(255, 69, 0, 0.4); }
 
-.therese-fact-card {
-  border: 1px solid rgba(248, 178, 195, 0.4);
-}
+.gandhi-fact-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(255, 140, 0, 0.4); border-color: var(--accent-gold); }
+.therese-fact-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(248, 178, 195, 0.4); border-color: var(--therese-rose); }
+.dussehra-fact-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(255, 69, 0, 0.4); border-color: var(--dussehra-red); }
 
-.dussehra-fact-card {
-  border: 1px solid rgba(255, 69, 0, 0.4);
-}
+.fact-content { position: relative; z-index: 2; display: flex; flex-direction: column; }
+.fact-header { display: grid; grid-template-columns: 1fr 120px; gap: 1.5rem; align-items: center; margin-bottom: 1rem; }
+.text-only-card .fact-header { grid-template-columns: 1fr; text-align: center; }
 
-.gandhi-fact-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(255, 140, 0, 0.4);
-  border-color: var(--accent-gold);
-}
-
-.therese-fact-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(248, 178, 195, 0.4);
-  border-color: var(--therese-rose);
-}
-
-.dussehra-fact-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(255, 69, 0, 0.4);
-  border-color: var(--dussehra-red);
-}
-
-.fact-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-}
-
-.fact-header {
-  display: grid;
-  grid-template-columns: 1fr 120px;
-  gap: 1.5rem;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.text-only-card .fact-header {
-  grid-template-columns: 1fr;
-  text-align: center;
-}
-
-.fact-text h4 {
-  font-family: var(--heading-font);
-  font-size: clamp(1.3rem, 3vw, 1.6rem);
-  margin-bottom: 1rem;
-  text-shadow: none;
-}
-
-.gandhi-fact-card:not([id]) .fact-text h4 {
-  color: #d97706; /* Darker Orange */
-}
-
-.therese-fact-card:not([id]) .fact-text h4 {
-  color: var(--therese-deep);
-}
-
-.dussehra-fact-card:not([id]) .fact-text h4 {
-  color: var(--dussehra-red);
-}
-
-.fact-image {
-  position: relative;
-}
+.fact-text h4 { font-family: var(--heading-font); font-size: clamp(1.3rem, 3vw, 1.6rem); margin-bottom: 1rem; text-shadow: none; }
+.gandhi-fact-card:not(.lazy-bg) .fact-text h4 { color: #d97706; }
+.therese-fact-card:not(.lazy-bg) .fact-text h4 { color: var(--therese-deep); }
+.dussehra-fact-card:not(.lazy-bg) .fact-text h4 { color: var(--dussehra-red); }
 
 .fact-image img {
   width: 100%;
@@ -431,465 +341,108 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
-
-.gandhi-fact-card .fact-image img {
-  border: 3px solid rgba(255, 140, 0, 0.4);
-}
-
-.therese-fact-card .fact-image img {
-  border: 3px solid rgba(248, 178, 195, 0.4);
-}
-
-.dussehra-fact-card .fact-image img {
-  border: 3px solid rgba(255, 69, 0, 0.4);
-}
-
-.gandhi-fact-card .fact-image:hover img {
-  border-color: var(--accent-gold);
-  transform: scale(1.05);
-}
-
-.therese-fact-card .fact-image:hover img {
-  border-color: var(--therese-rose);
-  transform: scale(1.05);
-}
-
-.dussehra-fact-card .fact-image:hover img {
-  border-color: var(--dussehra-red);
-  transform: scale(1.05);
-}
+.gandhi-fact-card .fact-image img { border: 3px solid rgba(255, 140, 0, 0.4); }
+.therese-fact-card .fact-image img { border: 3px solid rgba(248, 178, 195, 0.4); }
+.dussehra-fact-card .fact-image img { border: 3px solid rgba(255, 69, 0, 0.4); }
+.gandhi-fact-card .fact-image:hover img { border-color: var(--accent-gold); transform: scale(1.05); }
+.therese-fact-card .fact-image:hover img { border-color: var(--therese-rose); transform: scale(1.05); }
+.dussehra-fact-card .fact-image:hover img { border-color: var(--dussehra-red); transform: scale(1.05); }
 
 /* Audio Player for Fact Cards */
-.fact-audio-player {
-  background: #e9ecef;
-  border-radius: 10px;
-  padding: 0.875rem;
-  margin: 1rem 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border: 1px solid #ced4da;
-}
+.fact-audio-player { background: #e9ecef; border-radius: 10px; padding: 0.875rem; margin: 1rem 0; box-shadow: 0 2px 6px rgba(0,0,0,0.1); border: 1px solid #ced4da; }
+.therese-fact-card .fact-audio-player { border: 1px solid rgba(248, 178, 195, 0.4); }
+.gandhi-fact-card .fact-audio-player { border: 1px solid rgba(255, 140, 0, 0.4); }
+.dussehra-fact-card .fact-audio-player { border: 1px solid rgba(255, 69, 0, 0.4); }
 
-.therese-fact-card .fact-audio-player {
-  border: 1px solid rgba(248, 178, 195, 0.4);
-}
+.lazy-bg .fact-audio-player { background: rgba(45, 55, 72, 0.8); border: 1px solid rgba(255, 255, 255, 0.2); }
+.lazy-bg .fact-audio-title, .lazy-bg .fact-time-display { color: #fff; }
 
-.gandhi-fact-card .fact-audio-player {
-  border: 1px solid rgba(255, 140, 0, 0.4);
-}
-
-.dussehra-fact-card .fact-audio-player {
-  border: 1px solid rgba(255, 69, 0, 0.4);
-}
-
-/* Specific audio player styles for image-backed cards */
-[id*="-card"] .fact-audio-player {
-    background: rgba(45, 55, 72, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-[id*="-card"] .fact-audio-title, [id*="-card"] .fact-time-display {
-    color: #fff;
-}
-
-
-.fact-audio-controls { 
-  display: flex; 
-  align-items: center; 
-  gap: 0.75rem; 
-}
-
-.fact-play-btn {
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 40px;
-  min-height: 40px;
-}
-
-.therese-fact-card .fact-play-btn {
-  background: linear-gradient(135deg, var(--therese-rose), var(--therese-deep));
-  box-shadow: 0 4px 8px rgba(248, 178, 195, 0.4);
-}
-
-.gandhi-fact-card .fact-play-btn {
-  background: linear-gradient(135deg, var(--gandhi-orange), var(--gandhi-saffron));
-  box-shadow: 0 4px 8px rgba(255, 140, 0, 0.4);
-}
-
-.dussehra-fact-card .fact-play-btn {
-  background: linear-gradient(135deg, var(--dussehra-red), var(--dussehra-orange));
-  box-shadow: 0 4px 8px rgba(255, 69, 0, 0.4);
-}
-
-.fact-play-btn:hover { 
-  transform: scale(1.05); 
-  background: linear-gradient(135deg, var(--accent-gold), #d69e2e); 
-}
-
-.fact-play-btn i { 
-  color: white; 
-  font-size: 0.9rem; 
-  margin-left: 2px; 
-}
-
-.fact-audio-info { 
-  flex: 1; 
-  min-width: 0; 
-}
-
-.fact-audio-title { 
-  color: var(--text-white); 
-  font-size: 0.8rem; 
-  font-weight: 600; 
-  margin-bottom: 0.5rem; 
-}
-
-.fact-progress-container { 
-  display: flex; 
-  align-items: center; 
-  gap: 0.5rem; 
-}
-
-.fact-time-display { 
-  color: var(--text-gray); 
-  font-size: 0.7rem; 
-  min-width: 30px; 
-  text-align: center; 
-}
-
-.fact-progress-bar { 
-  flex: 1; 
-  height: 6px; 
-  background: #d1d1d1;
-  border-radius: 3px; 
-  cursor: pointer; 
-}
-
-/* Static text for fact cards - always visible */
-.fact-text-content {
-  margin-top: 1rem;
-}
-
-.fact-text-content p {
-  color: var(--text-light);
-  line-height: 1.7;
-  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-}
+.fact-audio-controls { display: flex; align-items: center; gap: 0.75rem; }
+.fact-play-btn { border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; min-width: 40px; min-height: 40px; }
+.therese-fact-card .fact-play-btn { background: linear-gradient(135deg, var(--therese-rose), var(--therese-deep)); box-shadow: 0 4px 8px rgba(248, 178, 195, 0.4); }
+.gandhi-fact-card .fact-play-btn { background: linear-gradient(135deg, var(--gandhi-orange), var(--gandhi-saffron)); box-shadow: 0 4px 8px rgba(255, 140, 0, 0.4); }
+.dussehra-fact-card .fact-play-btn { background: linear-gradient(135deg, var(--dussehra-red), var(--dussehra-orange)); box-shadow: 0 4px 8px rgba(255, 69, 0, 0.4); }
+.fact-play-btn:hover { transform: scale(1.05); background: linear-gradient(135deg, var(--accent-gold), #d69e2e); }
+.fact-play-btn i { color: white; font-size: 0.9rem; margin-left: 2px; }
+.fact-audio-info { flex: 1; min-width: 0; }
+.fact-audio-title { color: var(--text-white); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; }
+.fact-progress-container { display: flex; align-items: center; gap: 0.5rem; }
+.fact-time-display { color: var(--text-gray); font-size: 0.7rem; min-width: 30px; text-align: center; }
+.fact-progress-bar { flex: 1; height: 6px; background: #d1d1d1; border-radius: 3px; cursor: pointer; }
+.fact-text-content { margin-top: 1rem; }
+.fact-text-content p { color: var(--text-light); line-height: 1.7; font-size: clamp(0.95rem, 2.5vw, 1.05rem); }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .fact-header {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    text-align: center;
-  }
-  
-  .fact-image img {
-    height: 200px;
-    width: 100%;
-  }
-  
-  .gandhi-comprehensive, .therese-comprehensive, .dussehra-comprehensive {
-    padding: 2rem 1.5rem;
-  }
-  
-  .gandhi-grid, .therese-grid, .dussehra-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+  .fact-header { grid-template-columns: 1fr; gap: 1rem; text-align: center; }
+  .fact-image img { height: 200px; width: 100%; }
+  .gandhi-comprehensive, .therese-comprehensive, .dussehra-comprehensive { padding: 2rem 1.5rem; }
+  .gandhi-grid, .therese-grid, .dussehra-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
 
 /* Audio Player */
-.audio-player {
-  background: #e9ecef; /* Light gray */
-  border-radius: 10px;
-  padding: 0.875rem;
-  margin: 1rem 0;
-  border: 1px solid #ced4da; /* Light border */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
+.audio-player { background: #e9ecef; border-radius: 10px; padding: 0.875rem; margin: 1rem 0; border: 1px solid #ced4da; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
 .audio-controls { display: flex; align-items: center; gap: 0.75rem; }
-
-.play-btn {
-  background: linear-gradient(135deg, var(--accent-blue), #2b6cb0);
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(62, 146, 204, 0.4);
-  min-width: 48px;
-  min-height: 48px;
-}
-
+.play-btn { background: linear-gradient(135deg, var(--accent-blue), #2b6cb0); border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(62, 146, 204, 0.4); min-width: 48px; min-height: 48px; }
 .play-btn:hover { transform: scale(1.05); background: linear-gradient(135deg, var(--accent-gold), #d69e2e); }
 .play-btn i { color: white; font-size: 1.1rem; margin-left: 2px; }
-
 .audio-info { flex: 1; min-width: 0; }
 .audio-title { color: var(--text-white); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
-
 .progress-container { display: flex; align-items: center; gap: 0.5rem; }
 .time-display { color: var(--text-gray); font-size: 0.75rem; min-width: 35px; text-align: center; }
 .progress-bar { flex: 1; height: 8px; background: #ced4da; border-radius: 4px; cursor: pointer; }
-
 audio { display: none; }
 
 /* Video Card */
-.video-card {
-  position: relative;
-  overflow: hidden;
-  min-height: 400px;
-  display: flex;
-  border-radius: 12px;
-  border: 2px solid var(--accent-blue);
-  background-color: #333;
-}
-
-.background-video {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transform: translate(-50%, -50%) scale(1.1);
-  z-index: 0;
-}
-
-.video-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85));
-  z-index: 1;
-}
-
-.video-card .card-content {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1.25rem;
-}
+.video-card { position: relative; overflow: hidden; min-height: 400px; display: flex; border-radius: 12px; border: 2px solid var(--accent-blue); background-color: #333; }
+.background-video { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%) scale(1.1); z-index: 0; }
+.video-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)); z-index: 1; }
+.video-card .card-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; padding: 1.25rem; }
 
 /* Text Synchronization */
-.poem-text, .animated-text {
-  font-family: 'Georgia', serif;
-  font-size: clamp(0.85rem, 3.5vw, 1rem);
-  line-height: 1.7;
-  margin: 1rem 0;
-  color: var(--text-light);
-  min-height: 100px;
-}
-
+.poem-text, .animated-text { font-family: 'Georgia', serif; font-size: clamp(0.85rem, 3.5vw, 1rem); line-height: 1.7; margin: 1rem 0; color: var(--text-light); min-height: 100px; }
 .animated-text { display: none; }
 .animated-text.active { display: block; }
-
-.poem-text span, .animated-text span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  color: #888;
-}
-
-.poem-text span.visible, .animated-text span.visible {
-  opacity: 1;
-  transform: translateY(0);
-  color: var(--accent-blue);
-  text-shadow: 1px 1px 3px rgba(62, 146, 204, 0.5);
-  font-weight: 500;
-}
-
-.video-card .poem-text {
-  color: rgba(255, 255, 255, 0.98);
-  font-weight: 500;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.95);
-}
-
-.video-card .poem-text span.visible {
-  color: var(--accent-blue);
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.95), 1px 1px 3px rgba(62, 146, 204, 0.8);
-}
+.poem-text span, .animated-text span { display: inline-block; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; color: #888; }
+.poem-text span.visible, .animated-text span.visible { opacity: 1; transform: translateY(0); color: var(--accent-blue); text-shadow: 1px 1px 3px rgba(62, 146, 204, 0.5); font-weight: 500; }
+.video-card .poem-text { color: rgba(255, 255, 255, 0.98); font-weight: 500; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.95); }
+.video-card .poem-text span.visible { color: var(--accent-blue); text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.95), 1px 1px 3px rgba(62, 146, 204, 0.8); }
 
 /* Grid Layouts */
 .article-list, .content-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
 .grid-full-width { grid-column: 1 / -1; }
-
 @media (min-width: 481px) and (max-width: 768px) { .content-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 769px) { .content-grid { grid-template-columns: repeat(3, 1fr); } }
 
-/* Custom styles for the Gandhi fact cards with backgrounds */
-#non-violence-card,
-#nobel-card,
-#early-life-card,
-#dandi-card,
-#satyagraha-card,
-#assassination-card {
+/* OPTIMIZED: Lazy-loaded background card styles */
+.lazy-bg {
   position: relative; 
   background-size: cover;
   background-position: center;
   border-color: rgba(255, 255, 255, 0.4);
+  transition: background-image 0.5s ease-in-out;
 }
-
-#non-violence-card {
-  background-image: url('https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png');
-}
-#nobel-card {
-  background-image: url('https://i.ibb.co/Y4dJXMM2/GANDHI-NOBEL.jpg');
-}
-#early-life-card {
-  background-image: url('https://i.ibb.co/7xMr6041/early.jpg');
-}
-#dandi-card {
-  background-image: url('https://i.ibb.co/XZ1NjfNq/dandi.jpg');
-}
-#satyagraha-card {
-  background-image: url('https://i.ibb.co/HpTVMj6z/gandhi-satyagraha.png');
-}
-#assassination-card {
-  background-image: url('https://i.ibb.co/HTFHXZ01/assasination.webp');
-}
-
-
-/* This adds a dark overlay to make text more readable */
-#non-violence-card::before,
-#nobel-card::before,
-#early-life-card::before,
-#dandi-card::before,
-#satyagraha-card::before,
-#assassination-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
-  border-radius: 20px; 
-  z-index: 1;
-}
-
-/* This makes sure the content appears on top of the overlay */
-#non-violence-card .fact-content,
-#nobel-card .fact-content,
-#early-life-card .fact-content,
-#dandi-card .fact-content,
-#satyagraha-card .fact-content,
-#assassination-card .fact-content {
-  position: relative;
-  z-index: 2;
-}
-
-/* This makes the text white with a shadow for contrast */
-#non-violence-card h4, 
-#non-violence-card p,
-#non-violence-card .fact-audio-title,
-#non-violence-card .fact-time-display,
-#nobel-card h4, 
-#nobel-card p,
-#nobel-card .fact-audio-title,
-#nobel-card .fact-time-display,
-#early-life-card h4, 
-#early-life-card p,
-#early-life-card .fact-audio-title,
-#early-life-card .fact-time-display,
-#dandi-card h4, 
-#dandi-card p,
-#dandi-card .fact-audio-title,
-#dandi-card .fact-time-display,
-#satyagraha-card h4, 
-#satyagraha-card p,
-#satyagraha-card .fact-audio-title,
-#satyagraha-card .fact-time-display,
-#assassination-card h4, 
-#assassination-card p,
-#assassination-card .fact-audio-title,
-#assassination-card .fact-time-display {
-  color: #ffffff; /* Bright white */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-
-/* NEW STYLES FOR ST. THERESE CARDS */
-#youngest-doctor-card,
-#little-way-card,
-#early-life-therese-card,
-#nun-card,
-#soul-card,
-#death-card {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-#youngest-doctor-card { background-image: url('https://i.ibb.co/6cwn4hQQ/St-Theresyounger.jpg'); }
-#little-way-card { background-image: url('https://i.ibb.co/0Vf0SyzV/thelittleway.jpg'); }
-#early-life-therese-card { background-image: url('https://i.ibb.co/zVLPtR3W/early.jpg'); }
-#nun-card { background-image: url('https://i.ibb.co/Y7yKQXDb/nunat15.jpg'); }
-#soul-card { background-image: url('https://i.ibb.co/xK8nQnjB/autobiogarphy.jpg'); }
-#death-card { background-image: url('https://i.ibb.co/RpHrFNXW/death23.jpg'); }
-
-#youngest-doctor-card::before,
-#little-way-card::before,
-#early-life-therese-card::before,
-#nun-card::before,
-#soul-card::before,
-#death-card::before {
+.lazy-bg::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
+  border-radius: 20px; 
   z-index: 1;
 }
-
-#youngest-doctor-card .fact-content,
-#little-way-card .fact-content,
-#early-life-therese-card .fact-content,
-#nun-card .fact-content,
-#soul-card .fact-content,
-#death-card .fact-content {
-  position: relative;
-  z-index: 2;
-}
-
-#youngest-doctor-card h4, #youngest-doctor-card p, #youngest-doctor-card .fact-audio-title, #youngest-doctor-card .fact-time-display,
-#little-way-card h4, #little-way-card p, #little-way-card .fact-audio-title, #little-way-card .fact-time-display,
-#early-life-therese-card h4, #early-life-therese-card p, #early-life-therese-card .fact-audio-title, #early-life-therese-card .fact-time-display,
-#nun-card h4, #nun-card p, #nun-card .fact-audio-title, #nun-card .fact-time-display,
-#soul-card h4, #soul-card p, #soul-card .fact-audio-title, #soul-card .fact-time-display,
-#death-card h4, #death-card p, #death-card .fact-audio-title, #death-card .fact-time-display {
+.lazy-bg .fact-content { position: relative; z-index: 2; }
+.lazy-bg h4, .lazy-bg p {
   color: #ffffff;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
-/* END OF NEW STYLES */
-
 
 /* =================================================== */
 /* START: NEW ANIMATED GALLERY STYLES */
 /* =================================================== */
 
 @keyframes fadeInScaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .gallery-catalogue-grid {
@@ -907,6 +460,7 @@ audio { display: none; }
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  will-change: transform, box-shadow;
 }
 
 .album-card:hover {
@@ -946,40 +500,18 @@ audio { display: none; }
   transition: background-color 0.3s ease;
 }
 
-.album-card:hover .photo-count {
-    background-color: rgba(62, 146, 204, 0.9);
-}
+.album-card:hover .photo-count { background-color: rgba(62, 146, 204, 0.9); }
+.photo-count .fa-camera { margin-right: 5px; }
 
-.photo-count .fa-camera {
-  margin-right: 5px;
-}
+.album-info { padding: 1rem; }
+.album-info h3 { font-family: var(--heading-font); font-size: 1.2rem; color: var(--text-white); margin: 0 0 0.5rem 0; }
+.album-info .album-date { font-size: 0.85rem; color: var(--text-gray); margin: 0; }
 
-.album-info {
-  padding: 1rem;
-}
-
-.album-info h3 {
-  font-family: var(--heading-font);
-  font-size: 1.2rem;
-  color: var(--text-white);
-  margin: 0 0 0.5rem 0;
-}
-
-.album-info .album-date {
-  font-size: 0.85rem;
-  color: var(--text-gray);
-  margin: 0;
-}
-
-/* Styles for the Lightbox (Popup) */
 .lightbox-overlay {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   z-index: 1000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.85);
   align-items: center;
   justify-content: center;
@@ -1000,15 +532,13 @@ audio { display: none; }
 
 .lightbox-close {
   position: absolute;
-  top: -15px;
-  right: -15px;
+  top: -15px; right: -15px;
   color: #000;
   background: #fff;
   font-size: 2.5rem;
   font-weight: bold;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 40px; height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1017,18 +547,9 @@ audio { display: none; }
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
-.lightbox-close:hover {
-    transform: rotate(90deg);
-    background-color: #f1f1f1;
-}
+.lightbox-close:hover { transform: rotate(90deg); background-color: #f1f1f1; }
 
-#lightbox-title {
-  font-family: var(--heading-font);
-  font-size: 2rem;
-  color: var(--text-white);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
+#lightbox-title { font-family: var(--heading-font); font-size: 2rem; color: var(--text-white); margin-bottom: 1.5rem; text-align: center; }
 
 .lightbox-images-grid {
   display: grid;
@@ -1046,11 +567,7 @@ audio { display: none; }
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
-
-.lightbox-images-grid img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
+.lightbox-images-grid img:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
 /* =================================================== */
 /* END: NEW ANIMATED GALLERY STYLES */
 /* =================================================== */
@@ -1240,196 +757,52 @@ audio { display: none; }
         </div>
         
         <div class="therese-grid">
-          <div class="therese-fact-card text-only-card" id="youngest-doctor-card">
+          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/6cwn4hQQ/St-Theresyounger.jpg')">
             <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>Youngest Doctor of the Church</h4>
-                </div>
-              </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="youngest-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">Youngest Doctor of the Church</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="youngest-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="youngest-progress-bar"></div>
-                      <span class="fact-time-display" id="youngest-duration">1:30</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="youngest-audio" src="https://media.redcircle.com/2025/9/22/6/b7b9666e-1b40-4c3a-93dc-a5d0391556f7_youngest.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Saint Thérèse is considered the youngest Doctor of the Church, having died at age 24 and been named a Doctor of the Church posthumously by Pope John Paul II in 1997. Only the third woman to receive this honor.</p>
-              </div>
+              <div class="fact-header"><div class="fact-text"><h4>Youngest Doctor of the Church</h4></div></div>
+              <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="youngest-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Youngest Doctor of the Church</div><div class="fact-progress-container"><span class="fact-time-display" id="youngest-current-time">0:00</span><div class="fact-progress-bar" id="youngest-progress-bar"></div><span class="fact-time-display" id="youngest-duration">1:30</span></div></div></div></div><audio id="youngest-audio" src="https://media.redcircle.com/2025/9/22/6/b7b9666e-1b40-4c3a-93dc-a5d0391556f7_youngest.mp3"></audio>
+              <div class="fact-text-content"><p>Saint Thérèse is considered the youngest Doctor of the Church, having died at age 24 and been named a Doctor of the Church posthumously by Pope John Paul II in 1997. Only the third woman to receive this honor.</p></div>
             </div>
           </div>
 
-          <div class="therese-fact-card text-only-card" id="little-way-card">
+          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/0Vf0SyzV/thelittleway.jpg')">
             <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>The Little Way</h4>
-                </div>
-              </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="way-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">The Little Way</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="way-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="way-progress-bar"></div>
-                      <span class="fact-time-display" id="way-duration">1:45</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="way-audio" src="https://media.redcircle.com/2025/9/22/6/eead6d25-6fca-4c38-acde-06c0e6a22f90_little.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>St. Thérèse developed "The Little Way" - a spiritual path emphasizing performing everyday, ordinary actions with great love, trusting in God's infinite mercy, and accepting one's "littleness" as means of spiritual growth.</p>
-              </div>
+                <div class="fact-header"><div class="fact-text"><h4>The Little Way</h4></div></div>
+                <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="way-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Little Way</div><div class="fact-progress-container"><span class="fact-time-display" id="way-current-time">0:00</span><div class="fact-progress-bar" id="way-progress-bar"></div><span class="fact-time-display" id="way-duration">1:45</span></div></div></div></div><audio id="way-audio" src="https://media.redcircle.com/2025/9/22/6/eead6d25-6fca-4c38-acde-06c0e6a22f90_little.mp3"></audio>
+                <div class="fact-text-content"><p>St. Thérèse developed "The Little Way" - a spiritual path emphasizing performing everyday, ordinary actions with great love, trusting in God's infinite mercy, and accepting one's "littleness" as means of spiritual growth.</p></div>
             </div>
           </div>
 
-          <div class="therese-fact-card text-only-card" id="early-life-therese-card">
-            <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>Early Life & Family</h4>
-                </div>
+          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/zVLPtR3W/early.jpg')">
+              <div class="fact-content">
+                  <div class="fact-header"><div class="fact-text"><h4>Early Life & Family</h4></div></div>
+                  <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="life-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Early Life & Family</div><div class="fact-progress-container"><span class="fact-time-display" id="life-current-time">0:00</span><div class="fact-progress-bar" id="life-progress-bar"></div><span class="fact-time-display" id="life-duration">1:20</span></div></div></div></div><audio id="life-audio" src="https://media.redcircle.com/2025/9/22/6/96b7487e-5a6b-495e-8860-6944b7405a1b_earlylife.mp3"></audio>
+                  <div class="fact-text-content"><p>Born Marie Françoise-Thérèse Martin on January 2, 1873, in Alençon, France. She was the youngest of nine children, four of whom became Carmelite nuns. Her parents, Louis and Zélie Martin, were both declared saints in 2015.</p></div>
               </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="life-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">Early Life & Family</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="life-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="life-progress-bar"></div>
-                      <span class="fact-time-display" id="life-duration">1:20</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="life-audio" src="https://media.redcircle.com/2025/9/22/6/96b7487e-5a6b-495e-8860-6944b7405a1b_earlylife.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Born Marie Françoise-Thérèse Martin on January 2, 1873, in Alençon, France. She was the youngest of nine children, four of whom became Carmelite nuns. Her parents, Louis and Zélie Martin, were both declared saints in 2015.</p>
-              </div>
-            </div>
           </div>
 
-          <div class="therese-fact-card text-only-card" id="nun-card">
-            <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>Carmelite Nun at 15</h4>
-                </div>
+          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/Y7yKQXDb/nunat15.jpg')">
+              <div class="fact-content">
+                  <div class="fact-header"><div class="fact-text"><h4>Carmelite Nun at 15</h4></div></div>
+                  <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nun-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Carmelite Nun at 15</div><div class="fact-progress-container"><span class="fact-time-display" id="nun-current-time">0:00</span><div class="fact-progress-bar" id="nun-progress-bar"></div><span class="fact-time-display" id="nun-duration">1:10</span></div></div></div></div><audio id="nun-audio" src="https://media.redcircle.com/2025/9/22/7/948f4e2a-7865-485b-aa36-f4393b254677_nunat15.mp3"></audio>
+                  <div class="fact-text-content"><p>Despite her young age, Thérèse entered the Carmelite convent at Lisieux at age 15 in 1888. She joined her older sisters Pauline and Marie, and later her sister Céline also joined the same convent.</p></div>
               </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="nun-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">Carmelite Nun at 15</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="nun-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="nun-progress-bar"></div>
-                      <span class="fact-time-display" id="nun-duration">1:10</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="nun-audio" src="https://media.redcircle.com/2025/9/22/7/948f4e2a-7865-485b-aa36-f4393b254677_nunat15.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Despite her young age, Thérèse entered the Carmelite convent at Lisieux at age 15 in 1888. She joined her older sisters Pauline and Marie, and later her sister Céline also joined the same convent.</p>
-              </div>
-            </div>
           </div>
 
-          <div class="therese-fact-card text-only-card" id="soul-card">
-            <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>The Story of a Soul</h4>
-                </div>
+          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/xK8nQnjB/autobiogarphy.jpg')">
+              <div class="fact-content">
+                  <div class="fact-header"><div class="fact-text"><h4>The Story of a Soul</h4></div></div>
+                  <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="soul-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Story of a Soul</div><div class="fact-progress-container"><span class="fact-time-display" id="soul-current-time">0:00</span><div class="fact-progress-bar" id="soul-progress-bar"></div><span class="fact-time-display" id="soul-duration">1:35</span></div></div></div></div><audio id="soul-audio" src="https://media.redcircle.com/2025/9/22/7/9acbab64-d1d1-4d49-9b5a-051055b9d58f_death12.mp3"></audio>
+                  <div class="fact-text-content"><p>Her autobiography "The Story of a Soul" was published after her death and became one of the most widely read spiritual autobiographies. It spread her "Little Way" teachings across the world and contributed to her rapid canonization.</p></div>
               </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="soul-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">The Story of a Soul</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="soul-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="soul-progress-bar"></div>
-                      <span class="fact-time-display" id="soul-duration">1:35</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="soul-audio" src="https://media.redcircle.com/2025/9/22/7/9acbab64-d1d1-4d49-9b5a-051055b9d58f_death12.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Her autobiography "The Story of a Soul" was published after her death and became one of the most widely read spiritual autobiographies. It spread her "Little Way" teachings across the world and contributed to her rapid canonization.</p>
-              </div>
-            </div>
           </div>
 
-          <div class="therese-fact-card text-only-card" id="death-card">
-            <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>Death & Canonization</h4>
-                </div>
+          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/RpHrFNXW/death23.jpg')">
+              <div class="fact-content">
+                  <div class="fact-header"><div class="fact-text"><h4>Death & Canonization</h4></div></div>
+                  <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="death-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Death & Canonization</div><div class="fact-progress-container"><span class="fact-time-display" id="death-current-time">0:00</span><div class="fact-progress-bar" id="death-progress-bar"></div><span class="fact-time-display" id="death-duration">1:25</span></div></div></div></div><audio id="death-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio>
+                  <div class="fact-text-content"><p>Died of tuberculosis on September 30, 1897, at age 24. Canonized by Pope Pius XI in 1925, just 28 years after her death. Her last words were "My God, I love you." She promised to "spend my heaven doing good on earth."</p></div>
               </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="death-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">Death & Canonization</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="death-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="death-progress-bar"></div>
-                      <span class="fact-time-display" id="death-duration">1:25</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="death-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Died of tuberculosis on September 30, 1897, at age 24. Canonized by Pope Pius XI in 1925, just 28 years after her death. Her last words were "My God, I love you." She promised to "spend my heaven doing good on earth."</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1441,195 +814,51 @@ audio { display: none; }
         </div>
         
         <div class="gandhi-grid">
-          <div class="gandhi-fact-card text-only-card" id="non-violence-card">
+          <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png')">
             <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>International Day of Non-Violence</h4>
-                </div>
-              </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="international-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">International Day of Non-Violence</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="international-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="international-progress-bar"></div>
-                      <span class="fact-time-display" id="international-duration">1:40</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="international-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>In recognition of his philosophy of non-violence (Ahimsa) and civil disobedience (Satyagraha), the United Nations General Assembly declared October 2nd as the International Day of Non-Violence in 2007.</p>
-              </div>
+              <div class="fact-header"><div class="fact-text"><h4>International Day of Non-Violence</h4></div></div>
+              <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="international-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">International Day of Non-Violence</div><div class="fact-progress-container"><span class="fact-time-display" id="international-current-time">0:00</span><div class="fact-progress-bar" id="international-progress-bar"></div><span class="fact-time-display" id="international-duration">1:40</span></div></div></div></div><audio id="international-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio>
+              <div class="fact-text-content"><p>In recognition of his philosophy of non-violence (Ahimsa) and civil disobedience (Satyagraha), the United Nations General Assembly declared October 2nd as the International Day of Non-Violence in 2007.</p></div>
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="nobel-card">
+          <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/Y4dJXMM2/GANDHI-NOBEL.jpg')">
             <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>Nobel Peace Prize Nominations</h4>
-                </div>
-              </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="nobel-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">Nobel Peace Prize Nominations</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="nobel-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="nobel-progress-bar"></div>
-                      <span class="fact-time-display" id="nobel-duration">1:25</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="nobel-audio" src="https://media.redcircle.com/2025/9/22/7/caf481bd-8614-407c-8fb7-2467ad8f2272_voilennce.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Mahatma Gandhi was nominated for the Nobel Peace Prize five times (1937, 1938, 1939, 1947, 1948) but never received the award, a decision that has been widely considered a historical oversight.</p>
-              </div>
+              <div class="fact-header"><div class="fact-text"><h4>Nobel Peace Prize Nominations</h4></div></div>
+              <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nobel-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Nobel Peace Prize Nominations</div><div class="fact-progress-container"><span class="fact-time-display" id="nobel-current-time">0:00</span><div class="fact-progress-bar" id="nobel-progress-bar"></div><span class="fact-time-display" id="nobel-duration">1:25</span></div></div></div></div><audio id="nobel-audio" src="https://media.redcircle.com/2025/9/22/7/caf481bd-8614-407c-8fb7-2467ad8f2272_voilennce.mp3"></audio>
+              <div class="fact-text-content"><p>Mahatma Gandhi was nominated for the Nobel Peace Prize five times (1937, 1938, 1939, 1947, 1948) but never received the award, a decision that has been widely considered a historical oversight.</p></div>
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="early-life-card">
+          <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/7xMr6041/early.jpg')">
             <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>Early Life & Education</h4>
-                </div>
-              </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="education-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">Early Life & Education</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="education-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="education-progress-bar"></div>
-                      <span class="fact-time-display" id="education-duration">1:30</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="education-audio" src="https://media.redcircle.com/2025/9/22/7/56c9cb4f-1775-45bd-bc33-da2bbdaf1464_bar.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Born on October 2, 1869, in Porbandar, Gujarat. Studied law in London and was called to the bar at age 22. Moved to South Africa in 1893 where he first developed his philosophy of non-violent resistance.</p>
-              </div>
+              <div class="fact-header"><div class="fact-text"><h4>Early Life & Education</h4></div></div>
+              <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="education-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Early Life & Education</div><div class="fact-progress-container"><span class="fact-time-display" id="education-current-time">0:00</span><div class="fact-progress-bar" id="education-progress-bar"></div><span class="fact-time-display" id="education-duration">1:30</span></div></div></div></div><audio id="education-audio" src="https://media.redcircle.com/2025/9/22/7/56c9cb4f-1775-45bd-bc33-da2bbdaf1464_bar.mp3"></audio>
+              <div class="fact-text-content"><p>Born on October 2, 1869, in Porbandar, Gujarat. Studied law in London and was called to the bar at age 22. Moved to South Africa in 1893 where he first developed his philosophy of non-violent resistance.</p></div>
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="dandi-card">
+          <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/XZ1NjfNq/dandi.jpg')">
             <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>The Dandi Salt March</h4>
-                </div>
-              </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="salt-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">The Dandi Salt March</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="salt-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="salt-progress-bar"></div>
-                      <span class="fact-time-display" id="salt-duration">1:50</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="salt-audio" src="https://media.redcircle.com/2025/9/22/7/9f8004db-da51-4009-a63c-37a96c1c30d5_dandi.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Led the famous 400 km Salt March from Ashram Ahmedabad to Dandi in 1930, protesting the British salt monopoly. This 24-day march became a pivotal moment in India's independence movement.</p>
-              </div>
+              <div class="fact-header"><div class="fact-text"><h4>The Dandi Salt March</h4></div></div>
+              <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="salt-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Dandi Salt March</div><div class="fact-progress-container"><span class="fact-time-display" id="salt-current-time">0:00</span><div class="fact-progress-bar" id="salt-progress-bar"></div><span class="fact-time-display" id="salt-duration">1:50</span></div></div></div></div><audio id="salt-audio" src="https://media.redcircle.com/2025/9/22/7/9f8004db-da51-4009-a63c-37a96c1c30d5_dandi.mp3"></audio>
+              <div class="fact-text-content"><p>Led the famous 400 km Salt March from Ashram Ahmedabad to Dandi in 1930, protesting the British salt monopoly. This 24-day march became a pivotal moment in India's independence movement.</p></div>
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="satyagraha-card">
+          <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/HpTVMj6z/gandhi-satyagraha.png')">
             <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>Philosophy of Satyagraha</h4>
-                </div>
-              </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="philo-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">Philosophy of Satyagraha</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="philo-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="philo-progress-bar"></div>
-                      <span class="fact-time-display" id="philo-duration">1:35</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="philo-audio" src="https://media.redcircle.com/2025/9/22/7/a324a473-fe33-4dce-b623-463cb3c48125_namak.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Developed the concept of Satyagraha (truth force) - non-violent resistance based on truth, courage, and non-violence. This philosophy influenced leaders worldwide including Martin Luther King Jr. and Nelson Mandela.</p>
-              </div>
+              <div class="fact-header"><div class="fact-text"><h4>Philosophy of Satyagraha</h4></div></div>
+              <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="philo-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Philosophy of Satyagraha</div><div class="fact-progress-container"><span class="fact-time-display" id="philo-current-time">0:00</span><div class="fact-progress-bar" id="philo-progress-bar"></div><span class="fact-time-display" id="philo-duration">1:35</span></div></div></div></div><audio id="philo-audio" src="https://media.redcircle.com/2025/9/22/7/a324a473-fe33-4dce-b623-463cb3c48125_namak.mp3"></audio>
+              <div class="fact-text-content"><p>Developed the concept of Satyagraha (truth force) - non-violent resistance based on truth, courage, and non-violence. This philosophy influenced leaders worldwide including Martin Luther King Jr. and Nelson Mandela.</p></div>
             </div>
           </div>
 
-          <div class="gandhi-fact-card text-only-card" id="assassination-card">
+          <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/HTFHXZ01/assasination.webp')">
             <div class="fact-content">
-              <div class="fact-header">
-                <div class="fact-text">
-                  <h4>Assassination & Legacy</h4>
-                </div>
-              </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="legacy-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">Assassination & Legacy</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="legacy-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="legacy-progress-bar"></div>
-                      <span class="fact-time-display" id="legacy-duration">1:45</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="legacy-audio" src="https://media.redcircle.com/2025/9/22/7/ba70f327-e789-42a3-81ee-63095990ab86_marna.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>Assassinated on January 30, 1948, by Nathuram Godse. Despite his tragic end, Gandhi's principles of non-violence, truth, and justice continue to inspire movements for peace and freedom worldwide.</p>
-              </div>
+              <div class="fact-header"><div class="fact-text"><h4>Assassination & Legacy</h4></div></div>
+              <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="legacy-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Assassination & Legacy</div><div class="fact-progress-container"><span class="fact-time-display" id="legacy-current-time">0:00</span><div class="fact-progress-bar" id="legacy-progress-bar"></div><span class="fact-time-display" id="legacy-duration">1:45</span></div></div></div></div><audio id="legacy-audio" src="https://media.redcircle.com/2025/9/22/7/ba70f327-e789-42a3-81ee-63095990ab86_marna.mp3"></audio>
+              <div class="fact-text-content"><p>Assassinated on January 30, 1948, by Nathuram Godse. Despite his tragic end, Gandhi's principles of non-violence, truth, and justice continue to inspire movements for peace and freedom worldwide.</p></div>
             </div>
           </div>
         </div>
@@ -1645,70 +874,22 @@ audio { display: none; }
           <div class="dussehra-fact-card">
             <div class="fact-content">
               <div class="fact-header">
-                <div class="fact-text">
-                  <h4>A Celebration of a Goddess's Triumph</h4>
-                </div>
-                <div class="fact-image">
-                  <img src="https://i.ibb.co/PGJDvR1k/https://i.ibb.co/PGJDvR1k/god1.jpg" alt="Goddess Durga Victory" />
-                </div>
+                <div class="fact-text"><h4>A Celebration of a Goddess's Triumph</h4></div>
+                <div class="fact-image"><img src="https://i.ibb.co/PGJDvR1k/https://i.ibb.co/PGJDvR1k/god1.jpg" alt="Goddess Durga Victory" loading="lazy" /></div>
               </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="god1-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">A Celebration of a Goddess's Triumph</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="god1-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="god1-progress-bar"></div>
-                      <span class="fact-time-display" id="god1-duration">2:15</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="god1-audio" src="https://media.redcircle.com/2025/9/22/7/2aa64573-12c9-4e3a-99fd-c799ac97184d_god.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>In many parts of India, particularly in the eastern and southern states, Dussehra, also known as Vijayadashami, is not primarily about Rama's victory. It commemorates the triumph of Goddess Durga over the buffalo demon Mahishasura.</p>
-              </div>
+              <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="god1-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">A Celebration of a Goddess's Triumph</div><div class="fact-progress-container"><span class="fact-time-display" id="god1-current-time">0:00</span><div class="fact-progress-bar" id="god1-progress-bar"></div><span class="fact-time-display" id="god1-duration">2:15</span></div></div></div></div><audio id="god1-audio" src="https://media.redcircle.com/2025/9/22/7/2aa64573-12c9-4e3a-99fd-c799ac97184d_god.mp3"></audio>
+              <div class="fact-text-content"><p>In many parts of India, particularly in the eastern and southern states, Dussehra, also known as Vijayadashami, is not primarily about Rama's victory. It commemorates the triumph of Goddess Durga over the buffalo demon Mahishasura.</p></div>
             </div>
           </div>
 
           <div class="dussehra-fact-card">
             <div class="fact-content">
               <div class="fact-header">
-                <div class="fact-text">
-                  <h4>The Pandavas' Agyatvas and the Shami Tree</h4>
-                </div>
-                <div class="fact-image">
-                  <img src="https://i.ibb.co/TDCbPv9T/https://i.ibb.co/TDCbPv9T/god2.jpg" alt="Pandavas Shami Tree" />
-                </div>
+                <div class="fact-text"><h4>The Pandavas' Agyatvas and the Shami Tree</h4></div>
+                <div class="fact-image"><img src="https://i.ibb.co/TDCbPv9T/https://i.ibb.co/TDCbPv9T/god2.jpg" alt="Pandavas Shami Tree" loading="lazy" /></div>
               </div>
-
-              <div class="fact-audio-player">
-                <div class="fact-audio-controls">
-                  <button class="fact-play-btn" id="god2-play-btn">
-                    <i class="fas fa-play"></i>
-                  </button>
-                  <div class="fact-audio-info">
-                    <div class="fact-audio-title">The Pandavas' Agyatvas and the Shami Tree</div>
-                    <div class="fact-progress-container">
-                      <span class="fact-time-display" id="god2-current-time">0:00</span>
-                      <div class="fact-progress-bar" id="god2-progress-bar"></div>
-                      <span class="fact-time-display" id="god2-duration">2:30</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <audio id="god2-audio" src="https://media.redcircle.com/2025/9/22/7/8a30fe12-56b8-46a3-941d-a3dd882c9444_legend.mp3"></audio>
-              
-              <div class="fact-text-content">
-                <p>A fascinating legend from the Mahabharata is associated with Dussehra. After completing their twelve years of exile, the Pandavas had to spend a year in incognito (agyaatvas). They hid their divine weapons in a Shami tree before entering the kingdom of Virata. On Vijayadashami, they retrieved their weapons, worshipped the tree, and revealed their true identity.</p>
-              </div>
+              <div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="god2-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Pandavas' Agyatvas and the Shami Tree</div><div class="fact-progress-container"><span class="fact-time-display" id="god2-current-time">0:00</span><div class="fact-progress-bar" id="god2-progress-bar"></div><span class="fact-time-display" id="god2-duration">2:30</span></div></div></div></div><audio id="god2-audio" src="https://media.redcircle.com/2025/9/22/7/8a30fe12-56b8-46a3-941d-a3dd882c9444_legend.mp3"></audio>
+              <div class="fact-text-content"><p>A fascinating legend from the Mahabharata is associated with Dussehra. After completing their twelve years of exile, the Pandavas had to spend a year in incognito (agyaatvas). They hid their divine weapons in a Shami tree before entering the kingdom of Virata. On Vijayadashami, they retrieved their weapons, worshipped the tree, and revealed their true identity.</p></div>
             </div>
           </div>
         </div>
@@ -1718,157 +899,42 @@ audio { display: none; }
     <section id="videos" class="content-section">
       <h2 class="section-title">Videos</h2>
       <div class="content-grid">
-        <div class="content-card">
-          <div class="card-icon"><i class="fas fa-video"></i></div>
-          <h3>Event Highlights</h3>
-          <p>Capture the magic of our school events through engaging videos.</p>
-        </div>
-        <div class="content-card">
-          <div class="card-icon"><i class="fas fa-film"></i></div>
-          <h3>Student Stories</h3>
-          <p>Personal narratives and experiences shared by our amazing students.</p>
-        </div>
-        <div class="content-card">
-          <div class="card-icon"><i class="fas fa-play-circle"></i></div>
-          <h3>Educational Content</h3>
-          <p>Learning videos and tutorials created by students for students.</p>
-        </div>
+        <div class="content-card"><div class="card-icon"><i class="fas fa-video"></i></div><h3>Event Highlights</h3><p>Capture the magic of our school events through engaging videos.</p></div>
+        <div class="content-card"><div class="card-icon"><i class="fas fa-film"></i></div><h3>Student Stories</h3><p>Personal narratives and experiences shared by our amazing students.</p></div>
+        <div class="content-card"><div class="card-icon"><i class="fas fa-play-circle"></i></div><h3>Educational Content</h3><p>Learning videos and tutorials created by students for students.</p></div>
       </div>
     </section>
 
     <section id="poems" class="content-section">
       <h2 class="section-title">Poems</h2>
       <div class="content-grid">
-
         <div class="content-card featured-article grid-full-width">
           <h3>विश्वास तुम जन मन के</h3>
           <div class="author-credit">- डॉ. शर्वांजली श्रीवास्तव (अध्यापिका हिंदी)</div>
-          
-          <div class="audio-player">
-            <div class="audio-controls">
-              <button class="play-btn" id="play-btn-7">
-                <i class="fas fa-play"></i>
-              </button>
-              <div class="audio-info">
-                <div class="audio-title">विश्वास तुम जन मन के</div>
-                <div class="progress-container">
-                  <span class="time-display" id="current-time-7">0:00</span>
-                  <div class="progress-bar" id="progress-bar-7"></div>
-                  <span class="time-display" id="duration-7">4:30</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <audio id="hindi-poem-audio" src="https://media.redcircle.com/2025/9/22/7/fd0195b8-4289-433a-ab72-49eb38679fea_china.mp3"></audio>
+          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-7"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">विश्वास तुम जन मन के</div><div class="progress-container"><span class="time-display" id="current-time-7">0:00</span><div class="progress-bar" id="progress-bar-7"></div><span class="time-display" id="duration-7">4:30</span></div></div></div></div><audio id="hindi-poem-audio" src="https://media.redcircle.com/2025/9/22/7/fd0195b8-4289-433a-ab72-49eb38679fea_china.mp3"></audio>
           <div id="hindi-poem-text" class="animated-text"></div>
         </div>
 
         <div class="content-card featured-article grid-full-width">
           <h3>कर्मयुद्ध</h3>
           <div class="author-credit">- श्वेताम्भ पाण्डेय कक्षा XII बी<br>द्वारा स्वरचित काव्य पाठ<br>विजेता - तृतीय पुरस्कार (वरिष्ठ वर्ग)<br>काव्य पाठ प्रतियोगिता<br>आयोजन स्थल: महाराणा प्रताप इंटर कॉलेज<br>अवसर: हिंदी दिवस, 13-09-2025</div>
-          
-          <div class="audio-player">
-            <div class="audio-controls">
-              <button class="play-btn" id="play-btn-6">
-                <i class="fas fa-play"></i>
-              </button>
-              <div class="audio-info">
-                <div class="audio-title">कर्मयुद्ध</div>
-                <div class="progress-container">
-                  <span class="time-display" id="current-time-6">0:00</span>
-                  <div class="progress-bar" id="progress-bar-6"></div>
-                  <span class="time-display" id="duration-6">3:00</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <audio id="karmayuddh-audio" src="https://media.redcircle.com/2025/9/22/7/68f7efe0-519e-47fc-bc9d-99106f323263_karmayudh.mp3"></audio>
+          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-6"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">कर्मयुद्ध</div><div class="progress-container"><span class="time-display" id="current-time-6">0:00</span><div class="progress-bar" id="progress-bar-6"></div><span class="time-display" id="duration-6">3:00</span></div></div></div></div><audio id="karmayuddh-audio" src="https://media.redcircle.com/2025/9/22/7/68f7efe0-519e-47fc-bc9d-99106f323263_karmayudh.mp3"></audio>
           <div id="karmayuddh-text" class="animated-text"></div>
         </div>
 
         <div class="content-card featured-article grid-full-width">
           <h3>साहित्य में गांधी</h3>
           <div class="author-credit">- Amal Verma IX-A<br>Student Editor</div>
-          
-          <div class="audio-player">
-            <div class="audio-controls">
-              <button class="play-btn" id="play-btn-4">
-                <i class="fas fa-play"></i>
-              </button>
-              <div class="audio-info">
-                <div class="audio-title">साहित्य में गांधी</div>
-                <div class="progress-container">
-                  <span class="time-display" id="current-time-4">0:00</span>
-                  <div class="progress-bar" id="progress-bar-4"></div>
-                  <span class="time-display" id="duration-4">2:30</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <audio id="hindi-article-audio" src="https://media.redcircle.com/2025/9/22/7/908e7291-5edf-4733-8e6e-a92a633183ed_gandh123i.mp3"></audio>
+          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-4"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">साहित्य में गांधी</div><div class="progress-container"><span class="time-display" id="current-time-4">0:00</span><div class="progress-bar" id="progress-bar-4"></div><span class="time-display" id="duration-4">2:30</span></div></div></div></div><audio id="hindi-article-audio" src="https://media.redcircle.com/2025/9/22/7/908e7291-5edf-4733-8e6e-a92a633183ed_gandh123i.mp3"></audio>
           <div id="hindi-article-text" class="animated-text"></div>
         </div>
 
         <div class="content-card featured-article video-card grid-full-width">
-          <video class="background-video" autoplay muted loop playsinline>
-            <source src="gandhi-video.mp4" type="video/mp4">
-            <source src="gandhi-video.webm" type="video/webm">
-          </video>
-          
+          <video class="background-video" autoplay muted loop playsinline><source src="gandhi-video.mp4" type="video/mp4"><source src="gandhi-video.webm" type="video/webm"></video>
           <div class="card-content">
-            <h3>In Their Quiet Way</h3>
-            <p style="font-style: italic; margin-bottom: 1rem;">A tribute to Gandhi and Saint Thérèse of Lisieux</p>
-            
-            <div id="poem-text" class="poem-text">They did not lead with power,
-they led with presence.
-They did not sit on thrones,
-they knelt in silence.
-
-A rosary… a spinning wheel…
-threads and thorns,
-patience and prayer.
-
-She loved in silence,
-he fasted in truth.
-She bore the hidden flame,
-he bore the steadfast light.
-
-Without lifting a weapon,
-without raising a voice,
-they changed the world.
-Without pride, without noise,
-they changed the world.
-
-Their lives were answers, not arguments.
-Their days were prayers, not proclamations.
-Their steps were songs, not speeches.
-
-And in the hush they left behind,
-we still find—
-the fragrance of faith,
-the whisper of hope,
-the eternal shape of love.</div>
-
-            <div class="audio-player">
-              <div class="audio-controls">
-                <button class="play-btn" id="play-btn-2">
-                  <i class="fas fa-play"></i>
-                </button>
-                <div class="audio-info">
-                  <div class="audio-title">In Their Quiet Way</div>
-                  <div class="progress-container">
-                    <span class="time-display" id="current-time-2">0:00</span>
-                    <div class="progress-bar" id="progress-bar-2"></div>
-                    <span class="time-display" id="duration-2">0:47</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <audio id="poem-audio" src="https://media.redcircle.com/2025/9/22/7/9c5ff290-ee9d-4af6-a7bf-6b6ba44b6875_ashay.mp3"></audio>
+            <h3>In Their Quiet Way</h3><p style="font-style: italic; margin-bottom: 1rem;">A tribute to Gandhi and Saint Thérèse of Lisieux</p>
+            <div id="poem-text" class="poem-text">They did not lead with power, they led with presence. They did not sit on thrones, they knelt in silence. A rosary… a spinning wheel… threads and thorns, patience and prayer. She loved in silence, he fasted in truth. She bore the hidden flame, he bore the steadfast light. Without lifting a weapon, without raising a voice, they changed the world. Without pride, without noise, they changed the world. Their lives were answers, not arguments. Their days were prayers, not proclamations. Their steps were songs, not speeches. And in the hush they left behind, we still find— the fragrance of faith, the whisper of hope, the eternal shape of love.</div>
+            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-2"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">In Their Quiet Way</div><div class="progress-container"><span class="time-display" id="current-time-2">0:00</span><div class="progress-bar" id="progress-bar-2"></div><span class="time-display" id="duration-2">0:47</span></div></div></div></div><audio id="poem-audio" src="https://media.redcircle.com/2025/9/22/7/9c5ff290-ee9d-4af6-a7bf-6b6ba44b6875_ashay.mp3"></audio>
           </div>
         </div>
       </div>
@@ -1876,185 +942,27 @@ the eternal shape of love.</div>
 
     <section id="paintings" class="content-section">
       <h2 class="section-title">Paintings</h2>
-      <div class="content-grid">
-        <div class="content-card">
-          <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
-          <h3>Digital Art</h3>
-          <p>Modern digital creations showcasing technical skills and artistic vision.</p>
-        </div>
-      </div>
+      <div class="content-grid"><div class="content-card"><div class="card-icon"><i class="fas fa-paint-brush"></i></div><h3>Digital Art</h3><p>Modern digital creations showcasing technical skills and artistic vision.</p></div></div>
     </section>
     
     <section id="gallery" class="content-section">
       <h2 class="section-title">Gallery</h2>
-
       <div class="gallery-catalogue-grid">
-        
-        <div class="album-card" data-album="welcome-program">
-          <div class="album-image-wrapper">
-            <img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Welcome Program">
-            <span class="photo-count"><i class="fas fa-camera"></i> 12</span>
-          </div>
-          <div class="album-info">
-            <h3>Welcome Program</h3>
-            <p class="album-date">23-04-2025</p>
-          </div>
-        </div>
-
-        <div class="album-card" data-album="initiation-ceremony">
-          <div class="album-image-wrapper">
-            <img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="Initiation Ceremony">
-            <span class="photo-count"><i class="fas fa-camera"></i> 15</span>
-          </div>
-          <div class="album-info">
-            <h3>Initiation Ceremony-LKG</h3>
-            <p class="album-date">25-04-2025</p>
-          </div>
-        </div>
-        
-        <div class="album-card" data-album="pope-condolences">
-          <div class="album-image-wrapper">
-            <img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis - Condolences">
-            <span class="photo-count"><i class="fas fa-camera"></i> 8</span>
-          </div>
-          <div class="album-info">
-            <h3>Pope Francis - Condolences</h3>
-            <p class="album-date">26-04-2025</p>
-          </div>
-        </div>
-        
-        <div class="album-card" data-album="results-declaration">
-          <div class="album-image-wrapper">
-            <img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ICSE, ISC Result Declaration">
-            <span class="photo-count"><i class="fas fa-camera"></i> 21</span>
-          </div>
-          <div class="album-info">
-            <h3>ICSE, ISC Results</h3>
-            <p class="album-date">30-04-2025</p>
-          </div>
-        </div>
-        
-        <div class="album-card" data-album="non-teaching-reward">
-          <div class="album-image-wrapper">
-            <img src="https://via.placeholder.com/400x250.png?text=LFS+Event" alt="Reward to Non-Teaching staff">
-            <span class="photo-count"><i class="fas fa-camera"></i> 9</span>
-          </div>
-          <div class="album-info">
-            <h3>Reward to Non-Teaching Staff</h3>
-            <p class="album-date">01-05-2025</p>
-          </div>
-        </div>
-
-        <div class="album-card" data-album="yoga-day">
-          <div class="album-image-wrapper">
-            <img src="https://via.placeholder.com/400x250.png?text=Yoga+Day" alt="Yoga Day">
-            <span class="photo-count"><i class="fas fa-camera"></i> 32</span>
-          </div>
-          <div class="album-info">
-            <h3>Yoga Day</h3>
-            <p class="album-date">21-06-2025</p>
-          </div>
-        </div>
-        
-        <div class="album-card" data-album="staff-orientation-khorabar">
-          <div class="album-image-wrapper">
-            <img src="https://via.placeholder.com/400x250.png?text=LFS+Staff" alt="Staff Orientation in Khorabar">
-            <span class="photo-count"><i class="fas fa-camera"></i> 14</span>
-          </div>
-          <div class="album-info">
-            <h3>Staff Orientation - Khorabar</h3>
-            <p class="album-date">27-06-2025</p>
-          </div>
-        </div>
-        
-        <div class="album-card" data-album="staff-picnic">
-          <div class="album-image-wrapper">
-            <img src="https://via.placeholder.com/400x250.png?text=Staff+Picnic" alt="Staff Picnic -Bhutwal">
-            <span class="photo-count"><i class="fas fa-camera"></i> 25</span>
-          </div>
-          <div class="album-info">
-            <h3>Staff Picnic - Bhutwal</h3>
-            <p class="album-date">28-06-2025</p>
-          </div>
-        </div>
-
-        <div class="album-card" data-album="career-guidance">
-          <div class="album-image-wrapper">
-            <img src="https://via.placeholder.com/400x250.png?text=Career+Guidance" alt="Career Plan and Guidance">
-            <span class="photo-count"><i class="fas fa-camera"></i> 18</span>
-          </div>
-          <div class="album-info">
-            <h3>Career Guidance Program</h3>
-            <p class="album-date">05-07-2025</p>
-          </div>
-        </div>
-        
-        <div class="album-card" data-album="investiture-ceremony">
-          <div class="album-image-wrapper">
-            <img src="https://i.ibb.co/HLD0TYN4/POPE-2.jpg" alt="Investiture Ceremony">
-            <span class="photo-count"><i class="fas fa-camera"></i> 40</span>
-          </div>
-          <div class="album-info">
-            <h3>Investiture Ceremony</h3>
-            <p class="album-date">12-07-2025</p>
-          </div>
-        </div>
-
-        <div class="album-card" data-album="raksha-bandhan">
-          <div class="album-image-wrapper">
-            <img src="https://via.placeholder.com/400x250.png?text=Raksha+Bandhan" alt="Raksha Bandhan">
-            <span class="photo-count"><i class="fas fa-camera"></i> 16</span>
-          </div>
-          <div class="album-info">
-            <h3>Raksha Bandhan Celebration</h3>
-            <p class="album-date">08-08-2025</p>
-          </div>
-        </div>
-        
-        <div class="album-card" data-album="independence-day">
-          <div class="album-image-wrapper">
-            <img src="https://i.ibb.co/4n17dhRP/FERWELL-FR-GREOGERY-1.jpg" alt="Independence Day">
-            <span class="photo-count"><i class="fas fa-camera"></i> 49</span>
-          </div>
-          <div class="album-info">
-            <h3>Independence Day</h3>
-            <p class="album-date">15-08-2025</p>
-          </div>
-        </div>
-        
-        <div class="album-card" data-album="teachers-day">
-          <div class="album-image-wrapper">
-            <img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Teachers' Day and Onam">
-            <span class="photo-count"><i class="fas fa-camera"></i> 52</span>
-          </div>
-          <div class="album-info">
-            <h3>Teachers' Day & Onam</h3>
-            <p class="album-date">06-09-2025</p>
-          </div>
-        </div>
-        
-        <div class="album-card" data-album="poetry-competition">
-          <div class="album-image-wrapper">
-            <img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation">
-            <span class="photo-count"><i class="fas fa-camera"></i> 10</span>
-          </div>
-          <div class="album-info">
-            <h3>Hindi Poetry Competition</h3>
-            <p class="album-date">13-09-2025</p>
-          </div>
-        </div>
-
-        <div class="album-card" data-album="blood-donation">
-          <div class="album-image-wrapper">
-            <img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation">
-            <span class="photo-count"><i class="fas fa-camera"></i> 22</span>
-          </div>
-          <div class="album-info">
-            <h3>Blood Donation Camp</h3>
-            <p class="album-date">30-09-2025</p>
-          </div>
-        </div>
-
+        <div class="album-card" data-album="welcome-program"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Welcome Program" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 12</span></div><div class="album-info"><h3>Welcome Program</h3><p class="album-date">23-04-2025</p></div></div>
+        <div class="album-card" data-album="initiation-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="Initiation Ceremony" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 15</span></div><div class="album-info"><h3>Initiation Ceremony-LKG</h3><p class="album-date">25-04-2025</p></div></div>
+        <div class="album-card" data-album="pope-condolences"><div class="album-image-wrapper"><img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis - Condolences" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 8</span></div><div class="album-info"><h3>Pope Francis - Condolences</h3><p class="album-date">26-04-2025</p></div></div>
+        <div class="album-card" data-album="results-declaration"><div class="album-image-wrapper"><img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ICSE, ISC Result Declaration" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 21</span></div><div class="album-info"><h3>ICSE, ISC Results</h3><p class="album-date">30-04-2025</p></div></div>
+        <div class="album-card" data-album="non-teaching-reward"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Event" alt="Reward to Non-Teaching staff" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 9</span></div><div class="album-info"><h3>Reward to Non-Teaching Staff</h3><p class="album-date">01-05-2025</p></div></div>
+        <div class="album-card" data-album="yoga-day"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Yoga+Day" alt="Yoga Day" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 32</span></div><div class="album-info"><h3>Yoga Day</h3><p class="album-date">21-06-2025</p></div></div>
+        <div class="album-card" data-album="staff-orientation-khorabar"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Staff" alt="Staff Orientation in Khorabar" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 14</span></div><div class="album-info"><h3>Staff Orientation - Khorabar</h3><p class="album-date">27-06-2025</p></div></div>
+        <div class="album-card" data-album="staff-picnic"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Staff+Picnic" alt="Staff Picnic -Bhutwal" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 25</span></div><div class="album-info"><h3>Staff Picnic - Bhutwal</h3><p class="album-date">28-06-2025</p></div></div>
+        <div class="album-card" data-album="career-guidance"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Career+Guidance" alt="Career Plan and Guidance" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 18</span></div><div class="album-info"><h3>Career Guidance Program</h3><p class="album-date">05-07-2025</p></div></div>
+        <div class="album-card" data-album="investiture-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/HLD0TYN4/POPE-2.jpg" alt="Investiture Ceremony" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 40</span></div><div class="album-info"><h3>Investiture Ceremony</h3><p class="album-date">12-07-2025</p></div></div>
+        <div class="album-card" data-album="raksha-bandhan"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Raksha+Bandhan" alt="Raksha Bandhan" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 16</span></div><div class="album-info"><h3>Raksha Bandhan Celebration</h3><p class="album-date">08-08-2025</p></div></div>
+        <div class="album-card" data-album="independence-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/4n17dhRP/FERWELL-FR-GREOGERY-1.jpg" alt="Independence Day" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 49</span></div><div class="album-info"><h3>Independence Day</h3><p class="album-date">15-08-2025</p></div></div>
+        <div class="album-card" data-album="teachers-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Teachers' Day and Onam" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 52</span></div><div class="album-info"><h3>Teachers' Day & Onam</h3><p class="album-date">06-09-2025</p></div></div>
+        <div class="album-card" data-album="poetry-competition"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 10</span></div><div class="album-info"><h3>Hindi Poetry Competition</h3><p class="album-date">13-09-2025</p></div></div>
+        <div class="album-card" data-album="blood-donation"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 22</span></div><div class="album-info"><h3>Blood Donation Camp</h3><p class="album-date">30-09-2025</p></div></div>
       </div>
     </section>
 
@@ -2062,15 +970,15 @@ the eternal shape of love.</div>
       <span class="lightbox-close">&times;</span>
       <div class="lightbox-content">
         <h3 id="lightbox-title">Album Title</h3>
-        <div id="lightbox-images" class="lightbox-images-grid">
-          </div>
+        <div id="lightbox-images" class="lightbox-images-grid"></div>
       </div>
     </div>
-    </div>
+  </div>
 </main>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  'use strict';
   console.log('Page loaded successfully!');
   
   // Audio Player Setup Function
@@ -2080,422 +988,189 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressBar = document.getElementById(progressBarId);
     const currentTimeDisplay = document.getElementById(currentTimeId);
     const durationDisplay = document.getElementById(durationId);
-
     if (!audio || !playBtn || !progressBar) return null;
-
     let isPlaying = false;
-
-    function formatTime(seconds) {
+    const formatTime = (seconds) => {
       if (!seconds || isNaN(seconds)) return '0:00';
       const minutes = Math.floor(seconds / 60);
       const remainingSeconds = Math.floor(seconds % 60);
       return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-    }
-
-    playBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (isPlaying) {
-        audio.pause();
-      } else {
-        audio.play().catch(() => console.log('Audio play failed'));
-      }
-    });
-
-    audio.addEventListener('play', () => {
-      isPlaying = true;
-      playBtn.classList.add('playing');
-      playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    });
-
-    audio.addEventListener('pause', () => {
-      isPlaying = false;
-      playBtn.classList.remove('playing');
-      playBtn.innerHTML = '<i class="fas fa-play"></i>';
-    });
-
+    };
+    playBtn.addEventListener('click', (e) => { e.preventDefault(); isPlaying ? audio.pause() : audio.play().catch(err => console.error("Audio play failed:", err)); });
+    audio.addEventListener('play', () => { isPlaying = true; playBtn.innerHTML = '<i class="fas fa-pause"></i>'; });
+    audio.addEventListener('pause', () => { isPlaying = false; playBtn.innerHTML = '<i class="fas fa-play"></i>'; });
     audio.addEventListener('timeupdate', () => {
       if (audio.duration) {
         const progress = (audio.currentTime / audio.duration) * 100;
-        if (currentTimeDisplay) {
-          currentTimeDisplay.textContent = formatTime(audio.currentTime);
-        }
+        if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(audio.currentTime);
         progressBar.style.background = `linear-gradient(to right, var(--accent-blue) ${progress}%, #ced4da ${progress}%)`;
       }
     });
-
-    audio.addEventListener('loadedmetadata', () => {
-      if (durationDisplay) {
-        durationDisplay.textContent = formatTime(audio.duration);
-      }
-    });
-
+    audio.addEventListener('loadedmetadata', () => { if (durationDisplay) durationDisplay.textContent = formatTime(audio.duration); });
     progressBar.addEventListener('click', (e) => {
-      e.preventDefault();
       const rect = progressBar.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const width = rect.width;
-      const clickRatio = clickX / width;
-      if (audio.duration) {
-        audio.currentTime = clickRatio * audio.duration;
-      }
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
     });
-
     return audio;
   }
 
-  // Fact Audio Player Setup Function (No text synchronization)
+  // Fact Audio Player Setup Function
   function setupFactAudioPlayer(audioId, playBtnId, progressBarId, currentTimeId, durationId, progressColor = 'var(--therese-rose)') {
     const audio = document.getElementById(audioId);
     const playBtn = document.getElementById(playBtnId);
     const progressBar = document.getElementById(progressBarId);
     const currentTimeDisplay = document.getElementById(currentTimeId);
     const durationDisplay = document.getElementById(durationId);
-
     if (!audio || !playBtn || !progressBar) return null;
-
     let isPlaying = false;
-
-    function formatTime(seconds) {
+    const formatTime = (seconds) => {
       if (!seconds || isNaN(seconds)) return '0:00';
       const minutes = Math.floor(seconds / 60);
       const remainingSeconds = Math.floor(seconds % 60);
       return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-    }
-
-    playBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (isPlaying) {
-        audio.pause();
-      } else {
-        audio.play().catch(() => console.log('Audio play failed'));
-      }
-    });
-
-    audio.addEventListener('play', () => {
-      isPlaying = true;
-      playBtn.classList.add('playing');
-      playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    });
-
-    audio.addEventListener('pause', () => {
-      isPlaying = false;
-      playBtn.classList.remove('playing');
-      playBtn.innerHTML = '<i class="fas fa-play"></i>';
-    });
-
+    };
+    playBtn.addEventListener('click', (e) => { e.preventDefault(); isPlaying ? audio.pause() : audio.play().catch(err => console.error("Audio play failed:", err)); });
+    audio.addEventListener('play', () => { isPlaying = true; playBtn.innerHTML = '<i class="fas fa-pause"></i>'; });
+    audio.addEventListener('pause', () => { isPlaying = false; playBtn.innerHTML = '<i class="fas fa-play"></i>'; });
     audio.addEventListener('timeupdate', () => {
       if (audio.duration) {
         const progress = (audio.currentTime / audio.duration) * 100;
-        if (currentTimeDisplay) {
-          currentTimeDisplay.textContent = formatTime(audio.currentTime);
-        }
+        if (currentTimeDisplay) currentTimeDisplay.textContent = formatTime(audio.currentTime);
         progressBar.style.background = `linear-gradient(to right, ${progressColor} ${progress}%, #d1d1d1 ${progress}%)`;
       }
     });
-
-    audio.addEventListener('loadedmetadata', () => {
-      if (durationDisplay) {
-        durationDisplay.textContent = formatTime(audio.duration);
-      }
-    });
-
+    audio.addEventListener('loadedmetadata', () => { if (durationDisplay) durationDisplay.textContent = formatTime(audio.duration); });
     progressBar.addEventListener('click', (e) => {
-      e.preventDefault();
       const rect = progressBar.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const width = rect.width;
-      const clickRatio = clickX / width;
-      if (audio.duration) {
-        audio.currentTime = clickRatio * audio.duration;
-      }
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
     });
-
     return audio;
   }
 
-  // Text Synchronization Function (only for articles and poems, not fact cards)
+  // Text Synchronization Function
   const setupAudioText = (containerId, audio, textContent) => {
     const container = document.getElementById(containerId);
     if (!container || !audio) return;
-    
-    const rawText = textContent || container.textContent;
-    const words = rawText.trim().split(/\s+/);
-    container.innerHTML = '';
-    
-    words.forEach((word, index) => {
-      const span = document.createElement('span');
-      span.textContent = word + (index < words.length - 1 ? '\u00A0' : ''); 
-      span.classList.add('word-span');
-      container.appendChild(span);
-    });
-
+    const words = (textContent || container.textContent).trim().split(/\s+/);
+    container.innerHTML = words.map(word => `<span class="word-span">${word}</span>`).join(' ');
     const spans = container.children;
     let animationFrame;
-
-    Array.from(spans).forEach(span => {
-      span.style.opacity = '0';
-      span.style.transform = 'translateY(10px)';
-      span.style.color = '#888';
-    });
-
     const updateText = () => {
       if (!audio.duration || isNaN(audio.duration)) return;
-      
-      const currentTime = audio.currentTime;
-      let adjustedTime = Math.max(0, currentTime - 0.05);
-      
-      let wordsToShow;
-      if (containerId.includes('hindi') || containerId.includes('karmayuddh')) {
-        wordsToShow = Math.floor((adjustedTime / audio.duration) * spans.length * 0.9);
-      } else {
-        wordsToShow = Math.floor((adjustedTime / audio.duration) * spans.length);
+      const timePerWord = audio.duration / spans.length;
+      const currentWordIndex = Math.floor(audio.currentTime / timePerWord);
+      for (let i = 0; i < spans.length; i++) {
+        spans[i].classList.toggle('visible', i <= currentWordIndex);
       }
-      
-      Array.from(spans).forEach((span, index) => {
-        if (index <= wordsToShow) {
-          if (!span.classList.contains('visible')) {
-            span.classList.add('visible');
-            span.style.opacity = '1';
-            span.style.transform = 'translateY(0)';
-            span.style.color = '#3e92cc';
-            span.style.textShadow = '1px 1px 3px rgba(62, 146, 204, 0.5)';
-            span.style.fontWeight = '500';
-          }
-        } else {
-          span.classList.remove('visible');
-          span.style.opacity = '0';
-          span.style.transform = 'translateY(10px)';
-          span.style.color = '#888';
-          span.style.textShadow = 'none';
-          span.style.fontWeight = 'normal';
-        }
-      });
     };
-
     audio.addEventListener('play', () => {
-      if (container.classList.contains('animated-text')) {
-        container.classList.add('active');
-      }
-      const syncUpdate = () => {
-        updateText();
-        if (!audio.paused) {
-          animationFrame = requestAnimationFrame(syncUpdate);
-        }
-      };
+      if (container.classList.contains('animated-text')) container.classList.add('active');
+      const syncUpdate = () => { updateText(); if (!audio.paused) animationFrame = requestAnimationFrame(syncUpdate); };
       syncUpdate();
     });
-    
-    audio.addEventListener('pause', () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-    });
-
-    audio.addEventListener('seeked', () => {
-      updateText();
-    });
-    
+    audio.addEventListener('pause', () => { cancelAnimationFrame(animationFrame); });
+    audio.addEventListener('seeked', updateText);
     audio.addEventListener('ended', () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
+      cancelAnimationFrame(animationFrame);
       setTimeout(() => {
-        Array.from(spans).forEach(span => {
-          span.classList.remove('visible');
-          span.style.opacity = '0';
-          span.style.transform = 'translateY(10px)';
-          span.style.color = '#888';
-          span.style.textShadow = 'none';
-          span.style.fontWeight = 'normal';
-        });
-        if (container.classList.contains('animated-text')) {
-          container.classList.remove('active');
-        }
+        Array.from(spans).forEach(span => span.classList.remove('visible'));
+        if (container.classList.contains('animated-text')) container.classList.remove('active');
       }, 1000);
     });
-
-    audio.addEventListener('loadstart', () => {
-      Array.from(spans).forEach(span => {
-        span.classList.remove('visible');
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(10px)';
-        span.style.color = '#888';
-      });
-    });
   };
 
-  // Setup All Audio Players
-  const prayerAudio = setupAudioPlayer('prayer-audio', 'play-btn-5', 'progress-bar-5', 'current-time-5', 'duration-5');
-  const gandhiAudio = setupAudioPlayer('gandhi-audio', 'play-btn-3', 'progress-bar-3', 'current-time-3', 'duration-3');
-  const mainAudio = setupAudioPlayer('audio', 'play-btn-1', 'progress-bar-1', 'current-time-1', 'duration-1');
-  const poemAudio = setupAudioPlayer('poem-audio', 'play-btn-2', 'progress-bar-2', 'current-time-2', 'duration-2');
-  const hindiAudio = setupAudioPlayer('hindi-article-audio', 'play-btn-4', 'progress-bar-4', 'current-time-4', 'duration-4');
-  const karmayuddhAudio = setupAudioPlayer('karmayuddh-audio', 'play-btn-6', 'progress-bar-6', 'current-time-6', 'duration-6');
-  const hindiPoemAudio = setupAudioPlayer('hindi-poem-audio', 'play-btn-7', 'progress-bar-7', 'current-time-7', 'duration-7');
-  const shastriAudio = setupAudioPlayer('shastri-audio', 'play-btn-8', 'progress-bar-8', 'current-time-8', 'duration-8');
-  const hindiShastriAudio = setupAudioPlayer('hindi-shastri-audio', 'play-btn-9', 'progress-bar-9', 'current-time-9', 'duration-9');
-  const peachTreeAudio = setupAudioPlayer('peach-tree-audio', 'play-btn-10', 'progress-bar-10', 'current-time-10', 'duration-10');
-
-
-  // Setup Saint Thérèse Fact Audio Players (No text synchronization)
-  const youngestAudio = setupFactAudioPlayer('youngest-audio', 'youngest-play-btn', 'youngest-progress-bar', 'youngest-current-time', 'youngest-duration');
-  const wayAudio = setupFactAudioPlayer('way-audio', 'way-play-btn', 'way-progress-bar', 'way-current-time', 'way-duration');
-  const lifeAudio = setupFactAudioPlayer('life-audio', 'life-play-btn', 'life-progress-bar', 'life-current-time', 'life-duration');
-  const nunAudio = setupFactAudioPlayer('nun-audio', 'nun-play-btn', 'nun-progress-bar', 'nun-current-time', 'nun-duration');
-  const soulAudio = setupFactAudioPlayer('soul-audio', 'soul-play-btn', 'soul-progress-bar', 'soul-current-time', 'soul-duration');
-  const deathAudio = setupFactAudioPlayer('death-audio', 'death-play-btn', 'death-progress-bar', 'death-current-time', 'death-duration');
-
-  // Setup Gandhi Fact Audio Players (No text synchronization)
-  const internationalAudio = setupFactAudioPlayer('international-audio', 'international-play-btn', 'international-progress-bar', 'international-current-time', 'international-duration', 'var(--gandhi-orange)');
-  const nobelAudio = setupFactAudioPlayer('nobel-audio', 'nobel-play-btn', 'nobel-progress-bar', 'nobel-current-time', 'nobel-duration', 'var(--gandhi-orange)');
-  const educationAudio = setupFactAudioPlayer('education-audio', 'education-play-btn', 'education-progress-bar', 'education-current-time', 'education-duration', 'var(--gandhi-orange)');
-  const saltAudio = setupFactAudioPlayer('salt-audio', 'salt-play-btn', 'salt-progress-bar', 'salt-current-time', 'salt-duration', 'var(--gandhi-orange)');
-  const philoAudio = setupFactAudioPlayer('philo-audio', 'philo-play-btn', 'philo-progress-bar', 'philo-current-time', 'philo-duration', 'var(--gandhi-orange)');
-  const legacyAudio = setupFactAudioPlayer('legacy-audio', 'legacy-play-btn', 'legacy-progress-bar', 'legacy-current-time', 'legacy-duration', 'var(--gandhi-orange)');
-
-  // Setup Dussehra Fact Audio Players (No text synchronization)
-  const god1Audio = setupFactAudioPlayer('god1-audio', 'god1-play-btn', 'god1-progress-bar', 'god1-current-time', 'god1-duration', 'var(--dussehra-red)');
-  const god2Audio = setupFactAudioPlayer('god2-audio', 'god2-play-btn', 'god2-progress-bar', 'god2-current-time', 'god2-duration', 'var(--dussehra-red)');
-
-  // Setup Text Synchronization ONLY for articles and poems (not fact cards)
+  // Setup all audio players
+  const allAudioPlayers = [
+    setupAudioPlayer('prayer-audio', 'play-btn-5', 'progress-bar-5', 'current-time-5', 'duration-5'),
+    setupAudioPlayer('gandhi-audio', 'play-btn-3', 'progress-bar-3', 'current-time-3', 'duration-3'),
+    setupAudioPlayer('audio', 'play-btn-1', 'progress-bar-1', 'current-time-1', 'duration-1'),
+    setupAudioPlayer('poem-audio', 'play-btn-2', 'progress-bar-2', 'current-time-2', 'duration-2'),
+    setupAudioPlayer('hindi-article-audio', 'play-btn-4', 'progress-bar-4', 'current-time-4', 'duration-4'),
+    setupAudioPlayer('karmayuddh-audio', 'play-btn-6', 'progress-bar-6', 'current-time-6', 'duration-6'),
+    setupAudioPlayer('hindi-poem-audio', 'play-btn-7', 'progress-bar-7', 'current-time-7', 'duration-7'),
+    setupAudioPlayer('shastri-audio', 'play-btn-8', 'progress-bar-8', 'current-time-8', 'duration-8'),
+    setupAudioPlayer('hindi-shastri-audio', 'play-btn-9', 'progress-bar-9', 'current-time-9', 'duration-9'),
+    setupAudioPlayer('peach-tree-audio', 'play-btn-10', 'progress-bar-10', 'current-time-10', 'duration-10'),
+    setupFactAudioPlayer('youngest-audio', 'youngest-play-btn', 'youngest-progress-bar', 'youngest-current-time', 'youngest-duration'),
+    setupFactAudioPlayer('way-audio', 'way-play-btn', 'way-progress-bar', 'way-current-time', 'way-duration'),
+    setupFactAudioPlayer('life-audio', 'life-play-btn', 'life-progress-bar', 'life-current-time', 'life-duration'),
+    setupFactAudioPlayer('nun-audio', 'nun-play-btn', 'nun-progress-bar', 'nun-current-time', 'nun-duration'),
+    setupFactAudioPlayer('soul-audio', 'soul-play-btn', 'soul-progress-bar', 'soul-current-time', 'soul-duration'),
+    setupFactAudioPlayer('death-audio', 'death-play-btn', 'death-progress-bar', 'death-current-time', 'death-duration'),
+    setupFactAudioPlayer('international-audio', 'international-play-btn', 'international-progress-bar', 'international-current-time', 'international-duration', 'var(--gandhi-orange)'),
+    setupFactAudioPlayer('nobel-audio', 'nobel-play-btn', 'nobel-progress-bar', 'nobel-current-time', 'nobel-duration', 'var(--gandhi-orange)'),
+    setupFactAudioPlayer('education-audio', 'education-play-btn', 'education-progress-bar', 'education-current-time', 'education-duration', 'var(--gandhi-orange)'),
+    setupFactAudioPlayer('salt-audio', 'salt-play-btn', 'salt-progress-bar', 'salt-current-time', 'salt-duration', 'var(--gandhi-orange)'),
+    setupFactAudioPlayer('philo-audio', 'philo-play-btn', 'philo-progress-bar', 'philo-current-time', 'philo-duration', 'var(--gandhi-orange)'),
+    setupFactAudioPlayer('legacy-audio', 'legacy-play-btn', 'legacy-progress-bar', 'legacy-current-time', 'legacy-duration', 'var(--gandhi-orange)'),
+    setupFactAudioPlayer('god1-audio', 'god1-play-btn', 'god1-progress-bar', 'god1-current-time', 'god1-duration', 'var(--dussehra-red)'),
+    setupFactAudioPlayer('god2-audio', 'god2-play-btn', 'god2-progress-bar', 'god2-current-time', 'god2-duration', 'var(--dussehra-red)')
+  ];
   
-  if (hindiShastriAudio) {
-    const hindiShastriText = `लालबहादुर शास्त्री जी का नाम भारतीय राजनीति में सादगी, ईमानदारी और राष्ट्रभक्ति के प्रतीक के रूप में अमर है। उनका जन्म 2 अक्टूबर, 1904 को उत्तर प्रदेश के मुगलसराय में हुआ था। बचपन में ही पिता का निधन हो गया, जिससे परिवार पर आर्थिक कठिनाइयाँ आ गईं। फिर भी उन्होंने  साहस और परिश्रम से अपनी शिक्षा जारी रखी। काशी विद्यापीठ से पढ़ाई पूरी करने के बाद उन्हें ‘शास्त्री’ की उपाधि प्राप्त हुई।         शास्त्री जी का जीवन स्वतंत्रता आंदोलन से गहराई से जुड़ा रहा। महात्मा गांधी के विचारों से प्रेरित होकर उन्होंने असहयोग आंदोलन, नमक आंदोलन (सत्याग्रह) और भारत छोड़ो आंदोलन में भाग लिया। अंग्रेजों के विरुद्ध संघर्ष करते हुए  वे कई बार जेल गए। उनका जीवन इस बात का प्रमाण है कि कठिनाइयों और बाधाओं के बावजूद यदि मन में देशभक्ति और सत्य का सहारा हो तो कोई भी लक्ष्य कठिन नहीं रहता।  स्वतंत्रता के बाद शास्त्री जी को विभिन्न जिम्मेदारियाँ निभाने का अवसर मिला। उन्होंने रेल मंत्री, परिवहन एवं संचार मंत्री, वाणिज्य मंत्री और गृह मंत्री के रूप में उल्लेखनीय कार्य किए। उनकी सादगी और ईमानदारी ने उन्हें जनता का प्रिय बना दिया। 1964 में पंडित नेहरू के निधन के बाद उन्हें भारत का प्रधानमंत्री चुना गया। इस पद पर आसीन होकर उन्होंने देशभक्ति को सर्वोपरि माना और हमेशा आम जन के हित के लिए निर्णय लिए। यद्यपि उनका प्रधानमंत्री पद का कार्यकाल अल्पकालिक रहा, किन्तु वह अत्यंत प्रभावशाली था। 1965 में भारत-पाक युद्ध के समय उन्होंने पूरे देश को एकजुट किया और सैनिकों का उत्साह बढ़ाया। उन्होंने “जय जवान,जय किसान” का नारा दिया जिसने सैनिकों और किसानों दोनों को देश निर्माण में योगदान करने के लिए प्रेरित किया। उनके नेतृत्व ने यह सिद्ध कर दिया कि सच्चा प्रधानमंत्री वही है जो संकट की घड़ी में जनता का मार्गदर्शन कर सके।        शास्त्री जी अपने जीवन में अत्यंत सरल और मितव्ययी रहे। प्रधानमंत्री बनने के बाद भी वे सामान्य नागरिक की तरह जीवन व्यतीत करते थे। वे दिखावे और विलासिता से दूर रहते थे तथा देशहित को सर्वोपरि मानते थे।10 जनवरी, 1966 को ताशकंद में भारत-पाक शांति समझौता हुआ, किंतु दुर्भाग्यवश 11 जनवरी की सुबह वहीं पर उनका निधन हो गया। उनकी मृत्यु आज भी रहस्यमयी मानी जाती है। यद्यपि उनका जीवनकाल छोटा रहा, लेकिन अपने आदर्शो, नीतियों और विचारों से उन्होंने देशवासियों को सदा के लिए प्रेरणा दी। लाल बहादुर शास्त्री जी ने यह सिद्ध कर दिया कि महानता पद या शक्ति से नहीं, बल्कि सादगी, ईमानदारी और राष्ट्र सेवा से मिलती है।  वे एक सच्चे देशभक्त,आदर्श नेता और जनता के प्रधानमंत्री थे।`;
-    setupAudioText('hindi-shastri-text', hindiShastriAudio, hindiShastriText);
-  }
-
-  if (peachTreeAudio) {
-    const peachTreeText = `In a small village, a kind boy named Danish lovingly cared for a little peach sapling until it grew into a magnificent tree. The tree was a marvel! Its branches were heavy with peaches as sweet as sugar. The fruit had a delightful, rich flavour that made anyone who tasted it fall in love. Danish was incredibly proud of his tree. Soon, a group of students came running to the tree. Without asking Danish's permission, they climbed the branches like unruly monkeys. They plucked and ate more peaches than they could possibly finish, leaving half-eaten fruit scattered on the ground. After they had had their fill, the students vanished as quickly as they had appeared. Later that evening, Danish was heartbroken when he saw the mess. His beautiful tree was stripped bare, and the ground was littered with wasted peaches. From that day on, Danish felt a new protectiveness over his tree, hoping no one would ever treat it so carelessly again. Moral: Treat nature with respect and care, and remember to ask before you take what doesn't belong to you.`;
-    setupAudioText('peach-tree-text', peachTreeAudio, peachTreeText);
-  }
-  
-  if (shastriAudio) {
-    const shastriText = `From Commoner to Commander: India's Humble Hero Born on the same day as Mahatma Gandhi, Lal Bahadur Shastri was an immensely impactful independence activist and politician of our country. Yet, unlike other leaders, he is often overlooked in the pages of history. He was born in Mughalsarai, Uttar Pradesh, on 2nd October 1904. At merely 18 months old, he lost his father to the bubonic plague. Growing up, poverty was his constant companion. These hardships shaped his personality, making him resilient and simple. Influenced by the patriotic figures surrounding him, Shastri ji started actively participating in national activism in the early 1920s. He was imprisoned twice in this pursuit. He also dropped his surname 'Srivastava' and took the title 'Shastri' awarded by his degree institution instead of opining caste distinctions. After the independence, he served as the Minister of Railways from 1952 to 1956. He later resigned from this post, deeming himself responsible for the 1956 Ariyalur train accident. Such acts of honesty are, to this date, rarely seen in politicians. Later, he served as the Prime Minister of India from 1964 to 1966. In this brief duration, he managed to achieve feats that others could only dream of. He fuelled the Green Revolution and the White Revolution, bringing sustainable changes to the country. When India faced a severe food shortage, he asked citizens to skip one meal a week to save food and even practiced it himself. During the Indo-Pakistani War of 1965, he inspired the nation with his famous slogan, "Jai Jawan, Jai Kisan," which still echoes in every patriot's heart. After the war, Shastri ji and President Ayub Khan of Pakistan met in Tashkent, USSR, under Soviet mediation. On 10 January 1966, they signed the Tashkent Declaration, formally ending the conflict. Lal Bahadur Shastri's story teaches us that true leadership isn't about power or fame, but about selflessness, humility, and unwavering integrity. His life, though tragically cut short, serves as a powerful lesson for every student. He showed us that a simple person, driven by a deep love for their country, can achieve extraordinary things. His slogan, "Jai Jawan, Jai Kisan," continues to remind us to honor both the soldier who defends our borders and the farmer who feeds our nation. Let's remember Shastri Ji not just as a former Prime Minister, but as a humble hero who showed us the path to a better India through his actions. You led with a humble yet fearless heart, And lived with the attitude of a commoner. You left behind values of humility so high And a legacy too great for us to honour.`;
-    setupAudioText('shastri-article-text', shastriAudio, shastriText);
-  }
-
-  if (prayerAudio) {
-    const prayerText = `Dear St. Little Flower, Please pick me a rose from the "Heavenly Garden" and send it to me with a message of your love. Please ask God to bless me and everyone. Tell Him that I will love Him more and more each day. Amen.`;
-    setupAudioText('prayer-text', prayerAudio, prayerText);
-  }
-
-  if (gandhiAudio) {
-    const gandhiText = `On Gandhi Jayanti, we reflect on a man whose ideas are more relevant today than ever. In a world full of conflict and consumerism, Gandhiji's principles of non-violence, simplicity, and self-reliance offer a powerful roadmap for a better future. His message of non-violence shows us that dialogue and tolerance are the true path to resolving conflict. His call for simple living reminds us to choose sustainability over endless consumption. His vision of Sarvodaya- the welfare of all—urges us to fight for justice and equality for everyone. Gandhiji's timeless values are a guiding light, inspiring us to build a more peaceful and just world. As he once said, "The best way to find yourself is to lose yourself in the service of others."`;
-    setupAudioText('gandhi-article', gandhiAudio, gandhiText);
-  }
-
-  if (mainAudio) {
-    const articleText = `In an age filled with noise and constant distractions, the lives of certain individuals remind us of values that never fade. Among them are Mahatma Gandhi and St. Therese of Little Flower. Though they lived in different worlds and walked different paths, both carried within them treasures that can guide our generation—truth, compassion, and simplicity. For Mahatma Gandhi, truth was life's highest principle. He lived with the belief that honesty and nonviolence were stronger than any weapon. His compassion embraced every human being, and his simple lifestyle proved that greatness doesn't come from wealth but from integrity and courage. St. Therese of Lisieux taught the "Little way"; finding holiness in ordinary acts done with love can have extraordinary meaning. For her, simplicity was a path to God and humanity—smiling through suffering, offering small sacrifices, and finding beauty in everyday life. Together they remind us that personal transformation begins with small choices: to speak truthfully, to act kindly, and to live simply. When these values meet, they soften hearts and heal communities. If we carry these lessons in our daily lives, we too can help change the world.`;
-    setupAudioText('animated-article', mainAudio, articleText);
-  }
-
-  if (hindiAudio) {
-    const hindiText = `भारतीय स्वतंत्रता संग्राम के पहले चरण में हिंदी साहित्य मुख्यतः वीर रस और जागरण का माध्यम था। कविताएँ और लेख अधिकतर शौर्यगान व तत्कालीन क्रांतिकारी भावनाओं से भरे हुए थे। गांधीजी ने सत्य, अहिंसा और स्वदेशी को केवल राजनीतिक अस्त्र ही नहीं, बल्कि जीवन का दर्शन बनाया। इन आदर्शों ने साहित्यकारों और कवियों की लेखनी को गहराई से प्रभावित किया। राष्ट्रकवि मैथिलीशरण गुप्त की कविता "नर हो, न निराश करो मन को" गांधीवादी संयम का रूप है। गुप्त ने लिखा— "नर हो, न निराश करो मन को, कुछ काम करो, कुछ काम करो।" यह पंक्तियाँ गांधीजी के कर्मयोग और आत्मबल की शिक्षा से मेल खाती हैं। रामधारी सिंह 'दिनकर' ने गांधीजी को इन शब्दों में याद किया - "गांधी तूफ़ान के पिता और बाजों के भी बाज थे, क्योंकि वे नीरवता की आवाज थे।" दिनकर की इन पंक्तियों में गांधीजी का वह स्वरूप उभरता है, जिसमें वे एक ओर संघर्ष और तूफ़ान खड़ा करने वाले थे, तो दूसरी ओर अहिंसा और शांति की सबसे प्रबल आवाज भी। सुभद्राकुमारी चौहान की कविताओं में भी गांधीवादी आदर्शों की छाया दिखती है। वे गांधीजी के असहयोग आंदोलन में भाग लेने वाली वह प्रथम महिला बनीं और इसी चक्कर में वे दो बार जेल भी गई थीं। गांधीजी ਨੇ स्वयं कहा था कि "साहित्य को समाज का दर्पण होना चाहिए।" यही कारण है कि उनके समय का हिंदी साहित्य केवल देशभक्ति नहीं, बल्कि सत्य, अहिंसा और स्वदेशी जीवन-शैली का जीवंत दस्तावेज बन गया।`;
-    setupAudioText('hindi-article-text', hindiAudio, hindiText);
-  }
-
-  if (karmayuddhAudio) {
-    const karmayuddhText = `कब तक कर्म को अपने तुम टालते रहोगे, कब तक जीवन के सुखी पल तुम काटते रहोगे? कब तक हार का तुम अभ्यास करते रहोगे? कब तक संसार के तानों को तुम सुनते रहोगे? कब तक अपने अवगुणों को बातों से भरते रहोगे? अरे! चल पड़ो उस राह पर जो ले चले आकाश पर, चुप बैठो तुम मत अब यहाँ इस दुनिया की आवाज़ पर। कर चलो नर्दन अपने कर्मों की आवाज़ से, मत दबो समाज के इस कटाक्षों के दबावों से। कर चलो कुछ ऐसा लोग जल उठें जलन से, लड़ चलो इस दुनिया के स्वार्थी चलन से। दिखा दो उनको तुम कोई गुजरा हुआ वक्त नहीं, जान जाएँ सब कि तुम-sa न कोई शख्स कहीं। हार मानना न तुम इस पथ पर चलते समय कभी, केशव को याद रखना तुम हारोगे न फिर कभी। घोर विपदाओं का समय अब छा गया है, घोर विपदाओं का समय अब छा गया है। लड़ने को तैयार हो, युद्ध का वक्त आ गया है। युद्ध का वक्त आ गया है।`;
-    setupAudioText('karmayuddh-text', karmayuddhAudio, karmayuddhText);
-  }
-
-  if (poemAudio) {
-    setupAudioText('poem-text', poemAudio);
-  }
-
-  // Setup Text Synchronization for New Hindi Poem
-  if (hindiPoemAudio) {
-    const hindiPoemText = `विश्वास तुम जन मन के तुमने संघर्ष चुना, तुमने चुना नेह, जन - जन का। तुम बने आत्मबल तुमने लौटाई आत्मा, भारत की.... तुमने माना अहिंसा परमो धर्म:। जब लगी थी दृष्टि सम्पूर्ण विश्व की, तुम लगे जागरण से, तुम लगे विश्वास से, तुम जाग पड़े आत्माओं में, तुम बन गए, न्याय सबके मन के। वो दुर्बल सी काया, पर विश्वास बड़ा था, वो आधी धोती, पर उसका विस्तार बड़ा था, तुम्हारी लाठी की आवाज़ में आदर्श का पहरा खड़ा था, तुमने जो कहा, किया.... आत्मा कीतल गहराइयों तक। स्वातंत्र्य की सुगंध घनीभूत थी, राहों में दांडी, और मन में करके मरने की चाह, कर्म बड़े और छोटी सी काया, उन झुर्रियों में अनुभव और दृढ़ संकल्प समाया था। तुम मन हो तुम जन हो तुम आत्मा हो तुम भरत सरीखे भारत के अग्रदूत है नमन तुम्हें, हे बापू! तुम जन मन के विश्वास बने तुम जन- जन के।`;
-    setupAudioText('hindi-poem-text', hindiPoemAudio, hindiPoemText);
-  }
-
+  // Defer heavy text-sync setup
+  setTimeout(() => {
+    const textSyncTasks = [
+        { id: 'hindi-shastri-text', audio: allAudioPlayers[8], content: `लालबहादुर शास्त्री जी का नाम भारतीय राजनीति में सादगी, ईमानदारी और राष्ट्रभक्ति के प्रतीक के रूप में अमर है। उनका जन्म 2 अक्टूबर, 1904 को उत्तर प्रदेश के मुगलसराय में हुआ था। बचपन में ही पिता का निधन हो गया, जिससे परिवार पर आर्थिक कठिनाइयाँ आ गईं। फिर भी उन्होंने साहस और परिश्रम से अपनी शिक्षा जारी रखी। काशी विद्यापीठ से पढ़ाई पूरी करने के बाद उन्हें ‘शास्त्री’ की उपाधि प्राप्त हुई। शास्त्री जी का जीवन स्वतंत्रता आंदोलन से गहराई से जुड़ा रहा। महात्मा गांधी के विचारों से प्रेरित होकर उन्होंने असहयोग आंदोलन, नमक आंदोलन (सत्याग्रह) और भारत छोड़ो आंदोलन में भाग लिया। अंग्रेजों के विरुद्ध संघर्ष करते हुए वे कई बार जेल गए। उनका जीवन इस बात का प्रमाण है कि कठिनाइयों और बाधाओं के बावजूद यदि मन में देशभक्ति और सत्य का सहारा हो तो कोई भी लक्ष्य कठिन नहीं रहता। स्वतंत्रता के बाद शास्त्री जी को विभिन्न जिम्मेदारियाँ निभाने का अवसर मिला। उन्होंने रेल मंत्री, परिवहन एवं संचार मंत्री, वाणिज्य मंत्री और गृह मंत्री के रूप में उल्लेखनीय कार्य किए। उनकी सादगी और ईमानदारी ने उन्हें जनता का प्रिय बना दिया। 1964 में पंडित नेहरू के निधन के बाद उन्हें भारत का प्रधानमंत्री चुना गया। इस पद पर आसीन होकर उन्होंने देशभक्ति को सर्वोपरि माना और हमेशा आम जन के हित के लिए निर्णय लिए। यद्यपि उनका प्रधानमंत्री पद का कार्यकाल अल्पकालिक रहा, किन्तु वह अत्यंत प्रभावशाली था। 1965 में भारत-पाक युद्ध के समय उन्होंने पूरे देश को एकजुट किया और सैनिकों का उत्साह बढ़ाया। उन्होंने “जय जवान,जय किसान” का नारा दिया जिसने सैनिकों और किसानों दोनों को देश निर्माण में योगदान करने के लिए प्रेरित किया। उनके नेतृत्व ने यह सिद्ध कर दिया कि सच्चा प्रधानमंत्री वही है जो संकट की घड़ी में जनता का मार्गदर्शन कर सके। शास्त्री जी अपने जीवन में अत्यंत सरल और मितव्ययी रहे। प्रधानमंत्री बनने के बाद भी वे सामान्य नागरिक की तरह जीवन व्यतीत करते थे। वे दिखावे और विलासिता से दूर रहते थे तथा देशहित को सर्वोपरि मानते थे।10 जनवरी, 1966 को ताशकंद में भारत-पाक शांति समझौता हुआ, किंतु दुर्भाग्यवश 11 जनवरी की सुबह वहीं पर उनका निधन हो गया। उनकी मृत्यु आज भी रहस्यमयी मानी जाती है। यद्यपि उनका जीवनकाल छोटा रहा, लेकिन अपने आदर्शो, नीतियों और विचारों से उन्होंने देशवासियों को सदा के लिए प्रेरणा दी। लाल बहादुर शास्त्री जी ने यह सिद्ध कर दिया कि महानता पद या शक्ति से नहीं, बल्कि सादगी, ईमानदारी और राष्ट्र सेवा से मिलती है। वे एक सच्चे देशभक्त,आदर्श नेता और जनता के प्रधानमंत्री थे।` },
+        { id: 'peach-tree-text', audio: allAudioPlayers[9], content: `In a small village, a kind boy named Danish lovingly cared for a little peach sapling until it grew into a magnificent tree. The tree was a marvel! Its branches were heavy with peaches as sweet as sugar. The fruit had a delightful, rich flavour that made anyone who tasted it fall in love. Danish was incredibly proud of his tree. Soon, a group of students came running to the tree. Without asking Danish's permission, they climbed the branches like unruly monkeys. They plucked and ate more peaches than they could possibly finish, leaving half-eaten fruit scattered on the ground. After they had had their fill, the students vanished as quickly as they had appeared. Later that evening, Danish was heartbroken when he saw the mess. His beautiful tree was stripped bare, and the ground was littered with wasted peaches. From that day on, Danish felt a new protectiveness over his tree, hoping no one would ever treat it so carelessly again. Moral: Treat nature with respect and care, and remember to ask before you take what doesn't belong to you.` },
+        { id: 'shastri-article-text', audio: allAudioPlayers[7], content: `From Commoner to Commander: India's Humble Hero Born on the same day as Mahatma Gandhi, Lal Bahadur Shastri was an immensely impactful independence activist and politician of our country. Yet, unlike other leaders, he is often overlooked in the pages of history. He was born in Mughalsarai, Uttar Pradesh, on 2nd October 1904. At merely 18 months old, he lost his father to the bubonic plague. Growing up, poverty was his constant companion. These hardships shaped his personality, making him resilient and simple. Influenced by the patriotic figures surrounding him, Shastri ji started actively participating in national activism in the early 1920s. He was imprisoned twice in this pursuit. He also dropped his surname 'Srivastava' and took the title 'Shastri' awarded by his degree institution instead of opining caste distinctions. After the independence, he served as the Minister of Railways from 1952 to 1956. He later resigned from this post, deeming himself responsible for the 1956 Ariyalur train accident. Such acts of honesty are, to this date, rarely seen in politicians. Later, he served as the Prime Minister of India from 1964 to 1966. In this brief duration, he managed to achieve feats that others could only dream of. He fuelled the Green Revolution and the White Revolution, bringing sustainable changes to the country. When India faced a severe food shortage, he asked citizens to skip one meal a week to save food and even practiced it himself. During the Indo-Pakistani War of 1965, he inspired the nation with his famous slogan, "Jai Jawan, Jai Kisan," which still echoes in every patriot's heart. After the war, Shastri ji and President Ayub Khan of Pakistan met in Tashkent, USSR, under Soviet mediation. On 10 January 1966, they signed the Tashkent Declaration, formally ending the conflict. Lal Bahadur Shastri's story teaches us that true leadership isn't about power or fame, but about selflessness, humility, and unwavering integrity. His life, though tragically cut short, serves as a powerful lesson for every student. He showed us that a simple person, driven by a deep love for their country, can achieve extraordinary things. His slogan, "Jai Jawan, Jai Kisan," continues to remind us to honor both the soldier who defends our borders and the farmer who feeds our nation. Let's remember Shastri Ji not just as a former Prime Minister, but as a humble hero who showed us the path to a better India through his actions. You led with a humble yet fearless heart, And lived with the attitude of a commoner. You left behind values of humility so high And a legacy too great for us to honour.` },
+        { id: 'prayer-text', audio: allAudioPlayers[0], content: `Dear St. Little Flower, Please pick me a rose from the "Heavenly Garden" and send it to me with a message of your love. Please ask God to bless me and everyone. Tell Him that I will love Him more and more each day. Amen.` },
+        { id: 'gandhi-article', audio: allAudioPlayers[1], content: `On Gandhi Jayanti, we reflect on a man whose ideas are more relevant today than ever. In a world full of conflict and consumerism, Gandhiji's principles of non-violence, simplicity, and self-reliance offer a powerful roadmap for a better future. His message of non-violence shows us that dialogue and tolerance are the true path to resolving conflict. His call for simple living reminds us to choose sustainability over endless consumption. His vision of Sarvodaya- the welfare of all—urges us to fight for justice and equality for everyone. Gandhiji's timeless values are a guiding light, inspiring us to build a more peaceful and just world. As he once said, "The best way to find yourself is to lose yourself in the service of others."` },
+        { id: 'animated-article', audio: allAudioPlayers[2], content: `In an age filled with noise and constant distractions, the lives of certain individuals remind us of values that never fade. Among them are Mahatma Gandhi and St. Therese of Little Flower. Though they lived in different worlds and walked different paths, both carried within them treasures that can guide our generation—truth, compassion, and simplicity. For Mahatma Gandhi, truth was life's highest principle. He lived with the belief that honesty and nonviolence were stronger than any weapon. His compassion embraced every human being, and his simple lifestyle proved that greatness doesn't come from wealth but from integrity and courage. St. Therese of Lisieux taught the "Little way"; finding holiness in ordinary acts done with love can have extraordinary meaning. For her, simplicity was a path to God and humanity—smiling through suffering, offering small sacrifices, and finding beauty in everyday life. Together they remind us that personal transformation begins with small choices: to speak truthfully, to act kindly, and to live simply. When these values meet, they soften hearts and heal communities. If we carry these lessons in our daily lives, we too can help change the world.` },
+        { id: 'hindi-article-text', audio: allAudioPlayers[4], content: `भारतीय स्वतंत्रता संग्राम के पहले चरण में हिंदी साहित्य मुख्यतः वीर रस और जागरण का माध्यम था। कविताएँ और लेख अधिकतर शौर्यगान व तत्कालीन क्रांतिकारी भावनाओं से भरे हुए थे। गांधीजी ने सत्य, अहिंसा और स्वदेशी को केवल राजनीतिक अस्त्र ही नहीं, बल्कि जीवन का दर्शन बनाया। इन आदर्शों ने साहित्यकारों और कवियों की लेखनी को गहराई से प्रभावित किया। राष्ट्रकवि मैथिलीशरण गुप्त की कविता "नर हो, न निराश करो मन को" गांधीवादी संयम का रूप है। गुप्त ने लिखा— "नर हो, न निराश करो मन को, कुछ काम करो, कुछ काम करो।" यह पंक्तियाँ गांधीजी के कर्मयोग और आत्मबल की शिक्षा से मेल खाती हैं। रामधारी सिंह 'दिनकर' ने गांधीजी को इन शब्दों में याद किया - "गांधी तूफ़ान के पिता और बाजों के भी बाज थे, क्योंकि वे नीरवता की आवाज थे।" दिनकर की इन पंक्तियों में गांधीजी का वह स्वरूप उभरता है, जिसमें वे एक ओर संघर्ष और तूफ़ान खड़ा करने वाले थे, तो दूसरी ओर अहिंसा और शांति की सबसे प्रबल आवाज भी। सुभद्राकुमारी चौहान की कविताओं में भी गांधीवादी आदर्शों की छाया दिखती है। वे गांधीजी के असहयोग आंदोलन में भाग लेने वाली वह प्रथम महिला बनीं और इसी चक्कर में वे दो बार जेल भी गई थीं। गांधीजी ਨੇ स्वयं कहा था कि "साहित्य को समाज का दर्पण होना चाहिए।" यही कारण है कि उनके समय का हिंदी साहित्य केवल देशभक्ति नहीं, बल्कि सत्य, अहिंसा और स्वदेशी जीवन-शैली का जीवंत दस्तावेज बन गया।` },
+        { id: 'karmayuddh-text', audio: allAudioPlayers[5], content: `कब तक कर्म को अपने तुम टालते रहोगे, कब तक जीवन के सुखी पल तुम काटते रहोगे? कब तक हार का तुम अभ्यास करते रहोगे? कब तक संसार के तानों को तुम सुनते रहोगे? कब तक अपने अवगुणों को बातों से भरते रहोगे? अरे! चल पड़ो उस राह पर जो ले चले आकाश पर, चुप बैठो तुम मत अब यहाँ इस दुनिया की आवाज़ पर। कर चलो नर्दन अपने कर्मों की आवाज़ से, मत दबो समाज के इस कटाक्षों के दबावों से। कर चलो कुछ ऐसा लोग जल उठें जलन से, लड़ चलो इस दुनिया के स्वार्थी चलन से। दिखा दो उनको तुम कोई गुजरा हुआ वक्त नहीं, जान जाएँ सब कि तुम-sa न कोई शख्स कहीं। हार मानना न तुम इस पथ पर चलते समय कभी, केशव को याद रखना तुम हारोगे न फिर कभी। घोर विपदाओं का समय अब छा गया है, घोर विपदाओं का समय अब छा गया है। लड़ने को तैयार हो, युद्ध का वक्त आ गया है। युद्ध का वक्त आ गया है।` },
+        { id: 'poem-text', audio: allAudioPlayers[3], content: null },
+        { id: 'hindi-poem-text', audio: allAudioPlayers[6], content: `विश्वास तुम जन मन के तुमने संघर्ष चुना, तुमने चुना नेह, जन - जन का। तुम बने आत्मबल तुमने लौटाई आत्मा, भारत की.... तुमने माना अहिंसा परमो धर्म:। जब लगी थी दृष्टि सम्पूर्ण विश्व की, तुम लगे जागरण से, तुम लगे विश्वास से, तुम जाग पड़े आत्माओं में, तुम बन गए, न्याय सबके मन के। वो दुर्बल सी काया, पर विश्वास बड़ा था, वो आधी धोती, पर उसका विस्तार बड़ा था, तुम्हारी लाठी की आवाज़ में आदर्श का पहरा खड़ा था, तुमने जो कहा, किया.... आत्मा कीतल गहराइयों तक। स्वातंत्र्य की सुगंध घनीभूत थी, राहों में दांडी, और मन में करके मरने की चाह, कर्म बड़े और छोटी सी काया, उन झुर्रियों में अनुभव और दृढ़ संकल्प समाया था। तुम मन हो तुम जन हो तुम आत्मा हो तुम भरत सरीखे भारत के अग्रदूत है नमन तुम्हें, हे बापू! तुम जन मन के विश्वास बने तुम जन- जन के।` }
+    ];
+    textSyncTasks.forEach(task => { if (task.audio) setupAudioText(task.id, task.audio, task.content); });
+  }, 10);
 
   // =========================================================================
-  // START: NEW ANIMATED GALLERY SCRIPT
+  // START: ANIMATED GALLERY & LAZY LOADING SCRIPT
   // =========================================================================
   
+  // --- Lazy Load CSS Backgrounds ---
+  const lazyBackgrounds = document.querySelectorAll('.lazy-bg');
+  const lazyBgObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        element.style.backgroundImage = element.dataset.bg;
+        observer.unobserve(element);
+      }
+    });
+  }, { rootMargin: "0px 0px 200px 0px" });
+  lazyBackgrounds.forEach(bg => lazyBgObserver.observe(bg));
+
   // --- Gallery Data ---
   const galleryData = {
-    'welcome-program': {
-      title: "Welcome Program",
-      images: ['https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg', 'https://i.ibb.co/4n17dhRP/FERWELL-FR-GREOGERY-1.jpg']
-    },
-    'initiation-ceremony': {
-      title: "Initiation Ceremony - LKG",
-      images: ['https://i.ibb.co/zhTPyQW0/icseresults.jpg']
-    },
-    'pope-condolences': {
-      title: "Pope Francis - Condolences",
-      images: ['https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg', 'https://i.ibb.co/HLD0TYN4/POPE-2.jpg']
-    },
-    'results-declaration': {
-      title: "ICSE, ISC Result Declaration",
-      images: ['https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg', 'https://i.ibb.co/zhTPyQW0/icseresults.jpg']
-    },
-    'non-teaching-reward': {
-      title: "Reward to Non-Teaching Staff",
-      images: ['https://via.placeholder.com/800x600.png?text=LFS+Staff+Reward']
-    },
-    'yoga-day': {
-      title: "Yoga Day",
-      images: ['https://via.placeholder.com/800x600.png?text=Yoga+Day+2025']
-    },
-    'staff-orientation-khorabar': {
-      title: "Staff Orientation - Khorabar",
-      images: ['https://via.placeholder.com/800x600.png?text=Staff+Orientation']
-    },
-    'staff-picnic': {
-      title: "Staff Picnic - Bhutwal",
-      images: ['https://via.placeholder.com/800x600.png?text=Staff+Picnic+Fun']
-    },
-    'career-guidance': {
-      title: "Career Guidance Program",
-      images: ['https://via.placeholder.com/800x600.png?text=Career+Guidance']
-    },
-    'investiture-ceremony': {
-      title: "Investiture Ceremony",
-      images: ['https://i.ibb.co/HLD0TYN4/POPE-2.jpg']
-    },
-    'raksha-bandhan': {
-      title: "Raksha Bandhan Celebration",
-      images: ['https://via.placeholder.com/800x600.png?text=Rakhi+Celebration']
-    },
-    'independence-day': {
-      title: "Independence Day",
-      images: ['https://i.ibb.co/4n17dhRP/FERWELL-FR-GREOGERY-1.jpg', 'https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg']
-    },
-    'teachers-day': {
-      title: "Teachers' Day & Onam",
-      images: ['https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg']
-    },
-    'poetry-competition': {
-      title: "Hindi Poetry Competition",
-      images: ['https://via.placeholder.com/800x600.png?text=Hindi+Poetry+Winners']
-    },
-    'blood-donation': {
-      title: "Blood Donation Camp",
-      images: ['https://via.placeholder.com/800x600.png?text=Blood+Donation+Drive']
-    }
+    'welcome-program': { title: "Welcome Program", images: ['https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg', 'https://i.ibb.co/4n17dhRP/FERWELL-FR-GREOGERY-1.jpg'] },
+    'initiation-ceremony': { title: "Initiation Ceremony - LKG", images: ['https://i.ibb.co/zhTPyQW0/icseresults.jpg'] },
+    'pope-condolences': { title: "Pope Francis - Condolences", images: ['https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg', 'https://i.ibb.co/HLD0TYN4/POPE-2.jpg'] },
+    'results-declaration': { title: "ICSE, ISC Result Declaration", images: ['https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg', 'https://i.ibb.co/zhTPyQW0/icseresults.jpg'] },
+    'non-teaching-reward': { title: "Reward to Non-Teaching Staff", images: ['https://via.placeholder.com/800x600.png?text=LFS+Staff+Reward'] },
+    'yoga-day': { title: "Yoga Day", images: ['https://via.placeholder.com/800x600.png?text=Yoga+Day+2025'] },
+    'staff-orientation-khorabar': { title: "Staff Orientation - Khorabar", images: ['https://via.placeholder.com/800x600.png?text=Staff+Orientation'] },
+    'staff-picnic': { title: "Staff Picnic - Bhutwal", images: ['https://via.placeholder.com/800x600.png?text=Staff+Picnic+Fun'] },
+    'career-guidance': { title: "Career Guidance Program", images: ['https://via.placeholder.com/800x600.png?text=Career+Guidance'] },
+    'investiture-ceremony': { title: "Investiture Ceremony", images: ['https://i.ibb.co/HLD0TYN4/POPE-2.jpg'] },
+    'raksha-bandhan': { title: "Raksha Bandhan Celebration", images: ['https://via.placeholder.com/800x600.png?text=Rakhi+Celebration'] },
+    'independence-day': { title: "Independence Day", images: ['https://i.ibb.co/4n17dhRP/FERWELL-FR-GREOGERY-1.jpg', 'https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg'] },
+    'teachers-day': { title: "Teachers' Day & Onam", images: ['https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg'] },
+    'poetry-competition': { title: "Hindi Poetry Competition", images: ['https://via.placeholder.com/800x600.png?text=Hindi+Poetry+Winners'] },
+    'blood-donation': { title: "Blood Donation Camp", images: ['https://via.placeholder.com/800x600.png?text=Blood+Donation+Drive'] }
   };
 
-  // --- Get Elements from the DOM ---
   const albumCards = document.querySelectorAll('.album-card');
   const lightbox = document.getElementById('gallery-lightbox');
   const lightboxTitle = document.getElementById('lightbox-title');
   const lightboxImagesContainer = document.getElementById('lightbox-images');
   const lightboxCloseBtn = document.querySelector('.lightbox-close');
 
-  // --- Function to open the lightbox ---
   function openLightbox(albumId) {
     const album = galleryData[albumId];
-    if (!album) {
-      console.error('Album not found:', albumId);
-      return;
-    }
-
+    if (!album) return;
     lightboxTitle.textContent = album.title;
     lightboxImagesContainer.innerHTML = '';
-
     album.images.forEach(imageUrl => {
       const img = document.createElement('img');
       img.src = imageUrl;
@@ -2503,37 +1178,20 @@ document.addEventListener('DOMContentLoaded', function() {
       img.loading = 'lazy';
       lightboxImagesContainer.appendChild(img);
     });
-
     lightbox.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
 
-  // --- Function to close the lightbox ---
   function closeLightbox() {
     lightbox.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
 
-  // --- Add Event Listeners ---
   if (albumCards.length > 0 && lightbox) {
-    albumCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const albumId = card.dataset.album;
-        openLightbox(albumId);
-      });
-    });
-
+    albumCards.forEach(card => card.addEventListener('click', () => openLightbox(card.dataset.album)));
     lightboxCloseBtn.addEventListener('click', closeLightbox);
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   }
-  // =========================================================================
-  // END: NEW ANIMATED GALLERY SCRIPT
-  // =========================================================================
 });
 </script>
 
