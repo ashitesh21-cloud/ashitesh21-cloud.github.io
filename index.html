@@ -12,13 +12,11 @@
 <style>
 /* CSS Variables */
 :root {
-  /* Switched to a Light Theme */
-  --content-black: #ffffff; /* Page background elements are now white */
-  --card-bg: #f9f9f9;      /* Card backgrounds are now a very light gray */
-  --text-white: #1a1a1a;    /* Main text color is now dark */
-  --text-light: #333333;    /* Secondary text is dark gray */
-  --text-gray: #555555;     /* Tertiary text is medium gray */
-  
+  --content-black: #1a1a1a;
+  --card-bg: #2a2a2a;
+  --text-white: #ffffff;
+  --text-light: #e0e0e0;
+  --text-gray: #b0b0b0;
   --accent-blue: #3e92cc;
   --accent-gold: #ffd700;
   --therese-rose: #f8b2c3;
@@ -37,8 +35,7 @@
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--body-font);
-  background-color: #f0f2f5; /* Light gray background for the whole page */
-  color: var(--text-white);   /* Default text color is now dark */
+  color: var(--text-white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -65,7 +62,7 @@ body {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.4); /* Keeping dark overlay for hero text readability */
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -81,15 +78,15 @@ body {
 }
 
 .site-nav a {
-  color: #ffffff; /* Keep nav links white for readability on hero image */
+  color: var(--text-white);
   font-weight: 600;
   text-decoration: none;
   opacity: 0.9;
   transition: all 0.3s ease;
   padding: 0.75rem 1.25rem;
   border-radius: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   font-size: 0.9rem;
   min-height: 44px;
   display: flex;
@@ -97,30 +94,20 @@ body {
   justify-content: center;
 }
 
-.site-nav a:hover { color: var(--accent-gold); background-color: rgba(0, 0, 0, 0.6); }
+.site-nav a:hover { color: var(--accent-gold); background-color: rgba(0, 0, 0, 0.5); }
 
 .hero-title, .section-title {
   font-family: var(--heading-font);
   color: var(--text-white);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.hero-title { 
-  font-size: clamp(2rem, 8vw, 4.2rem); 
-  margin-bottom: 1rem; 
-  line-height: 1.1;
-  color: #ffffff; /* Keep hero title white */
   text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.8);
 }
-.hero-subtitle { 
-  font-size: clamp(0.9rem, 4vw, 1.2rem); 
-  color: #e0e0e0; /* Keep hero subtitle light */
-  line-height: 1.5; 
-}
+
+.hero-title { font-size: clamp(2rem, 8vw, 4.2rem); margin-bottom: 1rem; line-height: 1.1; }
+.hero-subtitle { font-size: clamp(0.9rem, 4vw, 1.2rem); color: var(--text-light); line-height: 1.5; }
 
 /* Content Area */
 .content-area {
-  background: transparent; /* Remove dark background, let body color show */
+  background: rgba(26, 26, 26, 0.95);
   padding: 3rem 0.75rem 2rem;
   position: relative;
   z-index: 1;
@@ -133,22 +120,31 @@ body {
   margin-bottom: 1.5rem;
   display: inline-block;
   position: relative;
+  color: var(--text-white);
   padding: 0 1rem;
+}
+
+.section-credit {
+  text-align: center;
+  font-style: italic;
+  color: var(--text-gray);
+  margin-top: -1.5rem;
+  margin-bottom: 2rem;
 }
 
 /* Cards */
 .content-card {
-  background: #ffffff; /* White card background */
+  background: rgba(42, 42, 42, 0.9);
   border-radius: 12px;
   padding: 1.25rem;
-  border: 1px solid #e0e0e0; /* Light gray border */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Softer shadow */
+  border: 1px solid #404040;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
   width: 100%;
   transition: all 0.3s ease;
   margin-bottom: 1rem;
 }
 
-.content-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1), 0 0 15px rgba(62, 146, 204, 0.2); }
+.content-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 15px rgba(62, 146, 204, 0.3); }
 
 .card-icon { font-size: 1.6rem; color: var(--accent-blue); margin-bottom: 0.75rem; }
 
@@ -163,15 +159,15 @@ body {
 /* Author credit styling */
 .author-credit {
   font-size: 1rem;
-  color: var(--accent-gold);
+  color: var(--accent-blue);
   font-style: italic;
   font-weight: 700;
   margin-bottom: 0.8rem;
   text-align: right;
-  background: rgba(255, 215, 0, 0.1);
+  background: rgba(62, 146, 204, 0.1);
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
-  border-left: 3px solid var(--accent-gold);
+  border-left: 3px solid var(--accent-blue);
 }
 
 .content-card p { color: var(--text-gray); line-height: 1.6; font-size: 0.9rem; }
@@ -183,7 +179,7 @@ body {
   padding: 3rem 2rem;
   margin: 3rem 0;
   border: 1px solid rgba(62, 146, 204, 0.3);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   overflow: hidden;
   position: relative;
 }
@@ -206,12 +202,12 @@ body {
 
 /* GANDHI COMPREHENSIVE SECTION */
 .gandhi-comprehensive {
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.05), rgba(138, 69, 19, 0.05), rgba(255, 215, 0, 0.08));
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(138, 69, 19, 0.1), rgba(255, 215, 0, 0.15));
   border-radius: 25px;
   padding: 4rem 3rem;
   margin: 3rem 0;
   border: 2px solid rgba(255, 140, 0, 0.4);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
 }
@@ -223,7 +219,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 140, 0, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle, rgba(255, 140, 0, 0.15) 0%, transparent 50%);
   animation: gandhiFloat 8s ease-in-out infinite;
 }
 
@@ -234,12 +230,12 @@ body {
 
 /* SAINT THÉRÈSE COMPREHENSIVE SECTION */
 .therese-comprehensive {
-  background: linear-gradient(135deg, rgba(248, 178, 195, 0.1), rgba(252, 228, 236, 0.08), rgba(173, 20, 87, 0.05));
+  background: linear-gradient(135deg, rgba(248, 178, 195, 0.15), rgba(252, 228, 236, 0.1), rgba(173, 20, 87, 0.1));
   border-radius: 25px;
   padding: 4rem 3rem;
   margin: 3rem 0;
   border: 2px solid rgba(248, 178, 195, 0.4);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
 }
@@ -251,7 +247,7 @@ body {
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(248, 178, 195, 0.15) 0%, transparent 50%);
+  background: radial-gradient(circle, rgba(248, 178, 195, 0.2) 0%, transparent 50%);
   animation: thereseFloat 10s ease-in-out infinite;
 }
 
@@ -262,12 +258,12 @@ body {
 
 /* DUSSEHRA COMPREHENSIVE SECTION */
 .dussehra-comprehensive {
-  background: linear-gradient(135deg, rgba(255, 69, 0, 0.05), rgba(255, 140, 0, 0.05), rgba(255, 215, 0, 0.08));
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.1), rgba(255, 140, 0, 0.1), rgba(255, 215, 0, 0.15));
   border-radius: 25px;
   padding: 4rem 3rem;
   margin: 3rem 0;
   border: 2px solid rgba(255, 69, 0, 0.4);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
 }
@@ -279,7 +275,7 @@ body {
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 69, 0, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.15) 0%, transparent 50%);
   animation: dussehraFloat 9s ease-in-out infinite;
 }
 
@@ -299,7 +295,7 @@ body {
   font-family: var(--heading-font);
   font-size: clamp(2.5rem, 6vw, 4rem);
   color: var(--therese-deep);
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
   margin-bottom: 1rem;
 }
 
@@ -307,7 +303,7 @@ body {
   font-family: var(--heading-font);
   font-size: clamp(2.5rem, 6vw, 4rem);
   color: #ff8c00;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
   margin-bottom: 1rem;
 }
 
@@ -315,7 +311,7 @@ body {
   font-family: var(--heading-font);
   font-size: clamp(2.5rem, 6vw, 4rem);
   color: var(--dussehra-red);
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
   margin-bottom: 1rem;
 }
 
@@ -323,7 +319,7 @@ body {
   font-size: clamp(1.1rem, 3vw, 1.4rem);
   color: var(--text-light);
   font-style: italic;
-  text-shadow: none;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .gandhi-grid, .therese-grid, .dussehra-grid {
@@ -335,53 +331,69 @@ body {
 }
 
 .gandhi-fact-card, .therese-fact-card, .dussehra-fact-card {
-  background: #ffffff;
+  background: rgba(42, 42, 42, 0.95);
   border-radius: 20px;
   padding: 2rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
 }
 
 .gandhi-fact-card {
-  border: 1px solid rgba(255, 140, 0, 0.4);
+  border: 2px solid rgba(255, 140, 0, 0.3);
 }
 
 .therese-fact-card {
-  border: 1px solid rgba(248, 178, 195, 0.4);
+  border: 2px solid rgba(248, 178, 195, 0.3);
 }
 
 .dussehra-fact-card {
-  border: 1px solid rgba(255, 69, 0, 0.4);
+  border: 2px solid rgba(255, 69, 0, 0.3);
 }
 
-.therese-fact-card:not([id*='-card'])::before,
-.gandhi-fact-card:not([id*='-card'])::before,
-.dussehra-fact-card:not([id*='-card'])::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(240, 240, 240, 0.05));
-    border-radius: 20px;
-    z-index: 1;
+.gandhi-fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.05), rgba(255, 215, 0, 0.05));
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.therese-fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(248, 178, 195, 0.05), rgba(252, 228, 236, 0.05));
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.dussehra-fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.05), rgba(255, 140, 0, 0.05));
+  border-radius: 20px;
+  z-index: 1;
 }
 
 .gandhi-fact-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(255, 140, 0, 0.4);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px rgba(255, 140, 0, 0.4);
   border-color: var(--accent-gold);
 }
 
 .therese-fact-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(248, 178, 195, 0.4);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px rgba(248, 178, 195, 0.4);
   border-color: var(--therese-rose);
 }
 
 .dussehra-fact-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(255, 69, 0, 0.4);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px rgba(255, 69, 0, 0.4);
   border-color: var(--dussehra-red);
 }
 
@@ -409,15 +421,15 @@ body {
   font-family: var(--heading-font);
   font-size: clamp(1.3rem, 3vw, 1.6rem);
   margin-bottom: 1rem;
-  text-shadow: none;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .gandhi-fact-card .fact-text h4 {
-  color: #d97706; /* Darker Orange */
+  color: #ff8c00;
 }
 
 .therese-fact-card .fact-text h4 {
-  color: var(--therese-deep);
+  color: var(--therese-rose);
 }
 
 .dussehra-fact-card .fact-text h4 {
@@ -434,7 +446,7 @@ body {
   object-fit: cover;
   border-radius: 15px;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
 .gandhi-fact-card .fact-image img {
@@ -466,24 +478,23 @@ body {
 
 /* Audio Player for Fact Cards */
 .fact-audio-player {
-  background: #e9ecef;
+  background: rgba(45, 55, 72, 0.9);
   border-radius: 10px;
   padding: 0.875rem;
   margin: 1rem 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border: 1px solid #ced4da;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .therese-fact-card .fact-audio-player {
-  border: 1px solid rgba(248, 178, 195, 0.4);
+  border: 1px solid rgba(248, 178, 195, 0.3);
 }
 
 .gandhi-fact-card .fact-audio-player {
-  border: 1px solid rgba(255, 140, 0, 0.4);
+  border: 1px solid rgba(255, 140, 0, 0.3);
 }
 
 .dussehra-fact-card .fact-audio-player {
-  border: 1px solid rgba(255, 69, 0, 0.4);
+  border: 1px solid rgba(255, 69, 0, 0.3);
 }
 
 .fact-audio-controls { 
@@ -560,7 +571,7 @@ body {
 .fact-progress-bar { 
   flex: 1; 
   height: 6px; 
-  background: #d1d1d1;
+  background: #4a5568; 
   border-radius: 3px; 
   cursor: pointer; 
 }
@@ -619,22 +630,22 @@ body {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   color: var(--text-white);
   margin-bottom: 1.5rem;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .ebulletin-text h4 {
   font-family: var(--heading-font);
   font-size: clamp(1.3rem, 3vw, 1.8rem);
-  color: var(--accent-gold);
+  color: var(--accent-blue);
   margin-bottom: 1rem;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .ebulletin-text p {
   font-size: clamp(0.95rem, 2.2vw, 1.1rem);
   color: var(--text-light);
   line-height: 1.6;
-  text-shadow: none;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .ebulletin-image {
@@ -648,14 +659,14 @@ body {
   width: 100%;
   height: auto;
   border-radius: 15px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
   transition: all 0.4s ease;
   border: 3px solid rgba(255, 215, 0, 0.3);
 }
 
 .ebulletin-image:hover img {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   border-color: var(--accent-gold);
 }
 
@@ -711,12 +722,12 @@ body {
 
 /* Audio Player */
 .audio-player {
-  background: #e9ecef; /* Light gray */
+  background: rgba(45, 55, 72, 0.9);
   border-radius: 10px;
   padding: 0.875rem;
   margin: 1rem 0;
-  border: 1px solid #ced4da; /* Light border */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border: 1px solid #4a5568;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .audio-controls { display: flex; align-items: center; gap: 0.75rem; }
@@ -745,7 +756,7 @@ body {
 
 .progress-container { display: flex; align-items: center; gap: 0.5rem; }
 .time-display { color: var(--text-gray); font-size: 0.75rem; min-width: 35px; text-align: center; }
-.progress-bar { flex: 1; height: 8px; background: #ced4da; border-radius: 4px; cursor: pointer; }
+.progress-bar { flex: 1; height: 8px; background: #4a5568; border-radius: 4px; cursor: pointer; }
 
 audio { display: none; }
 
@@ -757,7 +768,7 @@ audio { display: none; }
   display: flex;
   border-radius: 12px;
   border: 2px solid var(--accent-blue);
-  background-color: #333;
+  background-color: rgba(42, 42, 42, 0.8);
 }
 
 .background-video {
@@ -804,14 +815,14 @@ audio { display: none; }
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.3s ease;
-  color: #aaa;
+  color: #888;
 }
 
 .poem-text span.visible, .animated-text span.visible {
   opacity: 1;
   transform: translateY(0);
-  color: var(--accent-gold);
-  text-shadow: 1px 1px 3px rgba(255, 215, 0, 0.5);
+  color: var(--accent-blue);
+  text-shadow: 1px 1px 3px rgba(62, 146, 204, 0.5);
   font-weight: 500;
 }
 
@@ -822,8 +833,8 @@ audio { display: none; }
 }
 
 .video-card .poem-text span.visible {
-  color: var(--accent-gold);
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.95), 1px 1px 3px rgba(255, 215, 0, 0.8);
+  color: var(--accent-blue);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.95), 1px 1px 3px rgba(62, 146, 204, 0.8);
 }
 
 /* Grid Layouts */
@@ -866,7 +877,7 @@ audio { display: none; }
 }
 
 
-/* Dark overlay for cards with background images */
+/* This adds a dark overlay to make text more readable */
 #non-violence-card::before,
 #nobel-card::before,
 #early-life-card::before,
@@ -879,12 +890,12 @@ audio { display: none; }
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6); 
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
   border-radius: 20px; 
   z-index: 1;
 }
 
-/* Content on top of overlay */
+/* This makes sure the content appears on top of the overlay */
 #non-violence-card .fact-content,
 #nobel-card .fact-content,
 #early-life-card .fact-content,
@@ -895,7 +906,7 @@ audio { display: none; }
   z-index: 2;
 }
 
-/* White text for cards with background images */
+/* This makes the text white with a shadow for contrast */
 #non-violence-card h4, 
 #non-violence-card p,
 #non-violence-card .fact-audio-title,
@@ -920,12 +931,12 @@ audio { display: none; }
 #assassination-card p,
 #assassination-card .fact-audio-title,
 #assassination-card .fact-time-display {
-  color: #ffffff;
+  color: #ffffff; /* Bright white */
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 
-/* STYLES FOR ST. THERESE CARDS with background images */
+/* NEW STYLES FOR ST. THERESE CARDS */
 #youngest-doctor-card,
 #little-way-card,
 #early-life-therese-card,
@@ -984,7 +995,7 @@ audio { display: none; }
 /* Gallery Section Styles */
 .gallery-subsection h3 {
   font-family: var(--heading-font);
-  color: var(--accent-gold);
+  color: var(--accent-blue);
   font-size: clamp(1.5rem, 4vw, 2rem);
   text-align: center;
   margin-top: 3rem;
@@ -998,16 +1009,16 @@ audio { display: none; }
 }
 
 .gallery-item {
-  border: 1px solid #ddd;
+  border: 2px solid #404040;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
 }
 
 .gallery-item img {
@@ -1031,8 +1042,8 @@ audio { display: none; }
         <li><a href="#ebulletin">E-Bulletin</a></li>
       </ul>
     </nav>
-    <h1 class="hero-title">Little Flower School</h1>
-    <p class="hero-subtitle">Welcome to our vibrant digital world where creativity meets education.</p>
+    <h1 class="hero-title">Little Flower School Gorakhpur</h1>
+    <p class="hero-subtitle">2025-2026</p>
   </div>
 </header>
 
@@ -1187,23 +1198,12 @@ audio { display: none; }
           <audio id="audio" src="https://media.redcircle.com/2025/9/22/6/6a1c0f30-c116-4983-9465-0cc0b723a263_the_gentle_power_of_truth_and_simplicity.mp3"></audio>
           <div id="animated-article" class="animated-text"></div>
         </div>
-
-        <div class="content-card">
-          <div class="card-icon"><i class="fas fa-newspaper"></i></div>
-          <h3>Feature Articles</h3>
-          <p>In-depth stories covering school events, achievements, and inspiring journeys.</p>
-        </div>
-
-        <div class="content-card">
-          <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
-          <h3>Student Insights</h3>
-          <p>Perspectives and opinions from our bright students on various topics.</p>
-        </div>
       </div>
     </section>
 
     <section id="ebulletin" class="content-section">
       <h2 class="section-title">E-Bulletin</h2>
+      <p class="section-credit">-Arpit Kumar Gupta</p>
       
       <div class="therese-comprehensive">
         <div class="therese-header">
@@ -1843,12 +1843,6 @@ the eternal shape of love.</div>
             <audio id="poem-audio" src="https://media.redcircle.com/2025/9/22/7/9c5ff290-ee9d-4af6-a7bf-6b6ba44b6875_ashay.mp3"></audio>
           </div>
         </div>
-
-        <div class="content-card">
-          <div class="card-icon"><i class="fas fa-feather-alt"></i></div>
-          <h3>Poetry Corner</h3>
-          <p>Beautiful verses and heartfelt poems penned by our talented young poets.</p>
-        </div>
       </div>
     </section>
 
@@ -1856,19 +1850,9 @@ the eternal shape of love.</div>
       <h2 class="section-title">Paintings</h2>
       <div class="content-grid">
         <div class="content-card">
-          <div class="card-icon"><i class="fas fa-palette"></i></div>
-          <h3>Art Gallery</h3>
-          <p>Marvel at the creativity of our students through their colorful paintings.</p>
-        </div>
-        <div class="content-card">
           <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
           <h3>Digital Art</h3>
           <p>Modern digital creations showcasing technical skills and artistic vision.</p>
-        </div>
-        <div class="content-card">
-          <div class="card-icon"><i class="fas fa-image"></i></div>
-          <h3>Traditional Art</h3>
-          <p>Classic paintings and drawings using traditional mediums and techniques.</p>
         </div>
       </div>
     </section>
@@ -2069,7 +2053,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentTimeDisplay) {
           currentTimeDisplay.textContent = formatTime(audio.currentTime);
         }
-        progressBar.style.background = `linear-gradient(to right, var(--accent-blue) ${progress}%, #ced4da ${progress}%)`;
+        progressBar.style.background = `linear-gradient(to right, var(--accent-blue) ${progress}%, #4a5568 ${progress}%)`;
       }
     });
 
@@ -2139,7 +2123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentTimeDisplay) {
           currentTimeDisplay.textContent = formatTime(audio.currentTime);
         }
-        progressBar.style.background = `linear-gradient(to right, ${progressColor} ${progress}%, #d1d1d1 ${progress}%)`;
+        progressBar.style.background = `linear-gradient(to right, ${progressColor} ${progress}%, #4a5568 ${progress}%)`;
       }
     });
 
@@ -2207,8 +2191,8 @@ document.addEventListener('DOMContentLoaded', function() {
             span.classList.add('visible');
             span.style.opacity = '1';
             span.style.transform = 'translateY(0)';
-            span.style.color = '#ffd700';
-            span.style.textShadow = '1px 1px 3px rgba(255, 215, 0, 0.5)';
+            span.style.color = '#3e92cc';
+            span.style.textShadow = '1px 1px 3px rgba(62, 146, 204, 0.5)';
             span.style.fontWeight = '500';
           }
         } else {
@@ -2340,7 +2324,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (hindiAudio) {
-    const hindiText = `भारतीय स्वतंत्रता संग्राम के पहले चरण में हिंदी साहित्य मुख्यतः वीर रस और जागरण का माध्यम था। कविताएँ और लेख अधिकतर शौर्यगान व तत्कालीन क्रांतिकारी भावनाओं से भरे हुए थे। गांधीजी ने सत्य, अहिंसा और स्वदेशी को केवल राजनीतिक अस्त्र ही नहीं, बल्कि जीवन का दर्शन बनाया। इन आदर्शों ने साहित्यकारों और कवियों की लेखनी को गहराई से प्रभावित किया। राष्ट्रकवि मैथिलीशरण गुप्त की कविता "नर हो, न निराश करो मन को" गांधीवादी संयम का रूप है। गुप्त ने लिखा— "नर हो, न निराश करो मन को, कुछ काम करो, कुछ काम करो।" यह पंक्तियाँ गांधीजी के कर्मयोग और आत्मबल की शिक्षा से मेल खाती हैं। रामधारी सिंह 'दिनकर' ने गांधीजी को इन शब्दों में याद किया - "गांधी तूफ़ान के पिता और बाजों के भी बाज थे, क्योंकि वे नीरवता की आवाज थे।" दिनकर की इन पंक्तियों में गांधीजी का वह स्वरूप उभरता है, जिसमें वे एक ओर संघर्ष और तूफ़ान खड़ा करने वाले थे, तो दूसरी ओर अहिंसा और शांति की सबसे प्रबल आवाज भी। सुभद्राकुमारी चौहान की कविताओं में भी गांधीवादी आदर्शों की छाया दिखती है। वे गांधीजी के असहयोग आंदोलन में भाग लेने वाली वह प्रथम महिला बनीं और इसी चक्कर में वे दो बार जेल भी गई थीं। गांधीजी ਨੇ स्वयं कहा था कि "साहित्य को समाज का दर्पण होना चाहिए।" यही कारण है कि उनके समय का हिंदी साहित्य केवल देशभक्ति नहीं, बल्कि सत्य, अहिंसा और स्वदेशी जीवन-शैली का जीवंत दस्तावेज बन गया।`;
+    const hindiText = `भारतीय स्वतंत्रता संग्राम के पहले चरण में हिंदी साहित्य मुख्यतः वीर रस और जागरण का माध्यम था। कविताएँ और लेख अधिकतर शौर्यगान व तत्कालीन क्रांतिकारी भावनाओं से भरे हुए थे। गांधीजी ने सत्य, अहिंसा और स्वदेशी को केवल राजनीतिक अस्त्र ही नहीं, बल्कि जीवन का दर्शन बनाया। इन आदर्शों ने साहित्यकारों और कवियों की लेखनी को गहराई से प्रभावित किया। राष्ट्रकवि मैथिलीशरण गुप्त की कविता "नर हो, न निराश करो मन को" गांधीवादी संयम का रूप है। गुप्त ने लिखा— "नर हो, न निराश करो मन को, कुछ काम करो, कुछ काम करो।" यह पंक्तियाँ गांधीजी के कर्मयोग और आत्मबल की शिक्षा से मेल खाती हैं। रामधारी सिंह 'दिनकर' ने गांधीजी को इन शब्दों में याद किया - "गांधी तूफ़ान के पिता और बाजों के भी बाज थे, क्योंकि वे नीरवता की आवाज थे।" दिनकर की इन पंक्तियों में गांधीजी का वह स्वरूप उभरता है, जिसमें वे एक ओर संघर्ष और तूफ़ान खड़ा करने वाले थे, तो दूसरी ओर अहिंसा और शांति की सबसे प्रबल आवाज भी। सुभद्राकुमारी चौहान की कविताओं में भी गांधीवादी आदर्शों की छाया दिखती है। वे गांधीजी के असहयोग आंदोलन में भाग लेने वाली वह प्रथम महिला बनीं और इसी चक्कर में वे दो बार जेल भी गई थीं। गांधीजी ने स्वयं कहा था कि "साहित्य को समाज का दर्पण होना चाहिए।" यही कारण है कि उनके समय का हिंदी साहित्य केवल देशभक्ति नहीं, बल्कि सत्य, अहिंसा और स्वदेशी जीवन-शैली का जीवंत दस्तावेज बन गया।`;
     setupAudioText('hindi-article-text', hindiAudio, hindiText);
   }
 
