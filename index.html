@@ -430,17 +430,64 @@ audio { display: none; }
 }
 
 /* =================================================== */
-/* START: ANIMATED GALLERY STYLES */
+/* START: ANIMATED GALLERY STYLES (UPDATED) */
 /* =================================================== */
 @keyframes fadeInScaleUp {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
-.gallery-catalogue-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+
+.gallery-catalogue-wrapper {
+  position: relative;
 }
+
+.gallery-catalogue-grid {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  padding: 1rem 0.5rem;
+}
+.gallery-catalogue-grid::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: #fff;
+  color: var(--text-white);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  opacity: 0; /* Hidden by default */
+  pointer-events: none;
+}
+.gallery-arrow.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.gallery-arrow:hover {
+  background-color: var(--accent-blue);
+  color: #fff;
+  transform: translateY(-50%) scale(1.05);
+}
+.gallery-arrow.left { left: -15px; }
+.gallery-arrow.right { right: -15px; }
+
+
 .album-card {
   background: #ffffff;
   border-radius: 12px;
@@ -451,9 +498,12 @@ audio { display: none; }
   display: flex;
   flex-direction: column;
   will-change: transform, box-shadow;
+  /* Flexbox properties */
+  flex: 0 0 300px;
+  width: 300px;
 }
 .album-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow: 0 10px 25px rgba(62, 146, 204, 0.2);
 }
 .album-image-wrapper { position: relative; height: 200px; overflow: hidden; }
@@ -478,6 +528,7 @@ audio { display: none; }
 .album-info { padding: 1rem; }
 .album-info h3 { font-family: var(--heading-font); font-size: 1.2rem; color: var(--text-white); margin: 0 0 0.5rem 0; }
 .album-info .album-date { font-size: 0.85rem; color: var(--text-gray); margin: 0; }
+
 .lightbox-overlay {
   display: none;
   position: fixed;
@@ -555,6 +606,15 @@ audio { display: none; }
   .photo-count {
     backdrop-filter: none;
   }
+
+  /* Adjust gallery arrows for smaller screens */
+  .gallery-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  .gallery-arrow.left { left: 5px; }
+  .gallery-arrow.right { right: 5px; }
 }
 /* =================================================== */
 /* END: MOBILE-SPECIFIC OPTIMIZATIONS */
@@ -720,22 +780,27 @@ audio { display: none; }
     
     <section id="gallery" class="content-section">
       <h2 class="section-title">Gallery</h2>
-      <div class="gallery-catalogue-grid">
-        <div class="album-card" data-album="welcome-program"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Welcome Program" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 12</span></div><div class="album-info"><h3>Welcome Program</h3><p class="album-date">23-04-2025</p></div></div>
-        <div class="album-card" data-album="initiation-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="Initiation Ceremony" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 15</span></div><div class="album-info"><h3>Initiation Ceremony-LKG</h3><p class="album-date">25-04-2025</p></div></div>
-        <div class="album-card" data-album="pope-condolences"><div class="album-image-wrapper"><img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis - Condolences" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 8</span></div><div class="album-info"><h3>Pope Francis - Condolences</h3><p class="album-date">26-04-2025</p></div></div>
-        <div class="album-card" data-album="results-declaration"><div class="album-image-wrapper"><img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ICSE, ISC Result Declaration" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 21</span></div><div class="album-info"><h3>ICSE, ISC Results</h3><p class="album-date">30-04-2025</p></div></div>
-        <div class="album-card" data-album="non-teaching-reward"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Event" alt="Reward to Non-Teaching staff" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 9</span></div><div class="album-info"><h3>Reward to Non-Teaching Staff</h3><p class="album-date">01-05-2025</p></div></div>
-        <div class="album-card" data-album="yoga-day"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Yoga+Day" alt="Yoga Day" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 32</span></div><div class="album-info"><h3>Yoga Day</h3><p class="album-date">21-06-2025</p></div></div>
-        <div class="album-card" data-album="staff-orientation-khorabar"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Staff" alt="Staff Orientation in Khorabar" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 14</span></div><div class="album-info"><h3>Staff Orientation - Khorabar</h3><p class="album-date">27-06-2025</p></div></div>
-        <div class="album-card" data-album="staff-picnic"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Staff+Picnic" alt="Staff Picnic -Bhutwal" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 25</span></div><div class="album-info"><h3>Staff Picnic - Bhutwal</h3><p class="album-date">28-06-2025</p></div></div>
-        <div class="album-card" data-album="career-guidance"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Career+Guidance" alt="Career Plan and Guidance" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 18</span></div><div class="album-info"><h3>Career Guidance Program</h3><p class="album-date">05-07-2025</p></div></div>
-        <div class="album-card" data-album="investiture-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/HLD0TYN4/POPE-2.jpg" alt="Investiture Ceremony" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 40</span></div><div class="album-info"><h3>Investiture Ceremony</h3><p class="album-date">12-07-2025</p></div></div>
-        <div class="album-card" data-album="raksha-bandhan"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Raksha+Bandhan" alt="Raksha Bandhan" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 16</span></div><div class="album-info"><h3>Raksha Bandhan Celebration</h3><p class="album-date">08-08-2025</p></div></div>
-        <div class="album-card" data-album="independence-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/4n17dhRP/FERWELL-FR-GREOGERY-1.jpg" alt="Independence Day" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 49</span></div><div class="album-info"><h3>Independence Day</h3><p class="album-date">15-08-2025</p></div></div>
-        <div class="album-card" data-album="teachers-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Teachers' Day and Onam" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 52</span></div><div class="album-info"><h3>Teachers' Day & Onam</h3><p class="album-date">06-09-2025</p></div></div>
-        <div class="album-card" data-album="poetry-competition"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 10</span></div><div class="album-info"><h3>Hindi Poetry Competition</h3><p class="album-date">13-09-2025</p></div></div>
-        <div class="album-card" data-album="blood-donation"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 22</span></div><div class="album-info"><h3>Blood Donation Camp</h3><p class="album-date">30-09-2025</p></div></div>
+      <!-- UPDATED GALLERY STRUCTURE -->
+      <div class="gallery-catalogue-wrapper">
+        <button id="scroll-left-btn" class="gallery-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+        <div class="gallery-catalogue-grid">
+          <div class="album-card" data-album="welcome-program"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Welcome Program" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 12</span></div><div class="album-info"><h3>Welcome Program</h3><p class="album-date">23-04-2025</p></div></div>
+          <div class="album-card" data-album="initiation-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="Initiation Ceremony" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 15</span></div><div class="album-info"><h3>Initiation Ceremony-LKG</h3><p class="album-date">25-04-2025</p></div></div>
+          <div class="album-card" data-album="pope-condolences"><div class="album-image-wrapper"><img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis - Condolences" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 8</span></div><div class="album-info"><h3>Pope Francis - Condolences</h3><p class="album-date">26-04-2025</p></div></div>
+          <div class="album-card" data-album="results-declaration"><div class="album-image-wrapper"><img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ICSE, ISC Result Declaration" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 21</span></div><div class="album-info"><h3>ICSE, ISC Results</h3><p class="album-date">30-04-2025</p></div></div>
+          <div class="album-card" data-album="non-teaching-reward"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Event" alt="Reward to Non-Teaching staff" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 9</span></div><div class="album-info"><h3>Reward to Non-Teaching Staff</h3><p class="album-date">01-05-2025</p></div></div>
+          <div class="album-card" data-album="yoga-day"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Yoga+Day" alt="Yoga Day" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 32</span></div><div class="album-info"><h3>Yoga Day</h3><p class="album-date">21-06-2025</p></div></div>
+          <div class="album-card" data-album="staff-orientation-khorabar"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Staff" alt="Staff Orientation in Khorabar" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 14</span></div><div class="album-info"><h3>Staff Orientation - Khorabar</h3><p class="album-date">27-06-2025</p></div></div>
+          <div class="album-card" data-album="staff-picnic"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Staff+Picnic" alt="Staff Picnic -Bhutwal" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 25</span></div><div class="album-info"><h3>Staff Picnic - Bhutwal</h3><p class="album-date">28-06-2025</p></div></div>
+          <div class="album-card" data-album="career-guidance"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Career+Guidance" alt="Career Plan and Guidance" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 18</span></div><div class="album-info"><h3>Career Guidance Program</h3><p class="album-date">05-07-2025</p></div></div>
+          <div class="album-card" data-album="investiture-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/HLD0TYN4/POPE-2.jpg" alt="Investiture Ceremony" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 40</span></div><div class="album-info"><h3>Investiture Ceremony</h3><p class="album-date">12-07-2025</p></div></div>
+          <div class="album-card" data-album="raksha-bandhan"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Raksha+Bandhan" alt="Raksha Bandhan" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 16</span></div><div class="album-info"><h3>Raksha Bandhan Celebration</h3><p class="album-date">08-08-2025</p></div></div>
+          <div class="album-card" data-album="independence-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/4n17dhRP/FERWELL-FR-GREOGERY-1.jpg" alt="Independence Day" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 49</span></div><div class="album-info"><h3>Independence Day</h3><p class="album-date">15-08-2025</p></div></div>
+          <div class="album-card" data-album="teachers-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Teachers' Day and Onam" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 52</span></div><div class="album-info"><h3>Teachers' Day & Onam</h3><p class="album-date">06-09-2025</p></div></div>
+          <div class="album-card" data-album="poetry-competition"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 10</span></div><div class="album-info"><h3>Hindi Poetry Competition</h3><p class="album-date">13-09-2025</p></div></div>
+          <div class="album-card" data-album="blood-donation"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation" loading="lazy"><span class="photo-count"><i class="fas fa-camera"></i> 22</span></div><div class="album-info"><h3>Blood Donation Camp</h3><p class="album-date">30-09-2025</p></div></div>
+        </div>
+        <button id="scroll-right-btn" class="gallery-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
       </div>
     </section>
 
@@ -937,6 +1002,49 @@ document.addEventListener('DOMContentLoaded', function() {
     'blood-donation': { title: "Blood Donation Camp", images: ['https://via.placeholder.com/800x600.png?text=Blood+Donation+Drive'] }
   };
 
+  // --- NEW: Gallery Scrolling Logic ---
+  const galleryWrapper = document.querySelector('.gallery-catalogue-wrapper');
+  const galleryGrid = document.querySelector('.gallery-catalogue-grid');
+  const scrollLeftBtn = document.getElementById('scroll-left-btn');
+  const scrollRightBtn = document.getElementById('scroll-right-btn');
+  
+  if (galleryWrapper && galleryGrid && scrollLeftBtn && scrollRightBtn) {
+    const scrollAmount = 320; // Approx width of a card + gap
+
+    const updateArrowVisibility = () => {
+      // Use a small buffer (1px) for calculations to avoid floating point issues
+      const isScrollable = galleryGrid.scrollWidth > galleryGrid.clientWidth + 1;
+      
+      if (!isScrollable) {
+        scrollLeftBtn.classList.remove('visible');
+        scrollRightBtn.classList.remove('visible');
+        return;
+      }
+
+      // Show/hide left arrow
+      scrollLeftBtn.classList.toggle('visible', galleryGrid.scrollLeft > 0);
+
+      // Show/hide right arrow
+      scrollRightBtn.classList.toggle('visible', galleryGrid.scrollLeft < galleryGrid.scrollWidth - galleryGrid.clientWidth - 1);
+    };
+    
+    scrollLeftBtn.addEventListener('click', () => {
+      galleryGrid.scrollLeft -= scrollAmount;
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+      galleryGrid.scrollLeft += scrollAmount;
+    });
+
+    // Check visibility on scroll and resize
+    galleryGrid.addEventListener('scroll', updateArrowVisibility);
+    window.addEventListener('resize', updateArrowVisibility);
+    
+    // Initial check after a short delay for content to load
+    setTimeout(updateArrowVisibility, 200);
+  }
+  
+  // --- Lightbox Logic ---
   const albumCards = document.querySelectorAll('.album-card');
   const lightbox = document.getElementById('gallery-lightbox');
   const lightboxTitle = document.getElementById('lightbox-title');
