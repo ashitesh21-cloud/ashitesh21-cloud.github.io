@@ -44,41 +44,54 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
-  overflow: hidden; /* Prevent scrolling on the body */
+  overflow: hidden; /* Prevent all body scrolling */
 }
 
-/* NEW: Horizontal Scrolling Layout */
-.page-wrapper {
-    height: 100vh;
-    display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
-}
-.page-wrapper::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-}
 
-.page-section {
-    flex: 0 0 100vw;
-    height: 100vh;
-    scroll-snap-align: start;
+/* --- NEW: Page/Slide Management System --- */
+.hero-section, .main-content, .content-section, .article-slide {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0s 0.5s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     overflow-y: auto;
-    position: relative;
 }
+
+.is-active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease;
+    position: relative; /* Take up space in the normal flow */
+}
+/* --- END: Page/Slide Management System --- */
+
 
 /* Hero Section (First Page) */
 .hero-section {
   background: url('https://i.ibb.co/GfJypKpd/sld-2.jpg') center center/cover no-repeat;
-  display: flex;
+  display: flex; /* Kept flex for centering */
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #ffffff;
   padding: 1rem;
+  position: absolute; /* Take it out of flow */
 }
+
+/* Make sure the active hero section is visible */
+.hero-section.is-active {
+    display: flex;
+    position: relative; /* Or static if it's the only thing */
+    z-index: 100;
+}
+
 .hero-section::before {
   content: '';
   position: absolute;
@@ -128,10 +141,10 @@ body {
   transform: translateY(-3px);
 }
 
-/* Main Content Area (Second Page) */
+/* Main Content Area */
 .main-content {
-  padding: 4rem 2.5rem;
   background: #f8f9fa;
+  padding-top: 2rem;
 }
 
 .back-to-home {
@@ -162,6 +175,7 @@ body {
 .container {
     max-width: 1140px;
     margin: 0 auto;
+    padding: 0 2.5rem;
 }
 .content-section {
     margin-bottom: 4rem;
@@ -222,6 +236,61 @@ body {
 }
 
 .content-card p { color: var(--text-gray); line-height: 1.6; font-size: 0.9rem; }
+
+/* Article/Poem Trigger Cards */
+.article-trigger {
+    cursor: pointer;
+}
+.article-trigger:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(62, 146, 204, 0.2);
+}
+
+/* NEW: Article Slide Styles */
+.article-slide {
+    position: fixed; /* Cover the whole screen */
+    z-index: 1001; /* Above main content, below lightbox */
+    background: #f8f9fa;
+    padding: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0s 0.5s;
+}
+.article-slide.is-active {
+    display: block; /* Override default */
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+.slide-close-btn {
+    position: fixed; /* Relative to viewport */
+    top: 25px;
+    right: 25px;
+    background: var(--nav-bg);
+    color: #fff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+.slide-close-btn:hover {
+    transform: rotate(90deg) scale(1.1);
+    background-color: var(--accent-blue);
+}
+.slide-content {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 1rem;
+}
+
 
 /* E-Bulletin Section Styles */
 .ebulletin-section {
@@ -711,13 +780,19 @@ audio { display: none; }
       font-size: 1rem;
       padding: 0.7rem 1.2rem;
   }
-  .main-content {
-    padding: 2.5rem 1.5rem;
+  .container {
+    padding: 0 1.5rem;
   }
 }
 
 
 @media (max-width: 768px) {
+  .article-slide {
+    padding: 1.5rem;
+  }
+  .slide-content {
+      margin: 2rem auto;
+  }
   /* Responsive adjustments for fact sections */
   .fact-header { grid-template-columns: 1fr; gap: 1rem; text-align: center; }
   .fact-image img { height: 200px; width: 100%; }
@@ -756,165 +831,161 @@ audio { display: none; }
 </head>
 
 <body>
-<div class="page-wrapper">
-    <section id="home" class="page-section hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">Little Flower School</h1>
-            <p class="hero-subtitle">Digital Magazine 2025-26</p>
-            <nav class="hero-nav">
-            <a href="#articles">Articles</a>
-            <a href="#ebulletin">E-Bulletin</a>
-            <a href="#videos">Videos</a>
-            <a href="#poems">Poems</a>
-            <a href="#paintings">Paintings</a>
-            <a href="#gallery">Gallery</a>
-            </nav>
-        </div>
-    </section>
+<!-- The cover page -->
+<section id="home" class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Little Flower School</h1>
+        <p class="hero-subtitle">Digital Magazine 2025-26</p>
+        <nav class="hero-nav">
+        <a href="#articles">Articles</a>
+        <a href="#ebulletin">E-Bulletin</a>
+        <a href="#videos">Videos</a>
+        <a href="#poems">Poems</a>
+        <a href="#paintings">Paintings</a>
+        <a href="#gallery">Gallery</a>
+        </nav>
+    </div>
+</section>
 
-    <section id="content-page" class="page-section">
-        <main class="main-content">
-            <div class="back-to-home">
-                <a href="#home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+<!-- The main content area, containing all sections -->
+<main id="main-content" class="main-content">
+    <div class="back-to-home">
+        <a href="#home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+    <div class="container">
+        <section id="articles" class="content-section">
+            <h2 class="section-title">Articles</h2>
+            <div class="article-list">
+                <!-- Article Trigger Cards -->
+                <div class="content-card article-trigger" data-target="article-shastri-hindi">
+                    <h3>लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</h3>
+                    <div class="author-credit">-देवांश मणि त्रिपाठी कक्षा X - E</div>
+                </div>
+                <div class="content-card article-trigger" data-target="article-peach-tree">
+                    <h3>The Boy Who Loved a Peach Tree</h3>
+                    <div class="author-credit">-Suryansh Pandey Class VI B</div>
+                </div>
+                <div class="content-card article-trigger" data-target="article-shastri-eng">
+                    <h3>Remembering Lal Bahadur Shastri</h3>
+                    <p style="font-style: italic; margin-top: -0.5rem; color: var(--text-gray);">From Commoner to Commander: India's Humble Hero</p>
+                    <div class="author-credit">- Pavani Maurya X E</div>
+                </div>
+                <div class="content-card article-trigger" data-target="article-prayer">
+                    <h3>A Prayer from the Heart of a Kid</h3>
+                    <div class="author-credit">- Aarav Jaiswal LKG F</div>
+                </div>
+                <div class="content-card article-trigger" data-target="article-gandhi-wisdom">
+                    <h3>The Enduring Wisdom of Gandhiji in the Modern World</h3>
+                    <div class="author-credit">- Harshit Kumar IX-A</div>
+                </div>
+                <div class="content-card article-trigger" data-target="article-gentle-power">
+                    <h3>The Gentle Power of Truth and Simplicity</h3>
+                    <div class="author-credit">- Anshika Patel XII-C</div>
+                </div>
             </div>
-            <div class="container">
-                <section id="articles" class="content-section">
-                    <h2 class="section-title">Articles</h2>
-                    <div class="article-list">
-                        <!-- Article cards go here -->
-                        <div class="content-card featured-article">
-                            <h3>लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</h3>
-                            <div class="author-credit">-देवांश मणि त्रिपाठी कक्षा X - E</div>
-                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-9"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</div><div class="progress-container"><span class="time-display" id="current-time-9">0:00</span><div class="progress-bar" id="progress-bar-9"></div><span class="time-display" id="duration-9">0:00</span></div></div></div></div><audio id="hindi-shastri-audio" src="https://media.redcircle.com/2025/9/23/11/ec2ec1a7-d7e9-4713-bb0f-1ebb5e960f86_b934218f-cfbb-479a-a519-8d415e5db58e.mp3"></audio>
-                            <div id="hindi-shastri-text" class="animated-text"></div>
-                            </div>
-                            <div class="content-card featured-article">
-                            <h3>The Boy Who Loved a Peach Tree</h3>
-                            <div class="author-credit">-Suryansh Pandey Class VI B</div>
-                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-10"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Boy Who Loved a Peach Tree</div><div class="progress-container"><span class="time-display" id="current-time-10">0:00</span><div class="progress-bar" id="progress-bar-10"></div><span class="time-display" id="duration-10">0:00</span></div></div></div></div><audio id="peach-tree-audio" src="https://media.redcircle.com/2025/9/23/10/99c4653b-426e-48e8-915e-ad8c55a55f51_peachtree.mp3"></audio>
-                            <div id="peach-tree-text" class="animated-text"></div>
-                            </div>
-                            <div class="content-card featured-article">
-                            <h3>Remembering Lal Bahadur Shastri</h3>
-                            <p style="font-style: italic; margin-top: -0.5rem; color: var(--text-gray);">From Commoner to Commander: India's Humble Hero</p>
-                            <div class="author-credit">- Pavani Maurya X E</div>
-                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-8"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">Remembering Lal Bahadur Shastri</div><div class="progress-container"><span class="time-display" id="current-time-8">0:00</span><div class="progress-bar" id="progress-bar-8"></div><span class="time-display" id="duration-8">0:00</span></div></div></div></div><audio id="shastri-audio" src="https://media.redcircle.com/2025/9/23/10/db24d810-e1e1-4595-9e37-cc1dc0ab0403_luvvoice.com-20250923-2jxt0o.mp3"></audio>
-                            <div id="shastri-article-text" class="animated-text"></div>
-                            </div>
-                            <div class="content-card featured-article">
-                            <h3>A Prayer from the Heart of a Kid</h3>
-                            <div class="author-credit">- Aarav Jaiswal LKG F</div>
-                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-5"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">A Prayer from the Heart of a Kid</div><div class="progress-container"><span class="time-display" id="current-time-5">0:00</span><div class="progress-bar" id="progress-bar-5"></div><span class="time-display" id="duration-5">0:45</span></div></div></div></div><audio id="prayer-audio" src="https://media.redcircle.com/2025/9/22/6/bf45189d-14a3-4dfd-9a46-0ee9ef8d394a_prayer.mp3"></audio>
-                            <div id="prayer-text" class="animated-text"></div>
-                            </div>
-                            <div class="content-card featured-article">
-                            <h3>The Enduring Wisdom of Gandhiji in the Modern World</h3>
-                            <div class="author-credit">- Harshit Kumar IX-A</div>
-                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-3"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Enduring Wisdom of Gandhiji in the Modern World</div><div class="progress-container"><span class="time-display" id="current-time-3">0:00</span><div class="progress-bar" id="progress-bar-3"></div><span class="time-display" id="duration-3">1:45</span></div></div></div></div><audio id="gandhi-audio" src="https://media.redcircle.com/2025/9/22/6/0822814c-ba33-4806-bee4-5facd4151612_enduring_gandhi.mp3"></audio>
-                            <div id="gandhi-article" class="animated-text"></div>
-                            </div>
-                            <div class="content-card featured-article">
-                            <h3>The Gentle Power of Truth and Simplicity</h3>
-                            <div class="author-credit">- Anshika Patel XII-C</div>
-                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-1"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Gentle Power of Truth and Simplicity</div><div class="progress-container"><span class="time-display" id="current-time-1">0:00</span><div class="progress-bar" id="progress-bar-1"></div><span class="time-display" id="duration-1">1:31</span></div></div></div></div><audio id="audio" src="https://media.redcircle.com/2025/9/22/6/6a1c0f30-c116-4983-9465-0cc0b723a263_the_gentle_power_of_truth_and_simplicity.mp3"></audio>
-                            <div id="animated-article" class="animated-text"></div>
-                            </div>
-                    </div>
-                </section>
+        </section>
 
-                <section id="ebulletin" class="content-section">
-                    <h2 class="section-title">E-Bulletin</h2>
-                     <p class="section-credit">-Arpit Kumar Gupta XII-B</p>
+        <section id="ebulletin" class="content-section">
+            <h2 class="section-title">E-Bulletin</h2>
+             <p class="section-credit">-Arpit Kumar Gupta XII-B</p>
           
-                    <div class="therese-comprehensive">
-                        <div class="therese-header">
-                        <h2>Saint Thérèse: The Little Flower</h2>
-                        <p>"I will spend my heaven doing good on earth"</p>
-                        </div>
-                        <div class="therese-grid">
-                        <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/6cwn4hQQ/St-Theresyounger.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Youngest Doctor of the Church</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="youngest-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Youngest Doctor of the Church</div><div class="progress-container"><span class="fact-time-display" id="youngest-current-time">0:00</span><div class="fact-progress-bar" id="youngest-progress-bar"></div><span class="fact-time-display" id="youngest-duration">1:30</span></div></div></div></div><audio id="youngest-audio" src="https://media.redcircle.com/2025/9/22/6/b7b9666e-1b40-4c3a-93dc-a5d0391556f7_youngest.mp3"></audio><div class="fact-text-content"><p>Saint Thérèse is considered the youngest Doctor of the Church, having died at age 24 and been named a Doctor of the Church posthumously by Pope John Paul II in 1997. Only the third woman to receive this honor.</p></div></div></div>
-                        <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/0Vf0SyzV/thelittleway.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Little Way</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="way-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Little Way</div><div class="fact-progress-container"><span class="fact-time-display" id="way-current-time">0:00</span><div class="fact-progress-bar" id="way-progress-bar"></div><span class="fact-time-display" id="way-duration">1:45</span></div></div></div></div><audio id="way-audio" src="https://media.redcircle.com/2025/9/22/6/eead6d25-6fca-4c38-acde-06c0e6a22f90_little.mp3"></audio><div class="fact-text-content"><p>St. Thérèse developed "The Little Way" - a spiritual path emphasizing performing everyday, ordinary actions with great love, trusting in God's infinite mercy, and accepting one's "littleness" as means of spiritual growth.</p></div></div></div>
-                        <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/zVLPtR3W/early.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Early Life & Family</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="life-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Early Life & Family</div><div class="fact-progress-container"><span class="fact-time-display" id="life-current-time">0:00</span><div class="fact-progress-bar" id="life-progress-bar"></div><span class="fact-time-display" id="life-duration">1:20</span></div></div></div></div><audio id="life-audio" src="https://media.redcircle.com/2025/9/22/6/96b7487e-5a6b-495e-8860-6944b7405a1b_earlylife.mp3"></audio><div class="fact-text-content"><p>Born Marie Françoise-Thérèse Martin on January 2, 1873, in Alençon, France. She was the youngest of nine children, four of whom became Carmelite nuns. Her parents, Louis and Zélie Martin, were both declared saints in 2015.</p></div></div></div>
-                        <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/Y7yKQXDb/nunat15.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Carmelite Nun at 15</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nun-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Carmelite Nun at 15</div><div class="fact-progress-container"><span class="fact-time-display" id="nun-current-time">0:00</span><div class="fact-progress-bar" id="nun-progress-bar"></div><span class="fact-time-display" id="nun-duration">1:10</span></div></div></div></div><audio id="nun-audio" src="https://media.redcircle.com/2025/9/22/7/948f4e2a-7865-485b-aa36-f4393b254677_nunat15.mp3"></audio><div class="fact-text-content"><p>Despite her young age, Thérèse entered the Carmelite convent at Lisieux at age 15 in 1888. She joined her older sisters Pauline and Marie, and later her sister Céline also joined the same convent.</p></div></div></div>
-                        <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/xK8nQnjB/autobiogarphy.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Story of a Soul</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="soul-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Story of a Soul</div><div class="fact-progress-container"><span class="fact-time-display" id="soul-current-time">0:00</span><div class="fact-progress-bar" id="soul-progress-bar"></div><span class="fact-time-display" id="soul-duration">1:35</span></div></div></div></div><audio id="soul-audio" src="https://media.redcircle.com/2025/9/22/7/9acbab64-d1d1-4d49-9b5a-051055b9d58f_death12.mp3"></audio><div class="fact-text-content"><p>Her autobiography "The Story of a Soul" was published after her death and became one of the most widely read spiritual autobiographies. It spread her "Little Way" teachings across the world and contributed to her rapid canonization.</p></div></div></div>
-                        <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/RpHrFNXW/death23.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Death & Canonization</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="death-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Death & Canonization</div><div class="fact-progress-container"><span class="fact-time-display" id="death-current-time">0:00</span><div class="fact-progress-bar" id="death-progress-bar"></div><span class="fact-time-display" id="death-duration">1:25</span></div></div></div></div><audio id="death-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio><div class="fact-text-content"><p>Died of tuberculosis on September 30, 1897, at age 24. Canonized by Pope Pius XI in 1925, just 28 years after her death. Her last words were "My God, I love you." She promised to "spend my heaven doing good on earth."</p></div></div></div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="videos" class="content-section">
-                    <h2 class="section-title">Videos</h2>
-                    <div class="content-grid">
-                        <div class="content-card"><div class="card-icon"><i class="fas fa-video"></i></div><h3>Event Highlights</h3><p>Capture the magic of our school events through engaging videos.</p></div>
-                        <div class="content-card"><div class="card-icon"><i class="fas fa-film"></i></div><h3>Student Stories</h3><p>Personal narratives and experiences shared by our amazing students.</p></div>
-                        <div class="content-card"><div class="card-icon"><i class="fas fa-play-circle"></i></div><h3>Educational Content</h3><p>Learning videos and tutorials created by students for students.</p></div>
-                    </div>
-                </section>
-
-                <section id="poems" class="content-section">
-                    <h2 class="section-title">Poems</h2>
-                     <div class="content-grid">
-                        <div class="content-card featured-article grid-full-width">
-                        <h3>विश्वास तुम जन मन के</h3>
-                        <div class="author-credit">- डॉ. शर्वांजली श्रीवास्तव (अध्यापिका हिंदी)</div>
-                        <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-7"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">विश्वास तुम जन मन के</div><div class="progress-container"><span class="time-display" id="current-time-7">0:00</span><div class="progress-bar" id="progress-bar-7"></div><span class="time-display" id="duration-7">4:30</span></div></div></div></div><audio id="hindi-poem-audio" src="https://media.redcircle.com/2025/9/22/7/fd0195b8-4289-433a-ab72-49eb38679fea_china.mp3"></audio>
-                        <div id="hindi-poem-text" class="animated-text"></div>
-                        </div>
-                        <div class="content-card featured-article grid-full-width">
-                        <h3>कर्मयुद्ध</h3>
-                        <div class="author-credit">- श्वेताम्भ पाण्डेय कक्षा XII बी<br>द्वारा स्वरचित काव्य पाठ<br>विजेता - तृतीय पुरस्कार (वरिष्ठ वर्ग)<br>काव्य पाठ प्रतियोगिता<br>आयोजन स्थल: महाराणा प्रताप इंटर कॉलेज<br>अवसर: हिंदी दिवस, 13-09-2025</div>
-                        <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-6"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">कर्मयुद्ध</div><div class="progress-container"><span class="time-display" id="current-time-6">0:00</span><div class="progress-bar" id="progress-bar-6"></div><span class="time-display" id="duration-6">3:00</span></div></div></div></div><audio id="karmayuddh-audio" src="https://media.redcircle.com/2025/9/22/7/68f7efe0-519e-47fc-bc9d-99106f323263_karmayudh.mp3"></audio>
-                        <div id="karmayuddh-text" class="animated-text"></div>
-                        </div>
-                        <div class="content-card featured-article grid-full-width">
-                        <h3>साहित्य में गांधी</h3>
-                        <div class="author-credit">- Amal Verma IX-A<br>Student Editor</div>
-                        <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-4"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">साहित्य में गांधी</div><div class="progress-container"><span class="time-display" id="current-time-4">0:00</span><div class="progress-bar" id="progress-bar-4"></div><span class="time-display" id="duration-4">2:30</span></div></div></div></div><audio id="hindi-article-audio" src="https://media.redcircle.com/2025/9/22/7/908e7291-5edf-4733-8e6e-a92a633183ed_gandh123i.mp3"></audio>
-                        <div id="hindi-article-text" class="animated-text"></div>
-                        </div>
-                        <div class="content-card featured-article video-card grid-full-width">
-                        <video class="background-video" autoplay muted loop playsinline><source src="gandhi-video.mp4" type="video/mp4"><source src="gandhi-video.webm" type="video/webm"></video>
-                        <div class="card-content">
-                            <h3>In Their Quiet Way</h3><p style="font-style: italic; margin-bottom: 1rem;">A tribute to Gandhi and Saint Thérèse of Lisieux</p>
-                            <div id="poem-text" class="poem-text"></div>
-                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-2"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">In Their Quiet Way</div><div class="progress-container"><span class="time-display" id="current-time-2">0:00</span><div class="progress-bar" id="progress-bar-2"></div><span class="time-display" id="duration-2">0:47</span></div></div></div></div><audio id="poem-audio" src="https://media.redcircle.com/2025/9/22/7/9c5ff290-ee9d-4af6-a7bf-6b6ba44b6875_ashay.mp3"></audio>
-                        </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="paintings" class="content-section">
-                    <h2 class="section-title">Paintings</h2>
-                    <div class="content-grid"><div class="content-card"><div class="card-icon"><i class="fas fa-paint-brush"></i></div><h3>Digital Art</h3><p>Modern digital creations showcasing technical skills and artistic vision.</p></div></div>
-                </section>
-                
-                <section id="gallery" class="content-section">
-                    <h2 class="section-title">Gallery</h2>
-                    <div class="gallery-catalogue-wrapper">
-                        <button id="scroll-left-btn" class="gallery-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
-                        <div class="gallery-catalogue-grid">
-                        <div class="album-card" data-album="welcome-program"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Welcome Program" loading="lazy"></div><div class="album-info"><h3>Welcome Program</h3><p class="album-date">23-04-2025</p></div></div>
-                        <div class="album-card" data-album="initiation-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="Initiation Ceremony" loading="lazy"></div><div class="album-info"><h3>Initiation Ceremony-LKG</h3><p class="album-date">25-04-2025</p></div></div>
-                        <div class="album-card" data-album="pope-condolences"><div class="album-image-wrapper"><img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis - Condolences" loading="lazy"></div><div class="album-info"><h3>Pope Francis - Condolences</h3><p class="album-date">26-04-2025</p></div></div>
-                        <div class="album-card" data-album="results-declaration"><div class="album-image-wrapper"><img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ICSE, ISC Result Declaration" loading="lazy"></div><div class="album-info"><h3>ICSE, ISC Results</h3><p class="album-date">30-04-2025</p></div></div>
-                        <div class="album-card" data-album="non-teaching-reward"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Event" alt="Reward to Non-Teaching staff" loading="lazy"></div><div class="album-info"><h3>Reward to Non-Teaching Staff</h3><p class="album-date">01-05-2025</p></div></div>
-                        <div class="album-card" data-album="yoga-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/8DNMZw58/YOGA-DAY-1.jpg" alt="Yoga Day" loading="lazy"></div><div class="album-info"><h3>Yoga Day</h3><p class="album-date">21-06-2025</p></div></div>
-                        <div class="album-card" data-album="staff-orientation-khorabar"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Staff" alt="Staff Orientation in Khorabar" loading="lazy"></div><div class="album-info"><h3>Staff Orientation - Khorabar</h3><p class="album-date">27-06-2025</p></div></div>
-                        <div class="album-card" data-album="staff-picnic"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Staff+Picnic" alt="Staff Picnic -Bhutwal" loading="lazy"></div><div class="album-info"><h3>Staff Picnic - Bhutwal</h3><p class="album-date">28-06-2025</p></div></div>
-                        <div class="album-card" data-album="career-guidance"><div class="album-image-wrapper"><img src="https://i.ibb.co/B10KmGr/SEMINAR-9-min.jpg" alt="Career Plan and Guidance" loading="lazy"></div><div class="album-info"><h3>Career Guidance Program</h3><p class="album-date">05-07-2025</p></div></div>
-                        <div class="album-card" data-album="investiture-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/ycZ10Gdp/INVESTITURE-CEROMONY-9.jpg" alt="Investiture Ceremony" loading="lazy"></div><div class="album-info"><h3>Investiture Ceremony</h3><p class="album-date">12-07-2025</p></div></div>
-                        <div class="album-card" data-album="raksha-bandhan"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Raksha+Bandhan" alt="Raksha Bandhan" loading="lazy"></div><div class="album-info"><h3>Raksha Bandhan Celebration</h3><p class="album-date">08-08-2025</p></div></div>
-                        <div class="album-card" data-album="independence-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/nNj4Lk2L/INDEPENDECE-DAY-1.jpg" alt="Independence Day" loading="lazy"></div><div class="album-info"><h3>Independence Day</h3><p class="album-date">15-08-2025</p></div></div>
-                        <div class="album-card" data-album="teachers-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/0ws33Pw/TEACHERS-DAY-1.jpg" alt="Teachers' Day and Onam" loading="lazy"></div><div class="album-info"><h3>Teachers' Day & Onam</h3><p class="album-date">06-09-2025</p></div></div>
-                        <div class="album-card" data-album="poetry-competition"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation" loading="lazy"></div><div class="album-info"><h3>Hindi Poetry Competition</h3><p class="album-date">13-09-2025</p></div></div>
-                        <div class="album-card" data-album="blood-donation"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation" loading="lazy"></div><div class="album-info"><h3>Blood Donation Camp</h3><p class="album-date">30-09-2025</p></div></div>
-                        </div>
-                        <button id="scroll-right-btn" class="gallery-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </section>
+            <div class="therese-comprehensive">
+                <div class="therese-header">
+                <h2>Saint Thérèse: The Little Flower</h2>
+                <p>"I will spend my heaven doing good on earth"</p>
+                </div>
+                <div class="therese-grid">
+                <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/6cwn4hQQ/St-Theresyounger.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Youngest Doctor of the Church</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="youngest-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Youngest Doctor of the Church</div><div class="progress-container"><span class="fact-time-display" id="youngest-current-time">0:00</span><div class="fact-progress-bar" id="youngest-progress-bar"></div><span class="fact-time-display" id="youngest-duration">1:30</span></div></div></div></div><audio id="youngest-audio" src="https://media.redcircle.com/2025/9/22/6/b7b9666e-1b40-4c3a-93dc-a5d0391556f7_youngest.mp3"></audio><div class="fact-text-content"><p>Saint Thérèse is considered the youngest Doctor of the Church, having died at age 24 and been named a Doctor of the Church posthumously by Pope John Paul II in 1997. Only the third woman to receive this honor.</p></div></div></div>
+                <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/0Vf0SyzV/thelittleway.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Little Way</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="way-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Little Way</div><div class="fact-progress-container"><span class="fact-time-display" id="way-current-time">0:00</span><div class="fact-progress-bar" id="way-progress-bar"></div><span class="fact-time-display" id="way-duration">1:45</span></div></div></div></div><audio id="way-audio" src="https://media.redcircle.com/2025/9/22/6/eead6d25-6fca-4c38-acde-06c0e6a22f90_little.mp3"></audio><div class="fact-text-content"><p>St. Thérèse developed "The Little Way" - a spiritual path emphasizing performing everyday, ordinary actions with great love, trusting in God's infinite mercy, and accepting one's "littleness" as means of spiritual growth.</p></div></div></div>
+                <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/zVLPtR3W/early.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Early Life & Family</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="life-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Early Life & Family</div><div class="fact-progress-container"><span class="fact-time-display" id="life-current-time">0:00</span><div class="fact-progress-bar" id="life-progress-bar"></div><span class="fact-time-display" id="life-duration">1:20</span></div></div></div></div><audio id="life-audio" src="https://media.redcircle.com/2025/9/22/6/96b7487e-5a6b-495e-8860-6944b7405a1b_earlylife.mp3"></audio><div class="fact-text-content"><p>Born Marie Françoise-Thérèse Martin on January 2, 1873, in Alençon, France. She was the youngest of nine children, four of whom became Carmelite nuns. Her parents, Louis and Zélie Martin, were both declared saints in 2015.</p></div></div></div>
+                <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/Y7yKQXDb/nunat15.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Carmelite Nun at 15</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nun-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Carmelite Nun at 15</div><div class="fact-progress-container"><span class="fact-time-display" id="nun-current-time">0:00</span><div class="fact-progress-bar" id="nun-progress-bar"></div><span class="fact-time-display" id="nun-duration">1:10</span></div></div></div></div><audio id="nun-audio" src="https://media.redcircle.com/2025/9/22/7/948f4e2a-7865-485b-aa36-f4393b254677_nunat15.mp3"></audio><div class="fact-text-content"><p>Despite her young age, Thérèse entered the Carmelite convent at Lisieux at age 15 in 1888. She joined her older sisters Pauline and Marie, and later her sister Céline also joined the same convent.</p></div></div></div>
+                <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/xK8nQnjB/autobiogarphy.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Story of a Soul</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="soul-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Story of a Soul</div><div class="fact-progress-container"><span class="fact-time-display" id="soul-current-time">0:00</span><div class="fact-progress-bar" id="soul-progress-bar"></div><span class="fact-time-display" id="soul-duration">1:35</span></div></div></div></div><audio id="soul-audio" src="https://media.redcircle.com/2025/9/22/7/9acbab64-d1d1-4d49-9b5a-051055b9d58f_death12.mp3"></audio><div class="fact-text-content"><p>Her autobiography "The Story of a Soul" was published after her death and became one of the most widely read spiritual autobiographies. It spread her "Little Way" teachings across the world and contributed to her rapid canonization.</p></div></div></div>
+                <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/RpHrFNXW/death23.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Death & Canonization</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="death-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Death & Canonization</div><div class="fact-progress-container"><span class="fact-time-display" id="death-current-time">0:00</span><div class="fact-progress-bar" id="death-progress-bar"></div><span class="fact-time-display" id="death-duration">1:25</span></div></div></div></div><audio id="death-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio><div class="fact-text-content"><p>Died of tuberculosis on September 30, 1897, at age 24. Canonized by Pope Pius XI in 1925, just 28 years after her death. Her last words were "My God, I love you." She promised to "spend my heaven doing good on earth."</p></div></div></div>
+                </div>
             </div>
-        </main>
-    </section>
+        </section>
+
+        <section id="videos" class="content-section">
+            <h2 class="section-title">Videos</h2>
+            <div class="content-grid">
+                <div class="content-card"><div class="card-icon"><i class="fas fa-video"></i></div><h3>Event Highlights</h3><p>Capture the magic of our school events through engaging videos.</p></div>
+                <div class="content-card"><div class="card-icon"><i class="fas fa-film"></i></div><h3>Student Stories</h3><p>Personal narratives and experiences shared by our amazing students.</p></div>
+                <div class="content-card"><div class="card-icon"><i class="fas fa-play-circle"></i></div><h3>Educational Content</h3><p>Learning videos and tutorials created by students for students.</p></div>
+            </div>
+        </section>
+
+        <section id="poems" class="content-section">
+            <h2 class="section-title">Poems</h2>
+             <div class="content-grid">
+                <div class="content-card article-trigger" data-target="poem-vishwaas">
+                    <h3>विश्वास तुम जन मन के</h3>
+                    <div class="author-credit">- डॉ. शर्वांजली श्रीवास्तव (अध्यापिका हिंदी)</div>
+                </div>
+                <div class="content-card article-trigger" data-target="poem-karmayuddh">
+                    <h3>कर्मयुद्ध</h3>
+                    <div class="author-credit">- श्वेताम्भ पाण्डेय कक्षा XII बी<br>विजेता - तृतीय पुरस्कार (वरिष्ठ वर्ग)</div>
+                </div>
+                <div class="content-card article-trigger" data-target="poem-sahitya">
+                    <h3>साहित्य में गांधी</h3>
+                    <div class="author-credit">- Amal Verma IX-A<br>Student Editor</div>
+                </div>
+
+                <!-- This special poem card remains in place -->
+                <div class="content-card featured-article video-card grid-full-width">
+                <video class="background-video" autoplay muted loop playsinline><source src="gandhi-video.mp4" type="video/mp4"><source src="gandhi-video.webm" type="video/webm"></video>
+                <div class="card-content">
+                    <h3>In Their Quiet Way</h3><p style="font-style: italic; margin-bottom: 1rem;">A tribute to Gandhi and Saint Thérèse of Lisieux</p>
+                    <div id="poem-text" class="poem-text"></div>
+                    <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-2"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">In Their Quiet Way</div><div class="progress-container"><span class="time-display" id="current-time-2">0:00</span><div class="progress-bar" id="progress-bar-2"></div><span class="time-display" id="duration-2">0:47</span></div></div></div></div><audio id="poem-audio" src="https://media.redcircle.com/2025/9/22/7/9c5ff290-ee9d-4af6-a7bf-6b6ba44b6875_ashay.mp3"></audio>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="paintings" class="content-section">
+            <h2 class="section-title">Paintings</h2>
+            <div class="content-grid"><div class="content-card"><div class="card-icon"><i class="fas fa-paint-brush"></i></div><h3>Digital Art</h3><p>Modern digital creations showcasing technical skills and artistic vision.</p></div></div>
+        </section>
+        
+        <section id="gallery" class="content-section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-catalogue-wrapper">
+                <button id="scroll-left-btn" class="gallery-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <div class="gallery-catalogue-grid">
+                <div class="album-card" data-album="welcome-program"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Welcome Program" loading="lazy"></div><div class="album-info"><h3>Welcome Program</h3><p class="album-date">23-04-2025</p></div></div>
+                <div class="album-card" data-album="initiation-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="Initiation Ceremony" loading="lazy"></div><div class="album-info"><h3>Initiation Ceremony-LKG</h3><p class="album-date">25-04-2025</p></div></div>
+                <div class="album-card" data-album="pope-condolences"><div class="album-image-wrapper"><img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis - Condolences" loading="lazy"></div><div class="album-info"><h3>Pope Francis - Condolences</h3><p class="album-date">26-04-2025</p></div></div>
+                <div class="album-card" data-album="results-declaration"><div class="album-image-wrapper"><img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ICSE, ISC Result Declaration" loading="lazy"></div><div class="album-info"><h3>ICSE, ISC Results</h3><p class="album-date">30-04-2025</p></div></div>
+                <div class="album-card" data-album="non-teaching-reward"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Event" alt="Reward to Non-Teaching staff" loading="lazy"></div><div class="album-info"><h3>Reward to Non-Teaching Staff</h3><p class="album-date">01-05-2025</p></div></div>
+                <div class="album-card" data-album="yoga-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/8DNMZw58/YOGA-DAY-1.jpg" alt="Yoga Day" loading="lazy"></div><div class="album-info"><h3>Yoga Day</h3><p class="album-date">21-06-2025</p></div></div>
+                <div class="album-card" data-album="staff-orientation-khorabar"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Staff" alt="Staff Orientation in Khorabar" loading="lazy"></div><div class="album-info"><h3>Staff Orientation - Khorabar</h3><p class="album-date">27-06-2025</p></div></div>
+                <div class="album-card" data-album="staff-picnic"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Staff+Picnic" alt="Staff Picnic -Bhutwal" loading="lazy"></div><div class="album-info"><h3>Staff Picnic - Bhutwal</h3><p class="album-date">28-06-2025</p></div></div>
+                <div class="album-card" data-album="career-guidance"><div class="album-image-wrapper"><img src="https://i.ibb.co/B10KmGr/SEMINAR-9-min.jpg" alt="Career Plan and Guidance" loading="lazy"></div><div class="album-info"><h3>Career Guidance Program</h3><p class="album-date">05-07-2025</p></div></div>
+                <div class="album-card" data-album="investiture-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/ycZ10Gdp/INVESTITURE-CEROMONY-9.jpg" alt="Investiture Ceremony" loading="lazy"></div><div class="album-info"><h3>Investiture Ceremony</h3><p class="album-date">12-07-2025</p></div></div>
+                <div class="album-card" data-album="raksha-bandhan"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Raksha+Bandhan" alt="Raksha Bandhan" loading="lazy"></div><div class="album-info"><h3>Raksha Bandhan Celebration</h3><p class="album-date">08-08-2025</p></div></div>
+                <div class="album-card" data-album="independence-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/nNj4Lk2L/INDEPENDECE-DAY-1.jpg" alt="Independence Day" loading="lazy"></div><div class="album-info"><h3>Independence Day</h3><p class="album-date">15-08-2025</p></div></div>
+                <div class="album-card" data-album="teachers-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/0ws33Pw/TEACHERS-DAY-1.jpg" alt="Teachers' Day and Onam" loading="lazy"></div><div class="album-info"><h3>Teachers' Day & Onam</h3><p class="album-date">06-09-2025</p></div></div>
+                <div class="album-card" data-album="poetry-competition"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation" loading="lazy"></div><div class="album-info"><h3>Hindi Poetry Competition</h3><p class="album-date">13-09-2025</p></div></div>
+                <div class="album-card" data-album="blood-donation"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation" loading="lazy"></div><div class="album-info"><h3>Blood Donation Camp</h3><p class="album-date">30-09-2025</p></div></div>
+                </div>
+                <button id="scroll-right-btn" class="gallery-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+    </div>
+</main>
+
+
+<!-- Full screen slides for Articles and Poems -->
+<div id="article-slides-container">
+    <div id="article-shastri-hindi" class="article-slide"><button class="slide-close-btn"><i class="fas fa-times"></i></button><div class="slide-content"><div class="content-card"><h3>लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</h3><div class="author-credit">-देवांश मणि त्रिपाठी कक्षा X - E</div><div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-9"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</div><div class="progress-container"><span class="time-display" id="current-time-9">0:00</span><div class="progress-bar" id="progress-bar-9"></div><span class="time-display" id="duration-9">0:00</span></div></div></div></div><audio id="hindi-shastri-audio" src="https://media.redcircle.com/2025/9/23/11/ec2ec1a7-d7e9-4713-bb0f-1ebb5e960f86_b934218f-cfbb-479a-a519-8d415e5db58e.mp3"></audio><div id="hindi-shastri-text" class="animated-text"></div></div></div></div>
+    <div id="article-peach-tree" class="article-slide"><button class="slide-close-btn"><i class="fas fa-times"></i></button><div class="slide-content"><div class="content-card"><h3>The Boy Who Loved a Peach Tree</h3><div class="author-credit">-Suryansh Pandey Class VI B</div><div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-10"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Boy Who Loved a Peach Tree</div><div class="progress-container"><span class="time-display" id="current-time-10">0:00</span><div class="progress-bar" id="progress-bar-10"></div><span class="time-display" id="duration-10">0:00</span></div></div></div></div><audio id="peach-tree-audio" src="https://media.redcircle.com/2025/9/23/10/99c4653b-426e-48e8-915e-ad8c55a55f51_peachtree.mp3"></audio><div id="peach-tree-text" class="animated-text"></div></div></div></div>
+    <div id="article-shastri-eng" class="article-slide"><button class="slide-close-btn"><i class="fas fa-times"></i></button><div class="slide-content"><div class="content-card"><h3>Remembering Lal Bahadur Shastri</h3><p style="font-style: italic; margin-top: -0.5rem; color: var(--text-gray);">From Commoner to Commander: India's Humble Hero</p><div class="author-credit">- Pavani Maurya X E</div><div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-8"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">Remembering Lal Bahadur Shastri</div><div class="progress-container"><span class="time-display" id="current-time-8">0:00</span><div class="progress-bar" id="progress-bar-8"></div><span class="time-display" id="duration-8">0:00</span></div></div></div></div><audio id="shastri-audio" src="https://media.redcircle.com/2025/9/23/10/db24d810-e1e1-4595-9e37-cc1dc0ab0403_luvvoice.com-20250923-2jxt0o.mp3"></audio><div id="shastri-article-text" class="animated-text"></div></div></div></div>
+    <div id="article-prayer" class="article-slide"><button class="slide-close-btn"><i class="fas fa-times"></i></button><div class="slide-content"><div class="content-card"><h3>A Prayer from the Heart of a Kid</h3><div class="author-credit">- Aarav Jaiswal LKG F</div><div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-5"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">A Prayer from the Heart of a Kid</div><div class="progress-container"><span class="time-display" id="current-time-5">0:00</span><div class="progress-bar" id="progress-bar-5"></div><span class="time-display" id="duration-5">0:45</span></div></div></div></div><audio id="prayer-audio" src="https://media.redcircle.com/2025/9/22/6/bf45189d-14a3-4dfd-9a46-0ee9ef8d394a_prayer.mp3"></audio><div id="prayer-text" class="animated-text"></div></div></div></div>
+    <div id="article-gandhi-wisdom" class="article-slide"><button class="slide-close-btn"><i class="fas fa-times"></i></button><div class="slide-content"><div class="content-card"><h3>The Enduring Wisdom of Gandhiji in the Modern World</h3><div class="author-credit">- Harshit Kumar IX-A</div><div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-3"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Enduring Wisdom of Gandhiji in the Modern World</div><div class="progress-container"><span class="time-display" id="current-time-3">0:00</span><div class="progress-bar" id="progress-bar-3"></div><span class="time-display" id="duration-3">1:45</span></div></div></div></div><audio id="gandhi-audio" src="https://media.redcircle.com/2025/9/22/6/0822814c-ba33-4806-bee4-5facd4151612_enduring_gandhi.mp3"></audio><div id="gandhi-article" class="animated-text"></div></div></div></div>
+    <div id="article-gentle-power" class="article-slide"><button class="slide-close-btn"><i class="fas fa-times"></i></button><div class="slide-content"><div class="content-card"><h3>The Gentle Power of Truth and Simplicity</h3><div class="author-credit">- Anshika Patel XII-C</div><div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-1"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Gentle Power of Truth and Simplicity</div><div class="progress-container"><span class="time-display" id="current-time-1">0:00</span><div class="progress-bar" id="progress-bar-1"></div><span class="time-display" id="duration-1">1:31</span></div></div></div></div><audio id="audio" src="https://media.redcircle.com/2025/9/22/6/6a1c0f30-c116-4983-9465-0cc0b723a263_the_gentle_power_of_truth_and_simplicity.mp3"></audio><div id="animated-article" class="animated-text"></div></div></div></div>
+    <div id="poem-vishwaas" class="article-slide"><button class="slide-close-btn"><i class="fas fa-times"></i></button><div class="slide-content"><div class="content-card"><h3>विश्वास तुम जन मन के</h3><div class="author-credit">- डॉ. शर्वांजली श्रीवास्तव (अध्यापिका हिंदी)</div><div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-7"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">विश्वास तुम जन मन के</div><div class="progress-container"><span class="time-display" id="current-time-7">0:00</span><div class="progress-bar" id="progress-bar-7"></div><span class="time-display" id="duration-7">4:30</span></div></div></div></div><audio id="hindi-poem-audio" src="https://media.redcircle.com/2025/9/22/7/fd0195b8-4289-433a-ab72-49eb38679fea_china.mp3"></audio><div id="hindi-poem-text" class="animated-text"></div></div></div></div>
+    <div id="poem-karmayuddh" class="article-slide"><button class="slide-close-btn"><i class="fas fa-times"></i></button><div class="slide-content"><div class="content-card"><h3>कर्मयुद्ध</h3><div class="author-credit">- श्वेताम्भ पाण्डेय कक्षा XII बी<br>द्वारा स्वरचित काव्य पाठ<br>विजेता - तृतीय पुरस्कार (वरिष्ठ वर्ग)<br>काव्य पाठ प्रतियोगिता<br>आयोजन स्थल: महाराणा प्रताप इंटर कॉलेज<br>अवसर: हिंदी दिवस, 13-09-2025</div><div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-6"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">कर्मयुद्ध</div><div class="progress-container"><span class="time-display" id="current-time-6">0:00</span><div class="progress-bar" id="progress-bar-6"></div><span class="time-display" id="duration-6">3:00</span></div></div></div></div><audio id="karmayuddh-audio" src="https://media.redcircle.com/2025/9/22/7/68f7efe0-519e-47fc-bc9d-99106f323263_karmayudh.mp3"></audio><div id="karmayuddh-text" class="animated-text"></div></div></div></div>
+    <div id="poem-sahitya" class="article-slide"><button class="slide-close-btn"><i class="fas fa-times"></i></button><div class="slide-content"><div class="content-card"><h3>साहित्य में गांधी</h3><div class="author-credit">- Amal Verma IX-A<br>Student Editor</div><div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-4"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">साहित्य में गांधी</div><div class="progress-container"><span class="time-display" id="current-time-4">0:00</span><div class="progress-bar" id="progress-bar-4"></div><span class="time-display" id="duration-4">2:30</span></div></div></div></div><audio id="hindi-article-audio" src="https://media.redcircle.com/2025/9/22/7/908e7291-5edf-4733-8e6e-a92a633183ed_gandh123i.mp3"></audio><div id="hindi-article-text" class="animated-text"></div></div></div></div>
 </div>
 
 
@@ -944,45 +1015,67 @@ audio { display: none; }
 document.addEventListener('DOMContentLoaded', function() {
   'use strict';
 
-    // --- NEW: Horizontal Page Scrolling Logic ---
-    const pageWrapper = document.querySelector('.page-wrapper');
-    const heroNavLinks = document.querySelectorAll('.hero-nav a');
-    const contentPage = document.getElementById('content-page');
-    const homeLink = document.querySelector('.back-to-home a');
+    // --- NEW: Slide-based Navigation Logic ---
+    const heroSection = document.getElementById('home');
+    const mainContent = document.getElementById('main-content');
+    const navLinks = document.querySelectorAll('.hero-nav a');
+    const backToHomeBtn = document.querySelector('.back-to-home a');
+    const articleTriggers = document.querySelectorAll('.article-trigger');
+    const slideCloseBtns = document.querySelectorAll('.slide-close-btn');
 
-    function scrollToContent(targetId) {
-        pageWrapper.scrollTo({
-            left: contentPage.offsetLeft,
-            behavior: 'smooth'
-        });
-        
-        // After scrolling to the content page, scroll to the specific section
-        setTimeout(() => {
-            const targetElement = document.querySelector(targetId);
-            if(targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start'});
-            }
-        }, 500); // Delay to allow the page scroll to finish
+    // Function to hide all active elements
+    function hideAll() {
+        document.querySelectorAll('.is-active').forEach(el => el.classList.remove('is-active'));
     }
 
-    heroNavLinks.forEach(link => {
+    // Initially show the hero section
+    heroSection.classList.add('is-active');
+
+    // Navigation from Hero page to a section
+    navLinks.forEach(link => {
         link.addEventListener('click', e => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
-            scrollToContent(targetId);
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+                hideAll();
+                mainContent.classList.add('is-active');
+                // Hide all sections within main content first
+                mainContent.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('is-active'));
+                // Then show the target one
+                targetSection.classList.add('is-active');
+                mainContent.scrollTop = 0; // Scroll to top of the content area
+            }
         });
     });
 
-    if (homeLink) {
-        homeLink.addEventListener('click', e => {
+    // Back to Home button logic
+    if (backToHomeBtn) {
+        backToHomeBtn.addEventListener('click', e => {
             e.preventDefault();
-            pageWrapper.scrollTo({
-                left: 0,
-                behavior: 'smooth'
-            });
+            hideAll();
+            heroSection.classList.add('is-active');
         });
     }
 
+    // Article/Poem slide trigger logic
+    articleTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const targetId = trigger.dataset.target;
+            const targetSlide = document.getElementById(targetId);
+            if (targetSlide) {
+                targetSlide.classList.add('is-active');
+            }
+        });
+    });
+
+    // Close button for article/poem slides
+    slideCloseBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.closest('.article-slide').classList.remove('is-active');
+        });
+    });
 
   // Audio Player Setup Function
   function setupAudioPlayer(audioId, playBtnId, progressBarId, currentTimeId, durationId) {
@@ -1226,7 +1319,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function closeLightbox() {
     lightbox.style.display = 'none';
     if(zoomOverlay.style.display === 'none') {
-        document.body.style.overflow = '';
+        document.body.style.overflow = 'hidden'; // Keep body scroll locked if main content is active
     }
   }
 
@@ -1277,7 +1370,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function closeZoomViewer() {
       zoomOverlay.style.display = 'none';
       if(lightbox.style.display === 'none') {
-         document.body.style.overflow = '';
+         document.body.style.overflow = 'hidden'; // Keep body scroll locked
       }
   }
 
@@ -1365,4 +1458,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
-
