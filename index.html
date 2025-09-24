@@ -31,6 +31,10 @@
   --dussehra-orange: #ff6347;
   --heading-font: 'Playfair Display', serif;
   --body-font: 'Lato', sans-serif;
+  --sidebar-bg: #1a202c;
+  --sidebar-text: #e2e8f0;
+  --sidebar-text-hover: #ffffff;
+  --sidebar-active-bg: #2d3748;
 }
 
 /* Reset & Base */
@@ -40,101 +44,100 @@ body {
   font-family: var(--body-font);
   background-color: #f8f9fa;
   color: var(--text-white);
-  overflow-x: hidden;
+  overflow: hidden; /* Prevent body scroll */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
 }
 
-/* Layout */
-.container { max-width: 1140px; margin: 0 auto; padding: 0 1rem; position: relative; z-index: 2; }
+/* NEW: Main Page Layout */
+.page-container {
+  display: flex;
+  height: 100vh;
+}
 
-/* Hero Section */
-.hero-section {
-  background: url('https://i.ibb.co/7tGFmm4B/lfs.jpg') center center/cover no-repeat;
-  min-height: 100vh;
-  padding: 1.5rem 1rem 3rem 1rem;
-  text-align: center;
-  position: relative;
-  z-index: 1;
+.sidebar {
+  flex: 0 0 280px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  overflow-y: auto;
 }
 
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #4a5568;
 }
 
-.hero-section .container { position: relative; z-index: 2; }
-
-.site-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  list-style: none;
-  margin-bottom: 2rem;
-}
-
-.site-nav a {
+.sidebar-title {
+  font-family: var(--heading-font);
   color: #ffffff;
-  font-weight: 600;
-  text-decoration: none;
-  opacity: 0.9;
-  transition: all 0.3s ease;
-  padding: 0.75rem 1.25rem;
-  border-radius: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(0, 0, 0, 0.4);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-subtitle {
   font-size: 0.9rem;
-  min-height: 44px;
+  color: #a0aec0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.8rem;
 }
 
-.site-nav a:hover { color: var(--accent-gold); background-color: rgba(0, 0, 0, 0.6); }
-
-.hero-title, .section-title {
-  font-family: var(--heading-font);
-  color: var(--text-white);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+.nav-link:hover {
+  background-color: #2d3748;
+  color: var(--sidebar-text-hover);
 }
 
-.hero-title { 
-  font-size: clamp(2rem, 8vw, 4.2rem); 
-  margin-bottom: 1rem; 
-  line-height: 1.1;
+.nav-link.active {
+  background-color: var(--accent-blue);
   color: #ffffff;
-  text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.8);
-}
-.hero-subtitle { 
-  font-size: clamp(0.9rem, 4vw, 1.2rem); 
-  color: #e0e0e0;
-  line-height: 1.5; 
+  box-shadow: 0 4px 10px rgba(62, 146, 204, 0.3);
 }
 
-/* Content Area */
-.content-area {
-  background: transparent;
-  padding: 3rem 0.75rem 2rem;
-  position: relative;
-  z-index: 1;
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 3rem 2.5rem;
 }
 
-.content-section { margin-bottom: 3rem; }
+.content-section {
+  display: none; /* Hide all sections by default */
+  animation: fadeInScaleUp 0.5s ease-out;
+}
+
+.content-section.active {
+  display: block; /* Show only the active section */
+}
+/* END: New Page Layout */
 
 .section-title {
-  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  font-family: var(--heading-font);
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
   margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--accent-blue);
   display: inline-block;
-  position: relative;
-  padding: 0 1rem;
 }
 
 .section-credit {
@@ -669,6 +672,24 @@ audio { display: none; }
 /* START: MOBILE-SPECIFIC OPTIMIZATIONS */
 /* =================================================== */
 @media (max-width: 768px) {
+  .page-container {
+    flex-direction: column;
+    height: auto;
+  }
+  .sidebar {
+    flex: 0 0 auto;
+    height: auto;
+    position: static;
+  }
+  .main-content {
+    height: auto;
+    padding: 1.5rem;
+  }
+  body {
+    overflow-y: auto;
+  }
+
+
   /* Responsive adjustments for fact sections */
   .fact-header { grid-template-columns: 1fr; gap: 1rem; text-align: center; }
   .fact-image img { height: 200px; width: 100%; }
@@ -707,216 +728,245 @@ audio { display: none; }
 </head>
 
 <body>
-<header class="hero-section">
-  <div class="container">
-    <nav>
-      <ul class="site-nav">
-        <li><a href="#articles">Articles</a></li>
-        <li><a href="#videos">Videos</a></li>
-        <li><a href="#poems">Poems</a></li>
-        <li><a href="#paintings">Paintings</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#ebulletin">E-Bulletin</a></li>
-      </ul>
-    </nav>
-    <h1 class="hero-title">Little Flower School Gorakhpur</h1>
-    <p class="hero-subtitle">2025-2026</p>
-  </div>
-</header>
 
-<main class="content-area">
-  <div class="container">
+<div class="page-container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-title">Little Flower School</h1>
+            <p class="sidebar-subtitle">Digital Magazine 2025-26</p>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#articles" class="nav-link"><i class="fas fa-newspaper"></i> Articles</a>
+          <a href="#ebulletin" class="nav-link"><i class="fas fa-bullhorn"></i> E-Bulletin</a>
+          <a href="#videos" class="nav-link"><i class="fas fa-video"></i> Videos</a>
+          <a href="#poems" class="nav-link"><i class="fas fa-feather-alt"></i> Poems</a>
+          <a href="#paintings" class="nav-link"><i class="fas fa-palette"></i> Paintings</a>
+          <a href="#gallery" class="nav-link"><i class="fas fa-images"></i> Gallery</a>
+        </nav>
+    </aside>
 
-    <section id="articles" class="content-section">
-      <h2 class="section-title">Articles</h2>
-      <div class="article-list">
-        <div class="content-card featured-article">
-          <h3>लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</h3>
-          <div class="author-credit">-देवांश मणि त्रिपाठी कक्षा X - E</div>
-          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-9"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</div><div class="progress-container"><span class="time-display" id="current-time-9">0:00</span><div class="progress-bar" id="progress-bar-9"></div><span class="time-display" id="duration-9">0:00</span></div></div></div></div><audio id="hindi-shastri-audio" src="https://media.redcircle.com/2025/9/23/11/ec2ec1a7-d7e9-4713-bb0f-1ebb5e960f86_b934218f-cfbb-479a-a519-8d415e5db58e.mp3"></audio>
-          <div id="hindi-shastri-text" class="animated-text"></div>
-        </div>
-        <div class="content-card featured-article">
-          <h3>The Boy Who Loved a Peach Tree</h3>
-          <div class="author-credit">-Suryansh Pandey Class VI B</div>
-          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-10"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Boy Who Loved a Peach Tree</div><div class="progress-container"><span class="time-display" id="current-time-10">0:00</span><div class="progress-bar" id="progress-bar-10"></div><span class="time-display" id="duration-10">0:00</span></div></div></div></div><audio id="peach-tree-audio" src="https://media.redcircle.com/2025/9/23/10/99c4653b-426e-48e8-915e-ad8c55a55f51_peachtree.mp3"></audio>
-          <div id="peach-tree-text" class="animated-text"></div>
-        </div>
-        <div class="content-card featured-article">
-          <h3>Remembering Lal Bahadur Shastri</h3>
-          <p style="font-style: italic; margin-top: -0.5rem; color: var(--text-gray);">From Commoner to Commander: India's Humble Hero</p>
-          <div class="author-credit">- Pavani Maurya X E</div>
-          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-8"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">Remembering Lal Bahadur Shastri</div><div class="progress-container"><span class="time-display" id="current-time-8">0:00</span><div class="progress-bar" id="progress-bar-8"></div><span class="time-display" id="duration-8">0:00</span></div></div></div></div><audio id="shastri-audio" src="https://media.redcircle.com/2025/9/23/10/db24d810-e1e1-4595-9e37-cc1dc0ab0403_luvvoice.com-20250923-2jxt0o.mp3"></audio>
-          <div id="shastri-article-text" class="animated-text"></div>
-        </div>
-        <div class="content-card featured-article">
-          <h3>A Prayer from the Heart of a Kid</h3>
-          <div class="author-credit">- Aarav Jaiswal LKG F</div>
-          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-5"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">A Prayer from the Heart of a Kid</div><div class="progress-container"><span class="time-display" id="current-time-5">0:00</span><div class="progress-bar" id="progress-bar-5"></div><span class="time-display" id="duration-5">0:45</span></div></div></div></div><audio id="prayer-audio" src="https://media.redcircle.com/2025/9/22/6/bf45189d-14a3-4dfd-9a46-0ee9ef8d394a_prayer.mp3"></audio>
-          <div id="prayer-text" class="animated-text"></div>
-        </div>
-        <div class="content-card featured-article">
-          <h3>The Enduring Wisdom of Gandhiji in the Modern World</h3>
-          <div class="author-credit">- Harshit Kumar IX-A</div>
-          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-3"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Enduring Wisdom of Gandhiji in the Modern World</div><div class="progress-container"><span class="time-display" id="current-time-3">0:00</span><div class="progress-bar" id="progress-bar-3"></div><span class="time-display" id="duration-3">1:45</span></div></div></div></div><audio id="gandhi-audio" src="https://media.redcircle.com/2025/9/22/6/0822814c-ba33-4806-bee4-5facd4151612_enduring_gandhi.mp3"></audio>
-          <div id="gandhi-article" class="animated-text"></div>
-        </div>
-        <div class="content-card featured-article">
-          <h3>The Gentle Power of Truth and Simplicity</h3>
-          <div class="author-credit">- Anshika Patel XII-C</div>
-          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-1"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Gentle Power of Truth and Simplicity</div><div class="progress-container"><span class="time-display" id="current-time-1">0:00</span><div class="progress-bar" id="progress-bar-1"></div><span class="time-display" id="duration-1">1:31</span></div></div></div></div><audio id="audio" src="https://media.redcircle.com/2025/9/22/6/6a1c0f30-c116-4983-9465-0cc0b723a263_the_gentle_power_of_truth_and_simplicity.mp3"></audio>
-          <div id="animated-article" class="animated-text"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="ebulletin" class="content-section">
-      <h2 class="section-title">E-Bulletin</h2>
-      <p class="section-credit">-Arpit Kumar Gupta XII-B</p>
-      
-      <div class="therese-comprehensive">
-        <div class="therese-header">
-          <h2>Saint Thérèse: The Little Flower</h2>
-          <p>"I will spend my heaven doing good on earth"</p>
-        </div>
-        <div class="therese-grid">
-          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/6cwn4hQQ/St-Theresyounger.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Youngest Doctor of the Church</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="youngest-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Youngest Doctor of the Church</div><div class="progress-container"><span class="fact-time-display" id="youngest-current-time">0:00</span><div class="fact-progress-bar" id="youngest-progress-bar"></div><span class="fact-time-display" id="youngest-duration">1:30</span></div></div></div></div><audio id="youngest-audio" src="https://media.redcircle.com/2025/9/22/6/b7b9666e-1b40-4c3a-93dc-a5d0391556f7_youngest.mp3"></audio><div class="fact-text-content"><p>Saint Thérèse is considered the youngest Doctor of the Church, having died at age 24 and been named a Doctor of the Church posthumously by Pope John Paul II in 1997. Only the third woman to receive this honor.</p></div></div></div>
-          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/0Vf0SyzV/thelittleway.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Little Way</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="way-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Little Way</div><div class="fact-progress-container"><span class="fact-time-display" id="way-current-time">0:00</span><div class="fact-progress-bar" id="way-progress-bar"></div><span class="fact-time-display" id="way-duration">1:45</span></div></div></div></div><audio id="way-audio" src="https://media.redcircle.com/2025/9/22/6/eead6d25-6fca-4c38-acde-06c0e6a22f90_little.mp3"></audio><div class="fact-text-content"><p>St. Thérèse developed "The Little Way" - a spiritual path emphasizing performing everyday, ordinary actions with great love, trusting in God's infinite mercy, and accepting one's "littleness" as means of spiritual growth.</p></div></div></div>
-          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/zVLPtR3W/early.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Early Life & Family</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="life-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Early Life & Family</div><div class="fact-progress-container"><span class="fact-time-display" id="life-current-time">0:00</span><div class="fact-progress-bar" id="life-progress-bar"></div><span class="fact-time-display" id="life-duration">1:20</span></div></div></div></div><audio id="life-audio" src="https://media.redcircle.com/2025/9/22/6/96b7487e-5a6b-495e-8860-6944b7405a1b_earlylife.mp3"></audio><div class="fact-text-content"><p>Born Marie Françoise-Thérèse Martin on January 2, 1873, in Alençon, France. She was the youngest of nine children, four of whom became Carmelite nuns. Her parents, Louis and Zélie Martin, were both declared saints in 2015.</p></div></div></div>
-          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/Y7yKQXDb/nunat15.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Carmelite Nun at 15</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nun-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Carmelite Nun at 15</div><div class="fact-progress-container"><span class="fact-time-display" id="nun-current-time">0:00</span><div class="fact-progress-bar" id="nun-progress-bar"></div><span class="fact-time-display" id="nun-duration">1:10</span></div></div></div></div><audio id="nun-audio" src="https://media.redcircle.com/2025/9/22/7/948f4e2a-7865-485b-aa36-f4393b254677_nunat15.mp3"></audio><div class="fact-text-content"><p>Despite her young age, Thérèse entered the Carmelite convent at Lisieux at age 15 in 1888. She joined her older sisters Pauline and Marie, and later her sister Céline also joined the same convent.</p></div></div></div>
-          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/xK8nQnjB/autobiogarphy.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Story of a Soul</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="soul-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Story of a Soul</div><div class="fact-progress-container"><span class="fact-time-display" id="soul-current-time">0:00</span><div class="fact-progress-bar" id="soul-progress-bar"></div><span class="fact-time-display" id="soul-duration">1:35</span></div></div></div></div><audio id="soul-audio" src="https://media.redcircle.com/2025/9/22/7/9acbab64-d1d1-4d49-9b5a-051055b9d58f_death12.mp3"></audio><div class="fact-text-content"><p>Her autobiography "The Story of a Soul" was published after her death and became one of the most widely read spiritual autobiographies. It spread her "Little Way" teachings across the world and contributed to her rapid canonization.</p></div></div></div>
-          <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/RpHrFNXW/death23.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Death & Canonization</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="death-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Death & Canonization</div><div class="fact-progress-container"><span class="fact-time-display" id="death-current-time">0:00</span><div class="fact-progress-bar" id="death-progress-bar"></div><span class="fact-time-display" id="death-duration">1:25</span></div></div></div></div><audio id="death-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio><div class="fact-text-content"><p>Died of tuberculosis on September 30, 1897, at age 24. Canonized by Pope Pius XI in 1925, just 28 years after her death. Her last words were "My God, I love you." She promised to "spend my heaven doing good on earth."</p></div></div></div>
-        </div>
-      </div>
-
-      <div class="gandhi-comprehensive">
-        <div class="gandhi-header">
-          <h2>Mahatma Gandhi: The Great Soul</h2>
-          <p>"Be the change you wish to see in the world"</p>
-        </div>
-        <div class="gandhi-grid">
-            <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>International Day of Non-Violence</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="international-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">International Day of Non-Violence</div><div class="fact-progress-container"><span class="fact-time-display" id="international-current-time">0:00</span><div class="fact-progress-bar" id="international-progress-bar"></div><span class="fact-time-display" id="international-duration">1:40</span></div></div></div></div><audio id="international-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio><div class="fact-text-content"><p>In recognition of his philosophy of non-violence (Ahimsa) and civil disobedience (Satyagraha), the United Nations General Assembly declared October 2nd as the International Day of Non-Violence in 2007.</p></div></div></div>
-            <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/Y4dJXMM2/GANDHI-NOBEL.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Nobel Peace Prize Nominations</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nobel-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Nobel Peace Prize Nominations</div><div class="fact-progress-container"><span class="fact-time-display" id="nobel-current-time">0:00</span><div class="fact-progress-bar" id="nobel-progress-bar"></div><span class="fact-time-display" id="nobel-duration">1:25</span></div></div></div></div><audio id="nobel-audio" src="https://media.redcircle.com/2025/9/22/7/caf481bd-8614-407c-8fb7-2467ad8f2272_voilennce.mp3"></audio><div class="fact-text-content"><p>Mahatma Gandhi was nominated for the Nobel Peace Prize five times (1937, 1938, 1939, 1947, 1948) but never received the award, a decision that has been widely considered a historical oversight.</p></div></div></div>
-            <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/7xMr6041/early.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Early Life & Education</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="education-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Early Life & Education</div><div class="fact-progress-container"><span class="fact-time-display" id="education-current-time">0:00</span><div class="fact-progress-bar" id="education-progress-bar"></div><span class="fact-time-display" id="education-duration">1:30</span></div></div></div></div><audio id="education-audio" src="https://media.redcircle.com/2025/9/22/7/56c9cb4f-1775-45bd-bc33-da2bbdaf1464_bar.mp3"></audio><div class="fact-text-content"><p>Born on October 2, 1869, in Porbandar, Gujarat. Studied law in London and was called to the bar at age 22. Moved to South Africa in 1893 where he first developed his philosophy of non-violent resistance.</p></div></div></div>
-            <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/XZ1NjfNq/dandi.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Dandi Salt March</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="salt-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Dandi Salt March</div><div class="fact-progress-container"><span class="fact-time-display" id="salt-current-time">0:00</span><div class="fact-progress-bar" id="salt-progress-bar"></div><span class="fact-time-display" id="salt-duration">1:50</span></div></div></div></div><audio id="salt-audio" src="https://media.redcircle.com/2025/9/22/7/9f8004db-da51-4009-a63c-37a96c1c30d5_dandi.mp3"></audio><div class="fact-text-content"><p>Led the famous 400 km Salt March from Ashram Ahmedabad to Dandi in 1930, protesting the British salt monopoly. This 24-day march became a pivotal moment in India's independence movement.</p></div></div></div>
-            <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/HpTVMj6z/gandhi-satyagraha.png')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Philosophy of Satyagraha</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="philo-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Philosophy of Satyagraha</div><div class="fact-progress-container"><span class="fact-time-display" id="philo-current-time">0:00</span><div class="fact-progress-bar" id="philo-progress-bar"></div><span class="fact-time-display" id="philo-duration">1:35</span></div></div></div></div><audio id="philo-audio" src="https://media.redcircle.com/2025/9/22/7/a324a473-fe33-4dce-b623-463cb3c48125_namak.mp3"></audio><div class="fact-text-content"><p>Developed the concept of Satyagraha (truth force) - non-violent resistance based on truth, courage, and non-violence. This philosophy influenced leaders worldwide including Martin Luther King Jr. and Nelson Mandela.</p></div></div></div>
-            <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/HTFHXZ01/assasination.webp')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Assassination & Legacy</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="legacy-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Assassination & Legacy</div><div class="fact-progress-container"><span class="fact-time-display" id="legacy-current-time">0:00</span><div class="fact-progress-bar" id="legacy-progress-bar"></div><span class="fact-time-display" id="legacy-duration">1:45</span></div></div></div></div><audio id="legacy-audio" src="https://media.redcircle.com/2025/9/22/7/ba70f327-e789-42a3-81ee-63095990ab86_marna.mp3"></audio><div class="fact-text-content"><p>Assassinated on January 30, 1948, by Nathuram Godse. Despite his tragic end, Gandhi's principles of non-violence, truth, and justice continue to inspire movements for peace and freedom worldwide.</p></div></div></div>
-        </div>
-      </div>
-
-      <div class="dussehra-comprehensive">
-        <div class="dussehra-header">
-          <h2>Dussehra: The Festival of Victory</h2>
-          <p>"Victory of Good over Evil"</p>
-        </div>
-        <div class="dussehra-grid">
-          <div class="dussehra-fact-card"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>A Celebration of a Goddess's Triumph</h4></div><div class="fact-image"><img src="https://i.ibb.co/PGJDvR1k/https://i.ibb.co/PGJDvR1k/god1.jpg" alt="Goddess Durga Victory" loading="lazy" /></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="god1-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">A Celebration of a Goddess's Triumph</div><div class="fact-progress-container"><span class="fact-time-display" id="god1-current-time">0:00</span><div class="fact-progress-bar" id="god1-progress-bar"></div><span class="fact-time-display" id="god1-duration">2:15</span></div></div></div></div><audio id="god1-audio" src="https://media.redcircle.com/2025/9/22/7/2aa64573-12c9-4e3a-99fd-c799ac97184d_god.mp3"></audio><div class="fact-text-content"><p>In many parts of India, particularly in the eastern and southern states, Dussehra, also known as Vijayadashami, is not primarily about Rama's victory. It commemorates the triumph of Goddess Durga over the buffalo demon Mahishasura.</p></div></div></div>
-          <div class="dussehra-fact-card"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Pandavas' Agyatvas and the Shami Tree</h4></div><div class="fact-image"><img src="https://i.ibb.co/TDCbPv9T/https://i.ibb.co/TDCbPv9T/god2.jpg" alt="Pandavas Shami Tree" loading="lazy" /></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="god2-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Pandavas' Agyatvas and the Shami Tree</div><div class="fact-progress-container"><span class="fact-time-display" id="god2-current-time">0:00</span><div class="fact-progress-bar" id="god2-progress-bar"></div><span class="fact-time-display" id="god2-duration">2:30</span></div></div></div></div><audio id="god2-audio" src="https://media.redcircle.com/2025/9/22/7/8a30fe12-56b8-46a3-941d-a3dd882c9444_legend.mp3"></audio><div class="fact-text-content"><p>A fascinating legend from the Mahabharata is associated with Dussehra. After completing their twelve years of exile, the Pandavas had to spend a year in incognito (agyaatvas). They hid their divine weapons in a Shami tree before entering the kingdom of Virata. On Vijayadashami, they retrieved their weapons, worshipped the tree, and revealed their true identity.</p></div></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="videos" class="content-section">
-      <h2 class="section-title">Videos</h2>
-      <div class="content-grid">
-        <div class="content-card"><div class="card-icon"><i class="fas fa-video"></i></div><h3>Event Highlights</h3><p>Capture the magic of our school events through engaging videos.</p></div>
-        <div class="content-card"><div class="card-icon"><i class="fas fa-film"></i></div><h3>Student Stories</h3><p>Personal narratives and experiences shared by our amazing students.</p></div>
-        <div class="content-card"><div class="card-icon"><i class="fas fa-play-circle"></i></div><h3>Educational Content</h3><p>Learning videos and tutorials created by students for students.</p></div>
-      </div>
-    </section>
-
-    <section id="poems" class="content-section">
-      <h2 class="section-title">Poems</h2>
-      <div class="content-grid">
-        <div class="content-card featured-article grid-full-width">
-          <h3>विश्वास तुम जन मन के</h3>
-          <div class="author-credit">- डॉ. शर्वांजली श्रीवास्तव (अध्यापिका हिंदी)</div>
-          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-7"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">विश्वास तुम जन मन के</div><div class="progress-container"><span class="time-display" id="current-time-7">0:00</span><div class="progress-bar" id="progress-bar-7"></div><span class="time-display" id="duration-7">4:30</span></div></div></div></div><audio id="hindi-poem-audio" src="https://media.redcircle.com/2025/9/22/7/fd0195b8-4289-433a-ab72-49eb38679fea_china.mp3"></audio>
-          <div id="hindi-poem-text" class="animated-text"></div>
-        </div>
-        <div class="content-card featured-article grid-full-width">
-          <h3>कर्मयुद्ध</h3>
-          <div class="author-credit">- श्वेताम्भ पाण्डेय कक्षा XII बी<br>द्वारा स्वरचित काव्य पाठ<br>विजेता - तृतीय पुरस्कार (वरिष्ठ वर्ग)<br>काव्य पाठ प्रतियोगिता<br>आयोजन स्थल: महाराणा प्रताप इंटर कॉलेज<br>अवसर: हिंदी दिवस, 13-09-2025</div>
-          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-6"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">कर्मयुद्ध</div><div class="progress-container"><span class="time-display" id="current-time-6">0:00</span><div class="progress-bar" id="progress-bar-6"></div><span class="time-display" id="duration-6">3:00</span></div></div></div></div><audio id="karmayuddh-audio" src="https://media.redcircle.com/2025/9/22/7/68f7efe0-519e-47fc-bc9d-99106f323263_karmayudh.mp3"></audio>
-          <div id="karmayuddh-text" class="animated-text"></div>
-        </div>
-        <div class="content-card featured-article grid-full-width">
-          <h3>साहित्य में गांधी</h3>
-          <div class="author-credit">- Amal Verma IX-A<br>Student Editor</div>
-          <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-4"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">साहित्य में गांधी</div><div class="progress-container"><span class="time-display" id="current-time-4">0:00</span><div class="progress-bar" id="progress-bar-4"></div><span class="time-display" id="duration-4">2:30</span></div></div></div></div><audio id="hindi-article-audio" src="https://media.redcircle.com/2025/9/22/7/908e7291-5edf-4733-8e6e-a92a633183ed_gandh123i.mp3"></audio>
-          <div id="hindi-article-text" class="animated-text"></div>
-        </div>
-        <div class="content-card featured-article video-card grid-full-width">
-          <video class="background-video" autoplay muted loop playsinline><source src="gandhi-video.mp4" type="video/mp4"><source src="gandhi-video.webm" type="video/webm"></video>
-          <div class="card-content">
-            <h3>In Their Quiet Way</h3><p style="font-style: italic; margin-bottom: 1rem;">A tribute to Gandhi and Saint Thérèse of Lisieux</p>
-            <div id="poem-text" class="poem-text"></div>
-            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-2"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">In Their Quiet Way</div><div class="progress-container"><span class="time-display" id="current-time-2">0:00</span><div class="progress-bar" id="progress-bar-2"></div><span class="time-display" id="duration-2">0:47</span></div></div></div></div><audio id="poem-audio" src="https://media.redcircle.com/2025/9/22/7/9c5ff290-ee9d-4af6-a7bf-6b6ba44b6875_ashay.mp3"></audio>
+    <main class="main-content">
+        <section id="articles" class="content-section">
+          <h2 class="section-title">Articles</h2>
+          <div class="article-list">
+            <div class="content-card featured-article">
+              <h3>लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</h3>
+              <div class="author-credit">-देवांश मणि त्रिपाठी कक्षा X - E</div>
+              <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-9"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">लालबहादुर शास्त्री : सादगी और सत्यनिष्ठा के प्रतीक</div><div class="progress-container"><span class="time-display" id="current-time-9">0:00</span><div class="progress-bar" id="progress-bar-9"></div><span class="time-display" id="duration-9">0:00</span></div></div></div></div><audio id="hindi-shastri-audio" src="https://media.redcircle.com/2025/9/23/11/ec2ec1a7-d7e9-4713-bb0f-1ebb5e960f86_b934218f-cfbb-479a-a519-8d415e5db58e.mp3"></audio>
+              <div id="hindi-shastri-text" class="animated-text"></div>
+            </div>
+            <div class="content-card featured-article">
+              <h3>The Boy Who Loved a Peach Tree</h3>
+              <div class="author-credit">-Suryansh Pandey Class VI B</div>
+              <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-10"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Boy Who Loved a Peach Tree</div><div class="progress-container"><span class="time-display" id="current-time-10">0:00</span><div class="progress-bar" id="progress-bar-10"></div><span class="time-display" id="duration-10">0:00</span></div></div></div></div><audio id="peach-tree-audio" src="https://media.redcircle.com/2025/9/23/10/99c4653b-426e-48e8-915e-ad8c55a55f51_peachtree.mp3"></audio>
+              <div id="peach-tree-text" class="animated-text"></div>
+            </div>
+            <div class="content-card featured-article">
+              <h3>Remembering Lal Bahadur Shastri</h3>
+              <p style="font-style: italic; margin-top: -0.5rem; color: var(--text-gray);">From Commoner to Commander: India's Humble Hero</p>
+              <div class="author-credit">- Pavani Maurya X E</div>
+              <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-8"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">Remembering Lal Bahadur Shastri</div><div class="progress-container"><span class="time-display" id="current-time-8">0:00</span><div class="progress-bar" id="progress-bar-8"></div><span class="time-display" id="duration-8">0:00</span></div></div></div></div><audio id="shastri-audio" src="https://media.redcircle.com/2025/9/23/10/db24d810-e1e1-4595-9e37-cc1dc0ab0403_luvvoice.com-20250923-2jxt0o.mp3"></audio>
+              <div id="shastri-article-text" class="animated-text"></div>
+            </div>
+            <div class="content-card featured-article">
+              <h3>A Prayer from the Heart of a Kid</h3>
+              <div class="author-credit">- Aarav Jaiswal LKG F</div>
+              <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-5"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">A Prayer from the Heart of a Kid</div><div class="progress-container"><span class="time-display" id="current-time-5">0:00</span><div class="progress-bar" id="progress-bar-5"></div><span class="time-display" id="duration-5">0:45</span></div></div></div></div><audio id="prayer-audio" src="https://media.redcircle.com/2025/9/22/6/bf45189d-14a3-4dfd-9a46-0ee9ef8d394a_prayer.mp3"></audio>
+              <div id="prayer-text" class="animated-text"></div>
+            </div>
+            <div class="content-card featured-article">
+              <h3>The Enduring Wisdom of Gandhiji in the Modern World</h3>
+              <div class="author-credit">- Harshit Kumar IX-A</div>
+              <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-3"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Enduring Wisdom of Gandhiji in the Modern World</div><div class="progress-container"><span class="time-display" id="current-time-3">0:00</span><div class="progress-bar" id="progress-bar-3"></div><span class="time-display" id="duration-3">1:45</span></div></div></div></div><audio id="gandhi-audio" src="https://media.redcircle.com/2025/9/22/6/0822814c-ba33-4806-bee4-5facd4151612_enduring_gandhi.mp3"></audio>
+              <div id="gandhi-article" class="animated-text"></div>
+            </div>
+            <div class="content-card featured-article">
+              <h3>The Gentle Power of Truth and Simplicity</h3>
+              <div class="author-credit">- Anshika Patel XII-C</div>
+              <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-1"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Gentle Power of Truth and Simplicity</div><div class="progress-container"><span class="time-display" id="current-time-1">0:00</span><div class="progress-bar" id="progress-bar-1"></div><span class="time-display" id="duration-1">1:31</span></div></div></div></div><audio id="audio" src="https://media.redcircle.com/2025/9/22/6/6a1c0f30-c116-4983-9465-0cc0b723a263_the_gentle_power_of_truth_and_simplicity.mp3"></audio>
+              <div id="animated-article" class="animated-text"></div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section id="paintings" class="content-section">
-      <h2 class="section-title">Paintings</h2>
-      <div class="content-grid"><div class="content-card"><div class="card-icon"><i class="fas fa-paint-brush"></i></div><h3>Digital Art</h3><p>Modern digital creations showcasing technical skills and artistic vision.</p></div></div>
-    </section>
-    
-    <section id="gallery" class="content-section">
-      <h2 class="section-title">Gallery</h2>
-      <!-- UPDATED GALLERY STRUCTURE -->
-      <div class="gallery-catalogue-wrapper">
-        <button id="scroll-left-btn" class="gallery-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
-        <div class="gallery-catalogue-grid">
-          <div class="album-card" data-album="welcome-program"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Welcome Program" loading="lazy"></div><div class="album-info"><h3>Welcome Program</h3><p class="album-date">23-04-2025</p></div></div>
-          <div class="album-card" data-album="initiation-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="Initiation Ceremony" loading="lazy"></div><div class="album-info"><h3>Initiation Ceremony-LKG</h3><p class="album-date">25-04-2025</p></div></div>
-          <div class="album-card" data-album="pope-condolences"><div class="album-image-wrapper"><img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis - Condolences" loading="lazy"></div><div class="album-info"><h3>Pope Francis - Condolences</h3><p class="album-date">26-04-2025</p></div></div>
-          <div class="album-card" data-album="results-declaration"><div class="album-image-wrapper"><img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ICSE, ISC Result Declaration" loading="lazy"></div><div class="album-info"><h3>ICSE, ISC Results</h3><p class="album-date">30-04-2025</p></div></div>
-          <div class="album-card" data-album="non-teaching-reward"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Event" alt="Reward to Non-Teaching staff" loading="lazy"></div><div class="album-info"><h3>Reward to Non-Teaching Staff</h3><p class="album-date">01-05-2025</p></div></div>
-          <div class="album-card" data-album="yoga-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/8DNMZw58/YOGA-DAY-1.jpg" alt="Yoga Day" loading="lazy"></div><div class="album-info"><h3>Yoga Day</h3><p class="album-date">21-06-2025</p></div></div>
-          <div class="album-card" data-album="staff-orientation-khorabar"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Staff" alt="Staff Orientation in Khorabar" loading="lazy"></div><div class="album-info"><h3>Staff Orientation - Khorabar</h3><p class="album-date">27-06-2025</p></div></div>
-          <div class="album-card" data-album="staff-picnic"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Staff+Picnic" alt="Staff Picnic -Bhutwal" loading="lazy"></div><div class="album-info"><h3>Staff Picnic - Bhutwal</h3><p class="album-date">28-06-2025</p></div></div>
-          <div class="album-card" data-album="career-guidance"><div class="album-image-wrapper"><img src="https://i.ibb.co/B10KmGr/SEMINAR-9-min.jpg" alt="Career Plan and Guidance" loading="lazy"></div><div class="album-info"><h3>Career Guidance Program</h3><p class="album-date">05-07-2025</p></div></div>
-          <div class="album-card" data-album="investiture-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/ycZ10Gdp/INVESTITURE-CEROMONY-9.jpg" alt="Investiture Ceremony" loading="lazy"></div><div class="album-info"><h3>Investiture Ceremony</h3><p class="album-date">12-07-2025</p></div></div>
-          <div class="album-card" data-album="raksha-bandhan"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Raksha+Bandhan" alt="Raksha Bandhan" loading="lazy"></div><div class="album-info"><h3>Raksha Bandhan Celebration</h3><p class="album-date">08-08-2025</p></div></div>
-          <div class="album-card" data-album="independence-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/nNj4Lk2L/INDEPENDECE-DAY-1.jpg" alt="Independence Day" loading="lazy"></div><div class="album-info"><h3>Independence Day</h3><p class="album-date">15-08-2025</p></div></div>
-          <div class="album-card" data-album="teachers-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/0ws33Pw/TEACHERS-DAY-1.jpg" alt="Teachers' Day and Onam" loading="lazy"></div><div class="album-info"><h3>Teachers' Day & Onam</h3><p class="album-date">06-09-2025</p></div></div>
-          <div class="album-card" data-album="poetry-competition"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation" loading="lazy"></div><div class="album-info"><h3>Hindi Poetry Competition</h3><p class="album-date">13-09-2025</p></div></div>
-          <div class="album-card" data-album="blood-donation"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation" loading="lazy"></div><div class="album-info"><h3>Blood Donation Camp</h3><p class="album-date">30-09-2025</p></div></div>
-        </div>
-        <button id="scroll-right-btn" class="gallery-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </section>
+        <section id="ebulletin" class="content-section">
+          <h2 class="section-title">E-Bulletin</h2>
+          <p class="section-credit">-Arpit Kumar Gupta XII-B</p>
+          
+          <div class="therese-comprehensive">
+            <div class="therese-header">
+              <h2>Saint Thérèse: The Little Flower</h2>
+              <p>"I will spend my heaven doing good on earth"</p>
+            </div>
+            <div class="therese-grid">
+              <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/6cwn4hQQ/St-Theresyounger.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Youngest Doctor of the Church</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="youngest-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Youngest Doctor of the Church</div><div class="fact-progress-container"><span class="fact-time-display" id="youngest-current-time">0:00</span><div class="fact-progress-bar" id="youngest-progress-bar"></div><span class="fact-time-display" id="youngest-duration">1:30</span></div></div></div></div><audio id="youngest-audio" src="https://media.redcircle.com/2025/9/22/6/b7b9666e-1b40-4c3a-93dc-a5d0391556f7_youngest.mp3"></audio><div class="fact-text-content"><p>Saint Thérèse is considered the youngest Doctor of the Church, having died at age 24 and been named a Doctor of the Church posthumously by Pope John Paul II in 1997. Only the third woman to receive this honor.</p></div></div></div>
+              <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/0Vf0SyzV/thelittleway.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Little Way</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="way-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Little Way</div><div class="fact-progress-container"><span class="fact-time-display" id="way-current-time">0:00</span><div class="fact-progress-bar" id="way-progress-bar"></div><span class="fact-time-display" id="way-duration">1:45</span></div></div></div></div><audio id="way-audio" src="https://media.redcircle.com/2025/9/22/6/eead6d25-6fca-4c38-acde-06c0e6a22f90_little.mp3"></audio><div class="fact-text-content"><p>St. Thérèse developed "The Little Way" - a spiritual path emphasizing performing everyday, ordinary actions with great love, trusting in God's infinite mercy, and accepting one's "littleness" as means of spiritual growth.</p></div></div></div>
+              <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/zVLPtR3W/early.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Early Life & Family</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="life-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Early Life & Family</div><div class="fact-progress-container"><span class="fact-time-display" id="life-current-time">0:00</span><div class="fact-progress-bar" id="life-progress-bar"></div><span class="fact-time-display" id="life-duration">1:20</span></div></div></div></div><audio id="life-audio" src="https://media.redcircle.com/2025/9/22/6/96b7487e-5a6b-495e-8860-6944b7405a1b_earlylife.mp3"></audio><div class="fact-text-content"><p>Born Marie Françoise-Thérèse Martin on January 2, 1873, in Alençon, France. She was the youngest of nine children, four of whom became Carmelite nuns. Her parents, Louis and Zélie Martin, were both declared saints in 2015.</p></div></div></div>
+              <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/Y7yKQXDb/nunat15.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Carmelite Nun at 15</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nun-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Carmelite Nun at 15</div><div class="fact-progress-container"><span class="fact-time-display" id="nun-current-time">0:00</span><div class="fact-progress-bar" id="nun-progress-bar"></div><span class="fact-time-display" id="nun-duration">1:10</span></div></div></div></div><audio id="nun-audio" src="https://media.redcircle.com/2025/9/22/7/948f4e2a-7865-485b-aa36-f4393b254677_nunat15.mp3"></audio><div class="fact-text-content"><p>Despite her young age, Thérèse entered the Carmelite convent at Lisieux at age 15 in 1888. She joined her older sisters Pauline and Marie, and later her sister Céline also joined the same convent.</p></div></div></div>
+              <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/xK8nQnjB/autobiogarphy.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Story of a Soul</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="soul-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Story of a Soul</div><div class="fact-progress-container"><span class="fact-time-display" id="soul-current-time">0:00</span><div class="fact-progress-bar" id="soul-progress-bar"></div><span class="fact-time-display" id="soul-duration">1:35</span></div></div></div></div><audio id="soul-audio" src="https://media.redcircle.com/2025/9/22/7/9acbab64-d1d1-4d49-9b5a-051055b9d58f_death12.mp3"></audio><div class="fact-text-content"><p>Her autobiography "The Story of a Soul" was published after her death and became one of the most widely read spiritual autobiographies. It spread her "Little Way" teachings across the world and contributed to her rapid canonization.</p></div></div></div>
+              <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/RpHrFNXW/death23.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Death & Canonization</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="death-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Death & Canonization</div><div class="fact-progress-container"><span class="fact-time-display" id="death-current-time">0:00</span><div class="fact-progress-bar" id="death-progress-bar"></div><span class="fact-time-display" id="death-duration">1:25</span></div></div></div></div><audio id="death-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio><div class="fact-text-content"><p>Died of tuberculosis on September 30, 1897, at age 24. Canonized by Pope Pius XI in 1925, just 28 years after her death. Her last words were "My God, I love you." She promised to "spend my heaven doing good on earth."</p></div></div></div>
+            </div>
+          </div>
 
-    <div id="gallery-lightbox" class="lightbox-overlay">
-      <span class="lightbox-close">&times;</span>
-      <div class="lightbox-content">
-        <h3 id="lightbox-title">Album Title</h3>
-        <div id="lightbox-images" class="lightbox-images-grid"></div>
-      </div>
-    </div>
-    
-    <!-- NEW: ZOOM VIEWER HTML -->
-    <div id="image-zoom-overlay" class="zoom-overlay">
-        <div class="zoom-controls">
-            <button id="zoom-in-btn" class="zoom-btn" aria-label="Zoom In"><i class="fas fa-plus"></i></button>
-            <button id="zoom-out-btn" class="zoom-btn" aria-label="Zoom Out"><i class="fas fa-minus"></i></button>
-            <button id="zoom-close-btn" class="zoom-btn close-zoom" aria-label="Close">&times;</button>
-        </div>
-        <button id="zoom-prev-btn" class="zoom-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-        <div class="zoom-container">
-            <img id="zoomed-image" src="" alt="Zoomed view">
-        </div>
-        <button id="zoom-next-btn" class="zoom-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
-    </div>
+          <div class="gandhi-comprehensive">
+            <div class="gandhi-header">
+              <h2>Mahatma Gandhi: The Great Soul</h2>
+              <p>"Be the change you wish to see in the world"</p>
+            </div>
+            <div class="gandhi-grid">
+                <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/DncZ1Tf/Screenshot-2025-09-23-115405.png')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>International Day of Non-Violence</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="international-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">International Day of Non-Violence</div><div class="fact-progress-container"><span class="fact-time-display" id="international-current-time">0:00</span><div class="fact-progress-bar" id="international-progress-bar"></div><span class="fact-time-display" id="international-duration">1:40</span></div></div></div></div><audio id="international-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio><div class="fact-text-content"><p>In recognition of his philosophy of non-violence (Ahimsa) and civil disobedience (Satyagraha), the United Nations General Assembly declared October 2nd as the International Day of Non-Violence in 2007.</p></div></div></div>
+                <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/Y4dJXMM2/GANDHI-NOBEL.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Nobel Peace Prize Nominations</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nobel-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Nobel Peace Prize Nominations</div><div class="fact-progress-container"><span class="fact-time-display" id="nobel-current-time">0:00</span><div class="fact-progress-bar" id="nobel-progress-bar"></div><span class="fact-time-display" id="nobel-duration">1:25</span></div></div></div></div><audio id="nobel-audio" src="https://media.redcircle.com/2025/9/22/7/caf481bd-8614-407c-8fb7-2467ad8f2272_voilennce.mp3"></audio><div class="fact-text-content"><p>Mahatma Gandhi was nominated for the Nobel Peace Prize five times (1937, 1938, 1939, 1947, 1948) but never received the award, a decision that has been widely considered a historical oversight.</p></div></div></div>
+                <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/7xMr6041/early.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Early Life & Education</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="education-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Early Life & Education</div><div class="fact-progress-container"><span class="fact-time-display" id="education-current-time">0:00</span><div class="fact-progress-bar" id="education-progress-bar"></div><span class="fact-time-display" id="education-duration">1:30</span></div></div></div></div><audio id="education-audio" src="https://media.redcircle.com/2025/9/22/7/56c9cb4f-1775-45bd-bc33-da2bbdaf1464_bar.mp3"></audio><div class="fact-text-content"><p>Born on October 2, 1869, in Porbandar, Gujarat. Studied law in London and was called to the bar at age 22. Moved to South Africa in 1893 where he first developed his philosophy of non-violent resistance.</p></div></div></div>
+                <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/XZ1NjfNq/dandi.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Dandi Salt March</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="salt-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Dandi Salt March</div><div class="fact-progress-container"><span class="fact-time-display" id="salt-current-time">0:00</span><div class="fact-progress-bar" id="salt-progress-bar"></div><span class="fact-time-display" id="salt-duration">1:50</span></div></div></div></div><audio id="salt-audio" src="https://media.redcircle.com/2025/9/22/7/9f8004db-da51-4009-a63c-37a96c1c30d5_dandi.mp3"></audio><div class="fact-text-content"><p>Led the famous 400 km Salt March from Ashram Ahmedabad to Dandi in 1930, protesting the British salt monopoly. This 24-day march became a pivotal moment in India's independence movement.</p></div></div></div>
+                <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/HpTVMj6z/gandhi-satyagraha.png')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Philosophy of Satyagraha</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="philo-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Philosophy of Satyagraha</div><div class="fact-progress-container"><span class="fact-time-display" id="philo-current-time">0:00</span><div class="fact-progress-bar" id="philo-progress-bar"></div><span class="fact-time-display" id="philo-duration">1:35</span></div></div></div></div><audio id="philo-audio" src="https://media.redcircle.com/2025/9/22/7/a324a473-fe33-4dce-b623-463cb3c48125_namak.mp3"></audio><div class="fact-text-content"><p>Developed the concept of Satyagraha (truth force) - non-violent resistance based on truth, courage, and non-violence. This philosophy influenced leaders worldwide including Martin Luther King Jr. and Nelson Mandela.</p></div></div></div>
+                <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/HTFHXZ01/assasination.webp')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Assassination & Legacy</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="legacy-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Assassination & Legacy</div><div class="fact-progress-container"><span class="fact-time-display" id="legacy-current-time">0:00</span><div class="fact-progress-bar" id="legacy-progress-bar"></div><span class="fact-time-display" id="legacy-duration">1:45</span></div></div></div></div><audio id="legacy-audio" src="https://media.redcircle.com/2025/9/22/7/ba70f327-e789-42a3-81ee-63095990ab86_marna.mp3"></audio><div class="fact-text-content"><p>Assassinated on January 30, 1948, by Nathuram Godse. Despite his tragic end, Gandhi's principles of non-violence, truth, and justice continue to inspire movements for peace and freedom worldwide.</p></div></div></div>
+            </div>
+          </div>
 
+          <div class="dussehra-comprehensive">
+            <div class="dussehra-header">
+              <h2>Dussehra: The Festival of Victory</h2>
+              <p>"Victory of Good over Evil"</p>
+            </div>
+            <div class="dussehra-grid">
+              <div class="dussehra-fact-card"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>A Celebration of a Goddess's Triumph</h4></div><div class="fact-image"><img src="https://i.ibb.co/PGJDvR1k/https://i.ibb.co/PGJDvR1k/god1.jpg" alt="Goddess Durga Victory" loading="lazy" /></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="god1-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">A Celebration of a Goddess's Triumph</div><div class="fact-progress-container"><span class="fact-time-display" id="god1-current-time">0:00</span><div class="fact-progress-bar" id="god1-progress-bar"></div><span class="fact-time-display" id="god1-duration">2:15</span></div></div></div></div><audio id="god1-audio" src="https://media.redcircle.com/2025/9/22/7/2aa64573-12c9-4e3a-99fd-c799ac97184d_god.mp3"></audio><div class="fact-text-content"><p>In many parts of India, particularly in the eastern and southern states, Dussehra, also known as Vijayadashami, is not primarily about Rama's victory. It commemorates the triumph of Goddess Durga over the buffalo demon Mahishasura.</p></div></div></div>
+              <div class="dussehra-fact-card"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Pandavas' Agyatvas and the Shami Tree</h4></div><div class="fact-image"><img src="https://i.ibb.co/TDCbPv9T/https://i.ibb.co/TDCbPv9T/god2.jpg" alt="Pandavas Shami Tree" loading="lazy" /></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="god2-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Pandavas' Agyatvas and the Shami Tree</div><div class="fact-progress-container"><span class="fact-time-display" id="god2-current-time">0:00</span><div class="fact-progress-bar" id="god2-progress-bar"></div><span class="fact-time-display" id="god2-duration">2:30</span></div></div></div></div><audio id="god2-audio" src="https://media.redcircle.com/2025/9/22/7/8a30fe12-56b8-46a3-941d-a3dd882c9444_legend.mp3"></audio><div class="fact-text-content"><p>A fascinating legend from the Mahabharata is associated with Dussehra. After completing their twelve years of exile, the Pandavas had to spend a year in incognito (agyaatvas). They hid their divine weapons in a Shami tree before entering the kingdom of Virata. On Vijayadashami, they retrieved their weapons, worshipped the tree, and revealed their true identity.</p></div></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="videos" class="content-section">
+          <h2 class="section-title">Videos</h2>
+          <div class="content-grid">
+            <div class="content-card"><div class="card-icon"><i class="fas fa-video"></i></div><h3>Event Highlights</h3><p>Capture the magic of our school events through engaging videos.</p></div>
+            <div class="content-card"><div class="card-icon"><i class="fas fa-film"></i></div><h3>Student Stories</h3><p>Personal narratives and experiences shared by our amazing students.</p></div>
+            <div class="content-card"><div class="card-icon"><i class="fas fa-play-circle"></i></div><h3>Educational Content</h3><p>Learning videos and tutorials created by students for students.</p></div>
+          </div>
+        </section>
+
+        <section id="poems" class="content-section">
+          <h2 class="section-title">Poems</h2>
+          <div class="content-grid">
+            <div class="content-card featured-article grid-full-width">
+              <h3>विश्वास तुम जन मन के</h3>
+              <div class="author-credit">- डॉ. शर्वांजली श्रीवास्तव (अध्यापिका हिंदी)</div>
+              <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-7"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">विश्वास तुम जन मन के</div><div class="progress-container"><span class="time-display" id="current-time-7">0:00</span><div class="progress-bar" id="progress-bar-7"></div><span class="time-display" id="duration-7">4:30</span></div></div></div></div><audio id="hindi-poem-audio" src="https://media.redcircle.com/2025/9/22/7/fd0195b8-4289-433a-ab72-49eb38679fea_china.mp3"></audio>
+              <div id="hindi-poem-text" class="animated-text"></div>
+            </div>
+            <div class="content-card featured-article grid-full-width">
+              <h3>कर्मयुद्ध</h3>
+              <div class="author-credit">- श्वेताम्भ पाण्डेय कक्षा XII बी<br>द्वारा स्वरचित काव्य पाठ<br>विजेता - तृतीय पुरस्कार (वरिष्ठ वर्ग)<br>काव्य पाठ प्रतियोगिता<br>आयोजन स्थल: महाराणा प्रताप इंटर कॉलेज<br>अवसर: हिंदी दिवस, 13-09-2025</div>
+              <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-6"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">कर्मयुद्ध</div><div class="progress-container"><span class="time-display" id="current-time-6">0:00</span><div class="progress-bar" id="progress-bar-6"></div><span class="time-display" id="duration-6">3:00</span></div></div></div></div><audio id="karmayuddh-audio" src="https://media.redcircle.com/2025/9/22/7/68f7efe0-519e-47fc-bc9d-99106f323263_karmayudh.mp3"></audio>
+              <div id="karmayuddh-text" class="animated-text"></div>
+            </div>
+            <div class="content-card featured-article grid-full-width">
+              <h3>साहित्य में गांधी</h3>
+              <div class="author-credit">- Amal Verma IX-A<br>Student Editor</div>
+              <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-4"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">साहित्य में गांधी</div><div class="progress-container"><span class="time-display" id="current-time-4">0:00</span><div class="progress-bar" id="progress-bar-4"></div><span class="time-display" id="duration-4">2:30</span></div></div></div></div><audio id="hindi-article-audio" src="https://media.redcircle.com/2025/9/22/7/908e7291-5edf-4733-8e6e-a92a633183ed_gandh123i.mp3"></audio>
+              <div id="hindi-article-text" class="animated-text"></div>
+            </div>
+            <div class="content-card featured-article video-card grid-full-width">
+              <video class="background-video" autoplay muted loop playsinline><source src="gandhi-video.mp4" type="video/mp4"><source src="gandhi-video.webm" type="video/webm"></video>
+              <div class="card-content">
+                <h3>In Their Quiet Way</h3><p style="font-style: italic; margin-bottom: 1rem;">A tribute to Gandhi and Saint Thérèse of Lisieux</p>
+                <div id="poem-text" class="poem-text"></div>
+                <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-2"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">In Their Quiet Way</div><div class="progress-container"><span class="time-display" id="current-time-2">0:00</span><div class="progress-bar" id="progress-bar-2"></div><span class="time-display" id="duration-2">0:47</span></div></div></div></div><audio id="poem-audio" src="https://media.redcircle.com/2025/9/22/7/9c5ff290-ee9d-4af6-a7bf-6b6ba44b6875_ashay.mp3"></audio>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="paintings" class="content-section">
+          <h2 class="section-title">Paintings</h2>
+          <div class="content-grid"><div class="content-card"><div class="card-icon"><i class="fas fa-paint-brush"></i></div><h3>Digital Art</h3><p>Modern digital creations showcasing technical skills and artistic vision.</p></div></div>
+        </section>
+        
+        <section id="gallery" class="content-section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-catalogue-wrapper">
+                <button id="scroll-left-btn" class="gallery-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                <div class="gallery-catalogue-grid">
+                <div class="album-card" data-album="welcome-program"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Welcome Program" loading="lazy"></div><div class="album-info"><h3>Welcome Program</h3><p class="album-date">23-04-2025</p></div></div>
+                <div class="album-card" data-album="initiation-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="Initiation Ceremony" loading="lazy"></div><div class="album-info"><h3>Initiation Ceremony-LKG</h3><p class="album-date">25-04-2025</p></div></div>
+                <div class="album-card" data-album="pope-condolences"><div class="album-image-wrapper"><img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis - Condolences" loading="lazy"></div><div class="album-info"><h3>Pope Francis - Condolences</h3><p class="album-date">26-04-2025</p></div></div>
+                <div class="album-card" data-album="results-declaration"><div class="album-image-wrapper"><img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ICSE, ISC Result Declaration" loading="lazy"></div><div class="album-info"><h3>ICSE, ISC Results</h3><p class="album-date">30-04-2025</p></div></div>
+                <div class="album-card" data-album="non-teaching-reward"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Event" alt="Reward to Non-Teaching staff" loading="lazy"></div><div class="album-info"><h3>Reward to Non-Teaching Staff</h3><p class="album-date">01-05-2025</p></div></div>
+                <div class="album-card" data-album="yoga-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/8DNMZw58/YOGA-DAY-1.jpg" alt="Yoga Day" loading="lazy"></div><div class="album-info"><h3>Yoga Day</h3><p class="album-date">21-06-2025</p></div></div>
+                <div class="album-card" data-album="staff-orientation-khorabar"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Staff" alt="Staff Orientation in Khorabar" loading="lazy"></div><div class="album-info"><h3>Staff Orientation - Khorabar</h3><p class="album-date">27-06-2025</p></div></div>
+                <div class="album-card" data-album="staff-picnic"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Staff+Picnic" alt="Staff Picnic -Bhutwal" loading="lazy"></div><div class="album-info"><h3>Staff Picnic - Bhutwal</h3><p class="album-date">28-06-2025</p></div></div>
+                <div class="album-card" data-album="career-guidance"><div class="album-image-wrapper"><img src="https://i.ibb.co/B10KmGr/SEMINAR-9-min.jpg" alt="Career Plan and Guidance" loading="lazy"></div><div class="album-info"><h3>Career Guidance Program</h3><p class="album-date">05-07-2025</p></div></div>
+                <div class="album-card" data-album="investiture-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/ycZ10Gdp/INVESTITURE-CEROMONY-9.jpg" alt="Investiture Ceremony" loading="lazy"></div><div class="album-info"><h3>Investiture Ceremony</h3><p class="album-date">12-07-2025</p></div></div>
+                <div class="album-card" data-album="raksha-bandhan"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Raksha+Bandhan" alt="Raksha Bandhan" loading="lazy"></div><div class="album-info"><h3>Raksha Bandhan Celebration</h3><p class="album-date">08-08-2025</p></div></div>
+                <div class="album-card" data-album="independence-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/nNj4Lk2L/INDEPENDECE-DAY-1.jpg" alt="Independence Day" loading="lazy"></div><div class="album-info"><h3>Independence Day</h3><p class="album-date">15-08-2025</p></div></div>
+                <div class="album-card" data-album="teachers-day"><div class="album-image-wrapper"><img src="https://i.ibb.co/0ws33Pw/TEACHERS-DAY-1.jpg" alt="Teachers' Day and Onam" loading="lazy"></div><div class="album-info"><h3>Teachers' Day & Onam</h3><p class="album-date">06-09-2025</p></div></div>
+                <div class="album-card" data-album="poetry-competition"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation" loading="lazy"></div><div class="album-info"><h3>Hindi Poetry Competition</h3><p class="album-date">13-09-2025</p></div></div>
+                <div class="album-card" data-album="blood-donation"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation" loading="lazy"></div><div class="album-info"><h3>Blood Donation Camp</h3><p class="album-date">30-09-2025</p></div></div>
+                </div>
+                <button id="scroll-right-btn" class="gallery-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div id="gallery-lightbox" class="lightbox-overlay">
+  <span class="lightbox-close">&times;</span>
+  <div class="lightbox-content">
+    <h3 id="lightbox-title">Album Title</h3>
+    <div id="lightbox-images" class="lightbox-images-grid"></div>
   </div>
-</main>
+</div>
+
+<!-- NEW: ZOOM VIEWER HTML -->
+<div id="image-zoom-overlay" class="zoom-overlay">
+    <div class="zoom-controls">
+        <button id="zoom-in-btn" class="zoom-btn" aria-label="Zoom In"><i class="fas fa-plus"></i></button>
+        <button id="zoom-out-btn" class="zoom-btn" aria-label="Zoom Out"><i class="fas fa-minus"></i></button>
+        <button id="zoom-close-btn" class="zoom-btn close-zoom" aria-label="Close">&times;</button>
+    </div>
+    <button id="zoom-prev-btn" class="zoom-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+    <div class="zoom-container">
+        <img id="zoomed-image" src="" alt="Zoomed view">
+    </div>
+    <button id="zoom-next-btn" class="zoom-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   'use strict';
   
+  // NEW: Sidebar Navigation Logic
+  const navLinks = document.querySelectorAll('.nav-link');
+  const contentSections = document.querySelectorAll('.content-section');
+  const mainContent = document.querySelector('.main-content');
+
+  function switchTab(targetId) {
+    contentSections.forEach(section => {
+      section.classList.remove('active');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+    });
+
+    const targetSection = document.querySelector(targetId);
+    const targetLink = document.querySelector(`a[href="${targetId}"]`);
+
+    if (targetSection) targetSection.classList.add('active');
+    if (targetLink) targetLink.classList.add('active');
+    if (mainContent) mainContent.scrollTop = 0; // Scroll to top of content area on switch
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      switchTab(targetId);
+    });
+  });
+
+  // Set initial active tab
+  switchTab('#articles');
+
+
   // Audio Player Setup Function
   function setupAudioPlayer(audioId, playBtnId, progressBarId, currentTimeId, durationId) {
     const audio = document.getElementById(audioId);
