@@ -167,9 +167,20 @@ body {
     max-width: 1140px;
     margin: 0 auto;
 }
+/* MODIFIED: Hide sections by default */
 .content-section {
     margin-bottom: 4rem;
+    display: none;
 }
+.content-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 
 .section-title {
   font-family: var(--heading-font);
@@ -199,7 +210,8 @@ body {
   transition: all 0.3s ease;
   margin-bottom: 1rem;
 }
-#articles .content-card { cursor: pointer; }
+#articles .content-card, #poems .content-card:not(.video-card) { cursor: pointer; }
+
 
 .content-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.08), 0 0 15px rgba(62, 146, 204, 0.1); }
 
@@ -1038,32 +1050,56 @@ audio { display: none; }
 document.addEventListener('DOMContentLoaded', function() {
   'use strict';
 
-    // --- Horizontal Page Scrolling Logic ---
+    // --- Horizontal Page Scrolling & Section Switching Logic ---
     const pageWrapper = document.querySelector('.page-wrapper');
     const heroNavLinks = document.querySelectorAll('.hero-nav a');
     const contentPage = document.getElementById('content-page');
     const homeLink = document.querySelector('.back-to-home a');
+    const contentSections = document.querySelectorAll('.content-section');
 
-    function scrollToContent(targetId) {
+    // Show articles section by default when content page is loaded/scrolled to
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            if (!document.querySelector('.content-section.active')) {
+                document.getElementById('articles').classList.add('active');
+            }
+        }
+    }, { threshold: 0.1 });
+    observer.observe(contentPage);
+
+
+    function switchContentSection(targetId) {
+        // Scroll the main page wrapper horizontally to the content page
         pageWrapper.scrollTo({
             left: contentPage.offsetLeft,
             behavior: 'smooth'
         });
         
-        // After scrolling to the content page, scroll to the specific section
+        // Use a short delay to allow scroll to start before switching content
         setTimeout(() => {
-            const targetElement = document.querySelector(targetId);
-            if(targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start'});
+            let targetFound = false;
+            contentSections.forEach(section => {
+                if ('#' + section.id === targetId) {
+                    section.classList.add('active');
+                    targetFound = true;
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+            // Fallback for safety
+            if (!targetFound) {
+                 document.getElementById('articles').classList.add('active');
             }
-        }, 500); // Delay to allow the page scroll to finish
+            // Scroll content page to top
+            contentPage.scrollTop = 0;
+        }, 100);
     }
 
     heroNavLinks.forEach(link => {
         link.addEventListener('click', e => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
-            scrollToContent(targetId);
+            switchContentSection(targetId);
         });
     });
 
@@ -1334,8 +1370,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function closeLightbox() {
     lightbox.style.display = 'none';
-    if(zoomOverlay.style.display === 'none') {
-        document.body.style.overflow = 'hidden'; // Keep body scroll locked if slide is open
+    if(zoomOverlay.style.display === 'none' && !articleSlide.classList.contains('visible')) {
+        document.body.style.overflow = 'hidden'; 
     }
   }
 
@@ -1385,9 +1421,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function closeZoomViewer() {
       zoomOverlay.style.display = 'none';
-      if(lightbox.style.display === 'none' && articleSlide.classList.contains('visible')) {
+      if(lightbox.style.display === 'flex') {
          document.body.style.overflow = 'hidden';
-      } else if (lightbox.style.display === 'none') {
+      } else if (!articleSlide.classList.contains('visible')) {
          document.body.style.overflow = 'hidden';
       }
   }
@@ -1474,7 +1510,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- NEW: ARTICLE SLIDE LOGIC ---
     const articleSlide = document.getElementById('article-slide');
-    const articleCards = document.querySelectorAll('#articles .content-card');
+    const allClickableCards = document.querySelectorAll('#articles .content-card, #poems .content-card:not(.video-card)');
     const slideTitle = document.getElementById('slide-title');
     const slideAuthor = document.getElementById('slide-author');
     const slideAudioContainer = document.getElementById('slide-audio-player-container');
@@ -1489,7 +1525,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const title = card.querySelector('h3').textContent;
         const author = card.querySelector('.author-credit').innerHTML;
-        const audioPlayerHTML = card.querySelector('.audio-player').outerHTML;
+        const audioPlayerEl = card.querySelector('.audio-player');
+        const audioPlayerHTML = audioPlayerEl ? audioPlayerEl.outerHTML : '';
         
         const textContainer = card.querySelector('.animated-text');
         const textId = textContainer ? textContainer.id : null;
@@ -1498,11 +1535,10 @@ document.addEventListener('DOMContentLoaded', function() {
         slideTitle.textContent = title;
         slideAuthor.innerHTML = author;
         slideAudioContainer.innerHTML = audioPlayerHTML;
-        slideTextContent.textContent = text; // Set raw text first
+        slideTextContent.textContent = text; 
         
-        const newAudioEl = slideAudioContainer.querySelector('audio');
-        if (newAudioEl) {
-            // Re-setup the audio player for the slide
+        if(audioPlayerHTML) {
+            const newAudioEl = slideAudioContainer.querySelector('audio');
             const slideAudioPlayer = setupAudioPlayer(
                 newAudioEl.id,
                 slideAudioContainer.querySelector('.play-btn').id,
@@ -1519,7 +1555,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         articleSlide.classList.add('visible');
-        document.body.style.overflow = 'hidden';
+        pageWrapper.style.overflowX = 'hidden';
     };
 
     const closeArticleSlide = () => {
@@ -1528,14 +1564,11 @@ document.addEventListener('DOMContentLoaded', function() {
             currentSlideAudio = null;
         }
         articleSlide.classList.remove('visible');
-        document.body.style.overflow = 'hidden'; // Keep body scroll locked
+        pageWrapper.style.overflowX = 'scroll';
     };
 
-    articleCards.forEach(card => {
-        // Exclude video card from this logic
-        if (!card.classList.contains('video-card')) {
-            card.addEventListener('click', () => openArticleSlide(card));
-        }
+    allClickableCards.forEach(card => {
+        card.addEventListener('click', () => openArticleSlide(card));
     });
 
     slideCloseBtn.addEventListener('click', closeArticleSlide);
