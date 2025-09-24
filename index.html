@@ -562,8 +562,105 @@ audio { display: none; }
   overflow-y: auto;
   padding: 0 1rem;
 }
-.lightbox-images-grid img { width: 100%; height: auto; border-radius: 8px; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
-.lightbox-images-grid img:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+.lightbox-images-grid .grid-image-container {
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.lightbox-images-grid img { 
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease; 
+}
+.lightbox-images-grid .grid-image-container:hover img { 
+  transform: scale(1.05); 
+}
+
+/* =================================================== */
+/* START: ZOOM VIEWER STYLES */
+/* =================================================== */
+.zoom-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInScaleUp 0.3s ease-out;
+}
+.zoom-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.zoom-container img {
+  max-width: 90%;
+  max-height: 90%;
+  transition: transform 0.2s ease;
+  cursor: grab;
+  user-select: none; /* Prevent text selection */
+  -webkit-user-drag: none; /* Prevent image ghost dragging */
+}
+.zoom-container img.is-zoomed { cursor: grab; }
+.zoom-container img.is-panning { cursor: grabbing; }
+
+.zoom-controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2010;
+}
+.zoom-btn {
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: none;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+.zoom-btn:hover { background: #fff; transform: scale(1.1); }
+.zoom-btn.close-zoom { font-size: 1.8rem; line-height: 1; }
+
+.zoom-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  z-index: 2010;
+}
+.zoom-nav:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+.zoom-nav.prev { left: 20px; }
+.zoom-nav.next { right: 20px; }
+
+/* =================================================== */
+/* END: ZOOM VIEWER STYLES */
+/* =================================================== */
+
 /* =================================================== */
 /* END: ANIMATED GALLERY STYLES */
 /* =================================================== */
@@ -599,6 +696,9 @@ audio { display: none; }
   }
   .gallery-arrow.left { left: 5px; }
   .gallery-arrow.right { right: 5px; }
+
+  .zoom-nav.prev { left: 10px; }
+  .zoom-nav.next { right: 10px; }
 }
 /* =================================================== */
 /* END: MOBILE-SPECIFIC OPTIMIZATIONS */
@@ -769,7 +869,7 @@ audio { display: none; }
         <button id="scroll-left-btn" class="gallery-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
         <div class="gallery-catalogue-grid">
           <div class="album-card" data-album="welcome-program"><div class="album-image-wrapper"><img src="https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg" alt="Welcome Program" loading="lazy"></div><div class="album-info"><h3>Welcome Program</h3><p class="album-date">23-04-2025</p></div></div>
-          <div class="album-card" data-album="initiation-ceremony"><div class="album-image-wrapper"><img src="" alt="Initiation Ceremony" loading="lazy"></div><div class="album-info"><h3>Initiation Ceremony-LKG</h3><p class="album-date">25-04-2025</p></div></div>
+          <div class="album-card" data-album="initiation-ceremony"><div class="album-image-wrapper"><img src="https://i.ibb.co/zhTPyQW0/icseresults.jpg" alt="Initiation Ceremony" loading="lazy"></div><div class="album-info"><h3>Initiation Ceremony-LKG</h3><p class="album-date">25-04-2025</p></div></div>
           <div class="album-card" data-album="pope-condolences"><div class="album-image-wrapper"><img src="https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg" alt="Pope Francis - Condolences" loading="lazy"></div><div class="album-info"><h3>Pope Francis - Condolences</h3><p class="album-date">26-04-2025</p></div></div>
           <div class="album-card" data-album="results-declaration"><div class="album-image-wrapper"><img src="https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg" alt="ICSE, ISC Result Declaration" loading="lazy"></div><div class="album-info"><h3>ICSE, ISC Results</h3><p class="album-date">30-04-2025</p></div></div>
           <div class="album-card" data-album="non-teaching-reward"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=LFS+Event" alt="Reward to Non-Teaching staff" loading="lazy"></div><div class="album-info"><h3>Reward to Non-Teaching Staff</h3><p class="album-date">01-05-2025</p></div></div>
@@ -795,6 +895,21 @@ audio { display: none; }
         <div id="lightbox-images" class="lightbox-images-grid"></div>
       </div>
     </div>
+    
+    <!-- NEW: ZOOM VIEWER HTML -->
+    <div id="image-zoom-overlay" class="zoom-overlay">
+        <div class="zoom-controls">
+            <button id="zoom-in-btn" class="zoom-btn" aria-label="Zoom In"><i class="fas fa-plus"></i></button>
+            <button id="zoom-out-btn" class="zoom-btn" aria-label="Zoom Out"><i class="fas fa-minus"></i></button>
+            <button id="zoom-close-btn" class="zoom-btn close-zoom" aria-label="Close">&times;</button>
+        </div>
+        <button id="zoom-prev-btn" class="zoom-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <div class="zoom-container">
+            <img id="zoomed-image" src="" alt="Zoomed view">
+        </div>
+        <button id="zoom-next-btn" class="zoom-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
   </div>
 </main>
 
@@ -944,7 +1059,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'prayer-text', audio: allAudioPlayers[0], content: `Dear St. Little Flower, Please pick me a rose from the "Heavenly Garden" and send it to me with a message of your love. Please ask God to bless me and everyone. Tell Him that I will love Him more and more each day. Amen.` },
         { id: 'gandhi-article', audio: allAudioPlayers[1], content: `On Gandhi Jayanti, we reflect on a man whose ideas are more relevant today than ever. In a world full of conflict and consumerism, Gandhiji's principles of non-violence, simplicity, and self-reliance offer a powerful roadmap for a better future. His message of non-violence shows us that dialogue and tolerance are the true path to resolving conflict. His call for simple living reminds us to choose sustainability over endless consumption. His vision of Sarvodaya- the welfare of all—urges us to fight for justice and equality for everyone. Gandhiji's timeless values are a guiding light, inspiring us to build a more peaceful and just world. As he once said, "The best way to find yourself is to lose yourself in the service of others."` },
         { id: 'animated-article', audio: allAudioPlayers[2], content: `In an age filled with noise and constant distractions, the lives of certain individuals remind us of values that never fade. Among them are Mahatma Gandhi and St. Therese of Little Flower. Though they lived in different worlds and walked different paths, both carried within them treasures that can guide our generation—truth, compassion, and simplicity. For Mahatma Gandhi, truth was life's highest principle. He lived with the belief that honesty and nonviolence were stronger than any weapon. His compassion embraced every human being, and his simple lifestyle proved that greatness doesn't come from wealth but from integrity and courage. St. Therese of Lisieux taught the "Little way"; finding holiness in ordinary acts done with love can have extraordinary meaning. For her, simplicity was a path to God and humanity—smiling through suffering, offering small sacrifices, and finding beauty in everyday life. Together they remind us that personal transformation begins with small choices: to speak truthfully, to act kindly, and to live simply. When these values meet, they soften hearts and heal communities. If we carry these lessons in our daily lives, we too can help change the world.` },
-        { id: 'hindi-article-text', audio: allAudioPlayers[4], content: `भारतीय स्वतंत्रता संग्राम के पहले चरण में हिंदी साहित्य मुख्यतः वीर रस और जागरण का माध्यम था। कविताएँ और लेख अधिकतर शौर्यगान व तत्कालीन क्रांतिकारी भावनाओं से भरे हुए थे। गांधीजी ने सत्य, अहिंसा और स्वदेशी को केवल राजनीतिक अस्त्र ही नहीं, बल्कि जीवन का दर्शन बनाया। इन आदर्शों ने साहित्यकारों और कवियों की लेखनी को गहराई से प्रभावित किया। राष्ट्रकवि मैथिलीशरण गुप्त की कविता "नर हो, न निराश करो मन को" गांधीवादी संयम का रूप है। गुप्त ने लिखा— "नर हो, न निराश करो मन को, कुछ काम करो, कुछ काम करो।" यह पंक्तियाँ गांधीजी के कर्मयोग और आत्मबल की शिक्षा से मेल खाती हैं। रामधारी सिंह 'दिनकर' ने गांधीजी को इन शब्दों में याद किया - "गांधी तूफ़ान के पिता और बाजों के भी बाज थे, क्योंकि वे नीरवता की आवाज थे।" दिनकर की इन पंक्तियों में गांधीजी का वह स्वरूप उभरता है, जिसमें वे एक ओर संघर्ष और तूफ़ान खड़ा करने वाले थे, तो दूसरी ओर अहिंसा और शांति की सबसे प्रबल आवाज भी। सुभद्राकुमारी चौहान की कविताओं में भी गांधीवादी आदर्शों की छाया दिखती है। वे गांधीजी के असहयोग आंदोलन में भाग लेने वाली वह प्रथम महिला बनीं और इसी चक्कर में वे दो बार जेल भी गई थीं। गांधीजी ਨੇ स्वयं कहा था कि "साहित्य को समाज का दर्पण होना चाहिए।" यही कारण है कि उनके समय का हिंदी साहित्य केवल देशभक्ति नहीं, बल्कि सत्य, अहिंसा और स्वदेशी জীবন-शैली का जीवंत दस्तावेज बन गया।` },
+        { id: 'hindi-article-text', audio: allAudioPlayers[4], content: `भारतीय स्वतंत्रता संग्राम के पहले चरण में हिंदी साहित्य मुख्यतः वीर रस और जागरण का माध्यम था। कविताएँ और लेख अधिकतर शौर्यगान व तत्कालीन क्रांतिकारी भावनाओं से भरे हुए थे। गांधीजी ने सत्य, अहिंसा और स्वदेशी को केवल राजनीतिक अस्त्र ही नहीं, बल्कि जीवन का दर्शन बनाया। इन आदर्शों ने साहित्यकारों और कवियों की लेखनी को गहराई से प्रभावित किया। राष्ट्रकवि मैथिलीशरण गुप्त की कविता "नर हो, न निराश करो मन को" गांधीवादी संयम का रूप है। गुप्त ने लिखा— "नर हो, न निराश करो मन को, कुछ काम करो, कुछ काम करो।" यह पंक्तियाँ गांधीजी के कर्मयोग और आत्मबल की शिक्षा से मेल खाती हैं। रामधारी सिंह 'दिनकर' ने गांधीजी को इन शब्दों में याद किया - "गांधी तूफ़ान के पिता और बाजों के भी बाज थे, क्योंकि वे नीरवता की आवाज थे।" दिनकर की इन पंक्तियों में गांधीजी का वह स्वरूप उभरता है, जिसमें वे एक ओर संघर्ष और तूफ़ान खड़ा करने वाले थे, तो दूसरी ओर अहिंसा और शांति की सबसे प्रबल आवाज भी। सुभद्राकुमारी चौहान की कविताओं में भी गांधीवादी आदर्शों की छाया दिखती है। वे गांधीजी के असहयोग आंदोलन में भाग लेने वाली वह प्रथम महिला बनीं और इसी चक्कर में वे दो बार जेल भी गई थीं। गांधीजी ਨੇ स्वयं कहा था कि "साहित्य को समाज का दर्पण होना चाहिए।" यही कारण है कि उनके समय का हिंदी साहित्य केवल देशभक्ति नहीं, बल्कि सत्य, अहिंसा और स्वदेशी जीवन-शैली का जीवंत दस्तावेज बन गया।` },
         { id: 'karmayuddh-text', audio: allAudioPlayers[5], content: `कब तक कर्म को अपने तुम टालते रहोगे, कब तक जीवन के सुखी पल तुम काटते रहोगे? कब तक हार का तुम अभ्यास करते रहोगे? कब तक संसार के तानों को तुम सुनते रहोगे? कब तक अपने अवगुणों को बातों से भरते रहोगे? अरे! चल पड़ो उस राह पर जो ले चले आकाश पर, चुप बैठो तुम मत अब यहाँ इस दुनिया की आवाज़ पर। कर चलो नर्दन अपने कर्मों की आवाज़ से, मत दबो समाज के इस कटाक्षों के दबावों से। कर चलो कुछ ऐसा लोग जल उठें जलन से, लड़ चलो इस दुनिया के स्वार्थी चलन से। दिखा दो उनको तुम कोई गुजरा हुआ वक्त नहीं, जान जाएँ सब कि तुम-sa न कोई शख्स कहीं। हार मानना न तुम इस पथ पर चलते समय कभी, केशव को याद रखना तुम हारोगे न फिर कभी। घोर विपदाओं का समय अब छा गया है, घोर विपदाओं का समय अब छा गया है। लड़ने को तैयार हो, युद्ध का वक्त आ गया है। युद्ध का वक्त आ गया है।` },
         { id: 'poem-text', audio: allAudioPlayers[3], content: `They did not lead with power, they led with presence. They did not sit on thrones, they knelt in silence. A rosary… a spinning wheel… threads and thorns, patience and prayer. She loved in silence, he fasted in truth. She bore the hidden flame, he bore the steadfast light. Without lifting a weapon, without raising a voice, they changed the world. Without pride, without noise, they changed the world. Their lives were answers, not arguments. Their days were prayers, not proclamations. Their steps were songs, not speeches. And in the hush they left behind, we still find— the fragrance of faith, the whisper of hope, the eternal shape of love.` },
         { id: 'hindi-poem-text', audio: allAudioPlayers[6], content: `विश्वास तुम जन मन के तुमने संघर्ष चुना, तुमने चुना नेह, जन - जन का। तुम बने आत्मबल तुमने लौटाई आत्मा, भारत की.... तुमने माना अहिंसा परमो धर्म:। जब लगी थी दृष्टि सम्पूर्ण विश्व की, तुम लगे जागरण से, तुम लगे विश्वास से, तुम जाग पड़े आत्माओं में, तुम बन गए, न्याय सबके मन के। वो दुर्बल सी काया, पर विश्वास बड़ा था, वो आधी धोती, पर उसका विस्तार बड़ा था, तुम्हारी लाठी की आवाज़ में आदर्श का पहरा खड़ा था, तुमने जो कहा, किया.... आत्मा कीतल गहराइयों तक। स्वातंत्र्य की सुगंध घनीभूत थी, राहों में दांडी, और मन में करके मरने की चाह, कर्म बड़े और छोटी सी काया, उन झुर्रियों में अनुभव और दृढ़ संकल्प समाया था। तुम मन हो तुम जन हो तुम आत्मा हो तुम भरत सरीखे भारत के अग्रदूत है नमन तुम्हें, हे बापू! तुम जन मन के विश्वास बने तुम जन- जन के।` }
@@ -970,7 +1085,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // --- Gallery Data & Logic ---
   const galleryData = {
     'welcome-program': { title: "Welcome Program", images: ['https://i.ibb.co/wZWQCtDF/FERWELL-FR-GREOGERY-2.jpg', 'https://i.ibb.co/4n17dhRP/FERWELL-FR-GREOGERY-1.jpg'] },
-    'initiation-ceremony': { title: "Initiation Ceremony - LKG", images: [] },
+    'initiation-ceremony': { title: "Initiation Ceremony - LKG", images: ['https://i.ibb.co/zhTPyQW0/icseresults.jpg'] },
     'pope-condolences': { title: "Pope Francis - Condolences", images: ['https://i.ibb.co/39jbgTvq/POPE-1-Copy.jpg', 'https://i.ibb.co/HLD0TYN4/POPE-2.jpg'] },
     'results-declaration': { title: "ICSE, ISC Result Declaration", images: ['https://i.ibb.co/0yt9ZR9M/Whats-App-Image-2025-09-23-at-12-19-44-9251a4fa.jpg', 'https://i.ibb.co/zhTPyQW0/icseresults.jpg'] },
     'non-teaching-reward': { title: "Reward to Non-Teaching Staff", images: ['https://via.placeholder.com/800x600.png?text=LFS+Staff+Reward'] },
@@ -1040,12 +1155,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!album) return;
     lightboxTitle.textContent = album.title;
     lightboxImagesContainer.innerHTML = '';
-    album.images.forEach(imageUrl => {
+    album.images.forEach((imageUrl, index) => {
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'grid-image-container';
+      imgContainer.onclick = () => openZoomViewer(album.images, index);
+      
       const img = document.createElement('img');
       img.src = imageUrl;
-      img.alt = album.title;
+      img.alt = `${album.title} - Image ${index + 1}`;
       img.loading = 'lazy';
-      lightboxImagesContainer.appendChild(img);
+      
+      imgContainer.appendChild(img);
+      lightboxImagesContainer.appendChild(imgContainer);
     });
     lightbox.style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -1061,6 +1182,131 @@ document.addEventListener('DOMContentLoaded', function() {
     lightboxCloseBtn.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   }
+
+  // --- NEW: ZOOM VIEWER LOGIC ---
+  const zoomOverlay = document.getElementById('image-zoom-overlay');
+  const zoomImage = document.getElementById('zoomed-image');
+  const zoomInBtn = document.getElementById('zoom-in-btn');
+  const zoomOutBtn = document.getElementById('zoom-out-btn');
+  const zoomCloseBtn = document.getElementById('zoom-close-btn');
+  const zoomPrevBtn = document.getElementById('zoom-prev-btn');
+  const zoomNextBtn = document.getElementById('zoom-next-btn');
+
+  let currentZoomAlbum = [];
+  let currentZoomIndex = 0;
+  let scale = 1;
+  let panning = false;
+  let pointX = 0, pointY = 0;
+  let start = { x: 0, y: 0 };
+  let initialPinchDistance = null;
+
+  function setTransform() {
+    zoomImage.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+    zoomImage.classList.toggle('is-zoomed', scale > 1);
+  }
+
+  function resetZoom() {
+      scale = 1;
+      pointX = 0;
+      pointY = 0;
+      setTransform();
+  }
+
+  function openZoomViewer(album, index) {
+      currentZoomAlbum = album;
+      currentZoomIndex = index;
+      zoomImage.src = currentZoomAlbum[currentZoomIndex];
+      resetZoom();
+      zoomOverlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Also hide overflow for main body
+  }
+
+  function closeZoomViewer() {
+      zoomOverlay.style.display = 'none';
+      if(lightbox.style.display === 'none') { // only restore if lightbox is also closed
+         document.body.style.overflow = 'auto';
+      }
+  }
+
+  function showNextImage() {
+      currentZoomIndex = (currentZoomIndex + 1) % currentZoomAlbum.length;
+      zoomImage.src = currentZoomAlbum[currentZoomIndex];
+      resetZoom();
+  }
+
+  function showPrevImage() {
+      currentZoomIndex = (currentZoomIndex - 1 + currentZoomAlbum.length) % currentZoomAlbum.length;
+      zoomImage.src = currentZoomAlbum[currentZoomIndex];
+      resetZoom();
+  }
+  
+  zoomInBtn.addEventListener('click', () => { scale += 0.2; setTransform(); });
+  zoomOutBtn.addEventListener('click', () => { scale = Math.max(1, scale - 0.2); setTransform(); });
+  zoomCloseBtn.addEventListener('click', closeZoomViewer);
+  zoomNextBtn.addEventListener('click', showNextImage);
+  zoomPrevBtn.addEventListener('click', showPrevImage);
+
+  zoomImage.addEventListener('mousedown', (e) => {
+    if (scale <= 1) return;
+    e.preventDefault();
+    panning = true;
+    start = { x: e.clientX - pointX, y: e.clientY - pointY };
+    zoomImage.classList.add('is-panning');
+  });
+
+  window.addEventListener('mouseup', () => {
+    panning = false;
+    zoomImage.classList.remove('is-panning');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!panning) return;
+    pointX = e.clientX - start.x;
+    pointY = e.clientY - start.y;
+    setTransform();
+  });
+
+  // Mobile Touch Events
+  function getDistance(p1, p2) {
+      let dx = p1.clientX - p2.clientX;
+      let dy = p1.clientY - p2.clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  zoomImage.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1 && scale > 1) {
+          e.preventDefault();
+          panning = true;
+          start = { x: e.touches[0].clientX - pointX, y: e.touches[0].clientY - pointY };
+          zoomImage.classList.add('is-panning');
+      } else if (e.touches.length === 2) {
+          initialPinchDistance = getDistance(e.touches[0], e.touches[1]);
+      }
+  });
+
+  zoomImage.addEventListener('touchend', () => {
+      panning = false;
+      initialPinchDistance = null;
+      zoomImage.classList.remove('is-panning');
+  });
+
+  zoomImage.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1 && panning) {
+          e.preventDefault();
+          pointX = e.touches[0].clientX - start.x;
+          pointY = e.touches[0].clientY - start.y;
+          setTransform();
+      } else if (e.touches.length === 2 && initialPinchDistance) {
+          e.preventDefault();
+          let newDistance = getDistance(e.touches[0], e.touches[1]);
+          scale *= newDistance / initialPinchDistance;
+          scale = Math.max(1, scale); // Min scale is 1
+          initialPinchDistance = newDistance;
+          setTransform();
+      }
+  });
+
+
 });
 </script>
 
