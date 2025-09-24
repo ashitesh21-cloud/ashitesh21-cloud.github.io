@@ -1260,6 +1260,30 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFactAudioPlayer('god1-audio', 'god1-play-btn', 'god1-progress-bar', 'god1-current-time', 'god1-duration', 'var(--dussehra-red)'),
     setupFactAudioPlayer('god2-audio', 'god2-play-btn', 'god2-progress-bar', 'god2-current-time', 'god2-duration', 'var(--dussehra-red)')
   ].filter(p => p);
+  // Add text synchronization for articles and poems
+  const textSyncElements = [
+    { audioId: 'hindi-shastri-audio', textId: 'hindi-shastri-text' },
+    { audioId: 'peach-tree-audio', textId: 'peach-tree-text' },
+    { audioId: 'shastri-audio', textId: 'shastri-article-text' },
+    { audioId: 'prayer-audio', textId: 'prayer-text' },
+    { audioId: 'gandhi-audio', textId: 'gandhi-article' },
+    { audioId: 'audio', textId: 'animated-article' },
+    { audioId: 'hindi-poem-audio', textId: 'hindi-poem-text' },
+    { audioId: 'karmayuddh-audio', textId: 'karmayuddh-text' },
+    { audioId: 'hindi-article-audio', textId: 'hindi-article-text' },
+    { audioId: 'poem-audio', textId: 'poem-text' }
+  ];
+
+  // Setup text synchronization for each audio-text pair
+  textSyncElements.forEach(({ audioId, textId }) => {
+    const audioElement = document.getElementById(audioId);
+    const textContainer = document.getElementById(textId);
+    const textContent = textContents[textId];
+    
+    if (audioElement && textContainer && textContent) {
+      setupAudioText(textContainer, audioElement, textContent);
+    }
+  });
   
   // Defer heavy text-sync setup to prevent blocking initial render
   const textContents = {
