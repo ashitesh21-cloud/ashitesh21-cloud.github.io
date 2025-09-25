@@ -138,6 +138,12 @@ body {
   background: #f8f9fa;
 }
 
+.main-content.paintings-view {
+  padding: 0;
+  background: url('https://i.ibb.co/Mkd5VF0H/Whats-App-Image-2025-09-25-at-13-06-48-9e86cd72.jpg') center center/cover;
+  background-attachment: fixed;
+}
+
 .back-to-home {
     position: sticky;
     top: 20px;
@@ -921,10 +927,7 @@ audio { display: none; }
 
 #paintings {
     position: relative;
-    background-image: none;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: transparent;
     color: white;
     min-height: 100vh; /* This ensures the background covers the full screen height */
     will-change: transform;
@@ -1307,6 +1310,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pageWrapper = document.querySelector('.page-wrapper');
     const heroNavLinks = document.querySelectorAll('.hero-nav a');
     const contentPage = document.getElementById('content-page');
+    const mainContent = document.querySelector('.main-content');
     const homeLink = document.querySelector('.back-to-home a');
     const contentSections = document.querySelectorAll('.content-section');
     const floatingNav = document.getElementById('floating-nav');
@@ -1356,6 +1360,13 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
         
+        // Toggle background for paintings section
+        if (targetId === '#paintings') {
+            mainContent.classList.add('paintings-view');
+        } else {
+            mainContent.classList.remove('paintings-view');
+        }
+
         // Use a short delay to allow scroll to start before switching content
         setTimeout(() => {
             let targetFound = false;
@@ -2066,3 +2077,5 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
     </body>
 </html>
+
+
