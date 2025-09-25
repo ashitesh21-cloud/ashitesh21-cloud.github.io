@@ -917,6 +917,49 @@ audio { display: none; }
 /* =================================================== */
 /* END: MOBILE-SPECIFIC OPTIMIZATIONS */
 /* =================================================== */
+
+#paintings {
+    position: relative;
+    background-image: url('https://i.ibb.co/Mkd5VF0H/Whats-App-Image-2025-09-25-at-13-06-48-9e86cd72.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    padding: 4rem 2.5rem;
+    will-change: transform;
+}
+#paintings::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+#paintings > * {
+    position: relative;
+    z-index: 2;
+}
+
+#paintings .section-title {
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    border-bottom: 3px solid #fff;
+}
+#paintings .paintings-grid img,
+#paintings .paintings-long-grid img {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+    #paintings {
+        background-attachment: scroll; /* Disable fixed background on mobile for performance */
+    }
+}
+
 </style>
 
     <style>
