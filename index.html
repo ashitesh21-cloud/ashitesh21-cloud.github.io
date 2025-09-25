@@ -921,7 +921,7 @@ audio { display: none; }
 
 #paintings {
     position: relative;
-    background-image: url('https://i.ibb.co/Mkd5VF0H/Whats-App-Image-2025-09-25-at-13-06-48-9e86cd72.jpg');
+    background-image: none;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -981,6 +981,25 @@ audio { display: none; }
 }
 .paintings-long-grid .grid-image-container {
     max-width: 300px;
+}
+
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+.gallery-grid img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.gallery-grid img:hover {
+  transform: scale(1.05);
 }
 
 </style>
@@ -1183,28 +1202,9 @@ audio { display: none; }
                 </section>
 
                 <section id="paintings" class="content-section">
-                    <div class="paintings-content">
-                      <h2 class="section-title">Paintings</h2>
-                      <div class="paintings-grid">
-                          <div class="grid-image-container"><img src="https://i.ibb.co/XrFRDnhm/Whats-App-Image-2025-09-25-at-10-42-59-5ddc4c53.jpg" alt="Digital Art 1" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/ynTYWYdj/Whats-App-Image-2025-09-25-at-10-42-59-fe32ec7d.jpg" alt="Digital Art 2" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/0RTkGqJT/Whats-App-Image-2025-09-25-at-10-43-43-2faace4f.jpg" alt="Digital Art 4" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/TDwDvZb8/Whats-App-Image-2025-09-25-at-10-43-44-0f765733.jpg" alt="Digital Art 5" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/DHHXKGCD/Whats-App-Image-2025-09-25-at-10-43-44-07f0c119.jpg" alt="Digital Art 6" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/xSzbgkmX/Whats-App-Image-2025-09-25-at-10-43-45-3f6cade8.jpg" alt="Digital Art 7" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/zHTN5bBc/Whats-App-Image-2025-09-25-at-10-43-55-3986b720.jpg" alt="Digital Art 8" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/9m8stw0h/Whats-App-Image-2025-09-25-at-10-43-55-b67ab850.jpg" alt="Digital Art 9" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/HD18k4Gb/Whats-App-Image-2025-09-25-at-10-43-56-9e8f944e.jpg" alt="Digital Art 10" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/SDjP2q0v/Whats-App-Image-2025-09-25-at-10-43-57-5ef57689.jpg" alt="Digital Art 11" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/JwHHY036/Whats-App-Image-2025-09-25-at-10-43-58-f568effa.jpg" alt="Digital Art 12" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/35qZH1n2/Whats-App-Image-2025-09-25-at-10-43-59-56aea764.jpg" alt="Digital Art 13" loading="lazy"></div>
-                          <div class="grid-image-container"><img src="https://i.ibb.co/BXHjQV1/Whats-App-Image-2025-09-25-at-10-44-04-b0788d87.jpg" alt="Digital Art 14" loading="lazy"></div>
-                      </div>
-                      <div class="paintings-long-grid">
-                          <div class="grid-image-container"><img src="https://i.ibb.co/VWMhPWQ6/Whats-App-Image-2025-09-25-at-10-43-09-c29eee1c.jpg" alt="Digital Art 3" loading="lazy"></div>
-                      </div>
-                    </div>
-                </section>
+    <h2 class='section-title'>Paintings</h2>
+    <p class='section-description'>Student artwork and creative expressions</p>
+</section>
                 
                 <section id="gallery" class="content-section">
                     <h2 class="section-title">Gallery</h2>
