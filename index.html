@@ -924,12 +924,17 @@ audio { display: none; }
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     color: white;
     padding: 4rem 2.5rem;
+    min-height: 80vh;
+    width: 100%;
     will-change: transform;
-    display: flex; /* Added flexbox to center content */
+    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    margin: 0 -2.5rem;
 }
 #paintings::before {
     content: '';
@@ -959,8 +964,23 @@ audio { display: none; }
 
 @media (max-width: 768px) {
     #paintings {
-        background-attachment: scroll; /* Disable fixed background on mobile for performance */
-    }
+    position: relative;
+    background-image: url('https://i.ibb.co/Mkd5VF0H/Whats-App-Image-2025-09-25-at-13-06-48-9e86cd72.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 4rem 2.5rem;
+    min-height: 80vh;
+    width: 100%;
+    will-change: transform;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 -2.5rem;
+}
 }
 .paintings-grid {
     display: grid;
@@ -978,6 +998,29 @@ audio { display: none; }
 }
 .paintings-long-grid .grid-image-container {
     max-width: 300px;
+}
+
+
+#paintings > * {
+    position: relative;
+    z-index: 2;
+}
+
+#paintings .section-title {
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    border-bottom: 3px solid #fff;
+    margin-bottom: 2rem;
+}
+
+/* Mobile fixes */
+@media (max-width: 768px) {
+    #paintings {
+        background-attachment: scroll;
+        margin: 0 -1.5rem;
+        padding: 3rem 1.5rem;
+        min-height: 70vh;
+    }
 }
 
 </style>
