@@ -459,6 +459,25 @@ audio { display: none; }
 
 /* Grid Layouts */
 .article-list, .content-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+.paintings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+/* New style for images within the paintings grid */
+.paintings-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.paintings-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
 .grid-full-width { grid-column: 1 / -1; }
 @media (min-width: 481px) and (max-width: 768px) { .content-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 769px) { .content-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -884,7 +903,7 @@ audio { display: none; }
                             <div class="content-card featured-article">
                             <h3>The Boy Who Loved a Peach Tree</h3>
                             <div class="author-credit">-Suryansh Pandey Class VI B</div>
-                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-10"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Boy Who Loved a Peach Tree</div><div class="progress-container"><span class="time-display" id="current-time-10">0:00</span><div class="progress-bar" id="progress-bar-10"></div><span class="time-display" id="duration-10">0:00</span></div></div></div></div><audio id="peach-tree-audio" src="https://media.redcircle.com/2025/9/23/10/99c4653b-426e-48e8-915e-ad8c55a55f51_peachtree.mp3"></audio>
+                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-10"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Boy Who Loved a Peach Tree</div><div class="progress-container"><span class="time-display" id="current-time-10">0:00</span><div class="progress-bar" id="progress-bar-10"></div><span class="time-display" id="duration-10">0:00</span></div></div></div></div><audio id="peach-tree-audio" src="https://media.redcircle.com/2025/9/23/10/99c4633b-426e-48e8-915e-ad8c55a55f51_peachtree.mp3"></audio>
                             <div id="peach-tree-text" class="animated-text"></div>
                             </div>
                             <div class="content-card featured-article">
@@ -978,7 +997,22 @@ audio { display: none; }
 
                 <section id="paintings" class="content-section">
                     <h2 class="section-title">Paintings</h2>
-                    <div class="content-grid"><div class="content-card"><div class="card-icon"><i class="fas fa-paint-brush"></i></div><h3>Digital Art</h3><p>Modern digital creations showcasing technical skills and artistic vision.</p></div></div>
+                    <div class="paintings-grid">
+                        <div class="grid-image-container"><img src="https://i.ibb.co/XrFRDnhm/Whats-App-Image-2025-09-25-at-10-42-59-5ddc4c53.jpg" alt="Digital Art 1" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/ynTYWYdj/Whats-App-Image-2025-09-25-at-10-42-59-fe32ec7d.jpg" alt="Digital Art 2" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/VWMhPWQ6/Whats-App-Image-2025-09-25-at-10-43-09-c29eee1c.jpg" alt="Digital Art 3" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/0RTkGqJT/Whats-App-Image-2025-09-25-at-10-43-43-2faace4f.jpg" alt="Digital Art 4" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/TDwDvZb8/Whats-App-Image-2025-09-25-at-10-43-44-0f765733.jpg" alt="Digital Art 5" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/DHHXKGCD/Whats-App-Image-2025-09-25-at-10-43-44-07f0c119.jpg" alt="Digital Art 6" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/xSzbgkmX/Whats-App-Image-2025-09-25-at-10-43-45-3f6cade8.jpg" alt="Digital Art 7" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/zHTN5bBc/Whats-App-Image-2025-09-25-at-10-43-55-3986b720.jpg" alt="Digital Art 8" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/9m8stw0h/Whats-App-Image-2025-09-25-at-10-43-55-b67ab850.jpg" alt="Digital Art 9" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/HD18k4Gb/Whats-App-Image-2025-09-25-at-10-43-56-9e8f944e.jpg" alt="Digital Art 10" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/SDjP2q0v/Whats-App-Image-2025-09-25-at-10-43-57-5ef57689.jpg" alt="Digital Art 11" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/JwHHY036/Whats-App-Image-2025-09-25-at-10-43-58-f568effa.jpg" alt="Digital Art 12" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/35qZH1n2/Whats-App-Image-2025-09-25-at-10-43-59-56aea764.jpg" alt="Digital Art 13" loading="lazy"></div>
+                        <div class="grid-image-container"><img src="https://i.ibb.co/BXHjQV1/Whats-App-Image-2025-09-25-at-10-44-04-b0788d87.jpg" alt="Digital Art 14" loading="lazy"></div>
+                    </div>
                 </section>
                 
                 <section id="gallery" class="content-section">
@@ -1269,7 +1303,7 @@ document.addEventListener('DOMContentLoaded', function() {
       'prayer-text': `Dear St. Little Flower, Please pick me a rose from the "Heavenly Garden" and send it to me with a message of your love. Please ask God to bless me and everyone. Tell Him that I will love Him more and more each day. Amen.`,
       'gandhi-article': `On Gandhi Jayanti, we reflect on a man whose ideas are more relevant today than ever. In a world full of conflict and consumerism, Gandhiji's principles of non-violence, simplicity, and self-reliance offer a powerful roadmap for a better future. His message of non-violence shows us that dialogue and tolerance are the true path to resolving conflict. His call for simple living reminds us to choose sustainability over endless consumption. His vision of Sarvodaya- the welfare of all—urges us to fight for justice and equality for everyone. Gandhiji's timeless values are a guiding light, inspiring us to build a more peaceful and just world. As he once said, "The best way to find yourself is to lose yourself in the service of others."`,
       'animated-article': `In an age filled with noise and constant distractions, the lives of certain individuals remind us of values that never fade. Among them are Mahatma Gandhi and St. Therese of Little Flower. Though they lived in different worlds and walked different paths, both carried within them treasures that can guide our generation—truth, compassion, and simplicity. For Mahatma Gandhi, truth was life's highest principle. He lived with the belief that honesty and nonviolence were stronger than any weapon. His compassion embraced every human being, and his simple lifestyle proved that greatness doesn't come from wealth but from integrity and courage. St. Therese of Lisieux taught the "Little way"; finding holiness in ordinary acts done with love can have extraordinary meaning. For her, simplicity was a path to God and humanity—smiling through suffering, offering small sacrifices, and finding beauty in everyday life. Together they remind us that personal transformation begins with small choices: to speak truthfully, to act kindly, and to live simply. When these values meet, they soften hearts and heal communities. If we carry these lessons in our daily lives, we too can help change the world.`,
-      'hindi-article-text': `भारतीय स्वतंत्रता संग्राम के पहले चरण में हिंदी साहित्य मुख्यतः वीर रस और जागरण का माध्यम था। कविताएँ और लेख अधिकतर शौर्यगान व तत्कालीन क्रांतिकारी भावनाओं से भरे हुए थे। गांधीजी ने सत्य, अहिंसा और स्वदेशी को केवल राजनीतिक अस्त्र ही नहीं, बल्कि जीवन का दर्शन बनाया। इन आदर्शों ने साहित्यकारों और कवियों की लेखनी को गहराई से प्रभावित किया। राष्ट्रकवि मैथिलीशरण गुप्त की कविता "नर हो, न निराश करो मन को" गांधीवादी संयम का रूप है। गुप्त ने लिखा— "नर हो, न निराश करो मन को, कुछ काम करो, कुछ काम करो।" यह पंकीयाएं गांधीजी के कर्मयोग और आत्मबल की शिक्षा से मेल खाती हैं। रामधारी सिंह 'दिनकर' ने गांधीजी को इन शब्दों में याद किया - "गांधी तूफ़ान के पिता और बाजों के भी बाज थे, क्योंकि वे नीरवता की आवाज थे।" दिनकर की इन पंक्तियों में गांधीजी का वह स्वरूप उभरता है, जिसमें वे एक ओर संघर्ष और तूफ़ान खड़ा करने वाले थे, तो दूसरी ओर अहिंसा और शांति की सबसे प्रबल आवाज भी। सुभद्राकुमारी चौहान की कविताओं में भी गांधीवादी आदर्शों की छाया दिखती है। वे गांधीजी के असहयोग आंदोलन में भाग लेने वाली वह प्रथम महिला बनीं और इसी चक्कर में वे दो बार जेल भी गई थीं। गांधीजी ਨੇ स्वयं कहा था कि "साहित्य को समाज का दर्पण होना चाहिए।" यही कारण है कि उनके समय का हिंदी साहित्य केवल देशभक्ति नहीं, बल्कि सत्य, अहिंसा और स्वदेशी जीवन-शैली का जीवंत दस्तावेज बन गया।`,
+      'hindi-article-text': `भारतीय स्वतंत्रता संग्राम के पहले चरण में हिंदी साहित्य मुख्यतः वीर रस और जागरण का माध्यम था। कविताएँ और लेख अधिकतर शौर्यगान व तत्कालीन क्रांतिकारी भावनाओं से भरे हुए थे। गांधीजी ने सत्य, अहिंसा और स्वदेशी को केवल राजनीतिक अस्त्र ही नहीं, बल्कि जीवन का दर्शन बनाया। इन आदर्शों ने साहित्यकारों और कवियों की लेखनी को गहराई से प्रभावित किया। राष्ट्रकवि मैथिलीशरण गुप्त की कविता "नर हो, न निराश करो मन को" गांधीवादी संयम का रूप है। गुप्त ने लिखा— "नर हो, न निराश करो मन को, कुछ काम करो, कुछ काम करो।" यह पंकीयाएं गांधीजी के कर्मयोग और आत्मबल की शिक्षा से मेल खाती हैं। रामधारी सिंह 'दिनकर' ने गांधीजी को इन शब्दों में याद किया - "गांधी तूफ़ान के पिता और बाजों के भी बाज थे, क्योंकि वे नीरवता की आवाज थे।" दिनकर की इन पंक्तियों में गांधीजी का वह स्वरूप उभरता है, जिसमें वे एक ओर संघर्ष और तूफ़ान खड़ा करने वाले थे, तो दूसरी ओर अहिंसा और शांति की सबसे प्रबल आवाज भी। सुभद्राकुमारी चौहान की कविताओं में भी गांधीवादी आदर्शों की छाया दिखती है। वे गांधीजी के असहयोग आंदोलन में भाग लेने वाली वह प्रथम महिला बनीं और इसी चक्कर में वे दो बार जेल भी गई थीं। गांधीजी ने स्वयं कहा था कि "साहित्य को समाज का दर्पण होना चाहिए।" यही कारण है कि उनके समय का हिंदी साहित्य केवल देशभक्ति नहीं, बल्कि सत्य, अहिंसा और स्वदेशी जीवन-शैली का जीवंत दस्तावेज बन गया।`,
       'karmayuddh-text': `कब तक कर्म को अपने तुम टालते रहोगे, कब तक जीवन के सुखी पल तुम काटते रहोगे? कब तक हार का तुम अभ्यास करते रहोगे? कब तक संसार के तानों को तुम सुनते रहोगे? कब तक अपने अवगुणों को बातों से भरते रहोगे? अरे! चल पड़ो उस राह पर जो ले चले आकाश पर, चुप बैठो तुम मत अब यहाँ इस दुनिया की आवाज़ पर। कर चलो नर्दन अपने कर्मों की आवाज़ से, मत दबो समाज के इस कटाक्षों के दबावों से। कर चलो कुछ ऐसा लोग जल उठें जलन से, लड़ चलो इस दुनिया के स्वार्थी चलन से। दिखा दो उनको तुम कोई गुजरा हुआ वक्त नहीं, जान जाएँ सब कि तुम-sa न कोई शख्स कहीं। हार मानना न तुम इस पथ पर चलते समय कभी, केशव को याद रखना तुम हारोगे न फिर कभी। घोर विपदाओं का समय अब छा गया है, घोर विपदाओं का समय अब छा गया है। लड़ने को तैयार हो, युद्ध का वक्त आ गया है। युद्ध का वक्त आ गया है।`,
       'poem-text': `They did not lead with power, they led with presence. They did not sit on thrones, they knelt in silence. A rosary… a spinning wheel… threads and thorns, patience and prayer. She loved in silence, he fasted in truth. She bore the hidden flame, he bore the steadfast light. Without lifting a weapon, without raising a voice, they changed the world. Without pride, without noise, they changed the world. Their lives were answers, not arguments. Their days were prayers, not proclamations. Their steps were songs, not speeches. And in the hush they left behind, we still find— the fragrance of faith, the whisper of hope, the eternal shape of love.`,
       'hindi-poem-text': `विश्वास तुम जन मन के तुमने संघर्ष चुना, तुमने चुना नेह, जन - जन का। तुम बने आत्मबल तुमने लौटाई आत्मा, भारत की.... तुमने माना अहिंसा परमो धर्म:। जब लगी थी दृष्टि सम्पूर्ण विश्व की, तुम लगे जागरण से, तुम लगे विश्वास से, तुम जाग पड़े आत्माओं में, तुम बन गए, न्याय सबके मन के। वो दुर्बल सी काया, पर विश्वास बड़ा था, वो आधी धोती, पर उसका विस्तार बड़ा था, तुम्हारी लाठी की आवाज़ में आदर्श का पहरा खड़ा था, तुमने जो कहा, किया.... आत्मा कीतल गहराइयों तक। स्वातंत्र्य की सुगंध घनीभूत थी, राहों में दांडी, और मन में करके मरने की चाह, कर्म बड़े और छोटी सी काया, उन झुर्रियों में अनुभव और दृढ़ संकल्प समाया था। तुम मन हो तुम जन हो तुम आत्मा हो तुम भरत सरीखे भारत के अग्रदूत है नमन तुम्हें, हे बापू! तुम जन मन के विश्वास बने तुम जन- जन के।`
@@ -1335,6 +1369,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'poetry-competition': { title: "Hindi Poetry Competition", images: ['https://via.placeholder.com/800x600.png?text=Hindi+Poetry+Winners'] },
     'blood-donation': { title: "Blood Donation Camp", images: ['https://via.placeholder.com/800x600.png?text=Blood+Donation+Drive'] }
   };
+  const digitalArtImages = ['https://i.ibb.co/XrFRDnhm/Whats-App-Image-2025-09-25-at-10-42-59-5ddc4c53.jpg', 'https://i.ibb.co/ynTYWYdj/Whats-App-Image-2025-09-25-at-10-42-59-fe32ec7d.jpg', 'https://i.ibb.co/VWMhPWQ6/Whats-App-Image-2025-09-25-at-10-43-09-c29eee1c.jpg', 'https://i.ibb.co/0RTkGqJT/Whats-App-Image-2025-09-25-at-10-43-43-2faace4f.jpg', 'https://i.ibb.co/TDwDvZb8/Whats-App-Image-2025-09-25-at-10-43-44-0f765733.jpg', 'https://i.ibb.co/DHHXKGCD/Whats-App-Image-2025-09-25-at-10-43-44-07f0c119.jpg', 'https://i.ibb.co/xSzbgkmX/Whats-App-Image-2025-09-25-at-10-43-45-3f6cade8.jpg', 'https://i.ibb.co/zHTN5bBc/Whats-App-Image-2025-09-25-at-10-43-55-3986b720.jpg', 'https://i.ibb.co/9m8stw0h/Whats-App-Image-2025-09-25-at-10-43-55-b67ab850.jpg', 'https://i.ibb.co/HD18k4Gb/Whats-App-Image-2025-09-25-at-10-43-56-9e8f944e.jpg', 'https://i.ibb.co/SDjP2q0v/Whats-App-Image-2025-09-25-at-10-43-57-5ef57689.jpg', 'https://i.ibb.co/JwHHY036/Whats-App-Image-2025-09-25-at-10-43-58-f568effa.jpg', 'https://i.ibb.co/35qZH1n2/Whats-App-Image-2025-09-25-at-10-43-59-56aea764.jpg', 'https://i.ibb.co/BXHjQV1/Whats-App-Image-2025-09-25-at-10-44-04-b0788d87.jpg'];
+
 
   // --- NEW: Gallery Scrolling Logic ---
   const galleryWrapper = document.querySelector('.gallery-catalogue-wrapper');
@@ -1533,6 +1569,19 @@ document.addEventListener('DOMContentLoaded', function() {
           }
       });
   }
+  
+  // --- New Logic to handle paintings grid ---
+  const paintingsGrid = document.querySelector('.paintings-grid');
+  if(paintingsGrid){
+      const paintingImages = Array.from(paintingsGrid.querySelectorAll('img'));
+      const paintingImageUrls = paintingImages.map(img => img.src);
+      
+      paintingImages.forEach((img, index) => {
+          img.addEventListener('click', () => {
+              openZoomViewer(paintingImageUrls, index);
+          });
+      });
+  }
 
     // --- NEW: ARTICLE SLIDE LOGIC ---
     const articleSlide = document.getElementById('article-slide');
@@ -1613,4 +1662,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
-
