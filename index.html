@@ -310,20 +310,6 @@ body {
   background: radial-gradient(circle, rgba(248, 178, 195, 0.15) 0%, transparent 50%);
   animation: thereseFloat 10s ease-in-out infinite;
 }
-.dussehra-comprehensive::before {
-  right: -50%;
-  background: radial-gradient(circle, rgba(255, 69, 0, 0.1) 0%, transparent 50%);
-  animation: dussehraFloat 9s ease-in-out infinite;
-}
-
-@keyframes gandhiFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(10deg); }
-}
-@keyframes thereseFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-  50% { transform: translateY(-15px) rotate(-8deg) scale(1.05); }
-}
 @keyframes dussehraFloat {
   0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
   50% { transform: translateY(-18px) rotate(12deg) scale(1.03); }
@@ -464,6 +450,16 @@ audio { display: none; }
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
 }
+.paintings-long-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.paintings-long-grid .grid-image-container {
+    max-width: 300px; /* Adjust as needed */
+}
+
 /* New style for images within the paintings grid */
 .paintings-grid img {
     width: 100%;
@@ -473,7 +469,15 @@ audio { display: none; }
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
-.paintings-grid img:hover {
+.paintings-long-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.paintings-grid img:hover, .paintings-long-grid img:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
@@ -1000,7 +1004,6 @@ audio { display: none; }
                     <div class="paintings-grid">
                         <div class="grid-image-container"><img src="https://i.ibb.co/XrFRDnhm/Whats-App-Image-2025-09-25-at-10-42-59-5ddc4c53.jpg" alt="Digital Art 1" loading="lazy"></div>
                         <div class="grid-image-container"><img src="https://i.ibb.co/ynTYWYdj/Whats-App-Image-2025-09-25-at-10-42-59-fe32ec7d.jpg" alt="Digital Art 2" loading="lazy"></div>
-                        <div class="grid-image-container"><img src="https://i.ibb.co/VWMhPWQ6/Whats-App-Image-2025-09-25-at-10-43-09-c29eee1c.jpg" alt="Digital Art 3" loading="lazy"></div>
                         <div class="grid-image-container"><img src="https://i.ibb.co/0RTkGqJT/Whats-App-Image-2025-09-25-at-10-43-43-2faace4f.jpg" alt="Digital Art 4" loading="lazy"></div>
                         <div class="grid-image-container"><img src="https://i.ibb.co/TDwDvZb8/Whats-App-Image-2025-09-25-at-10-43-44-0f765733.jpg" alt="Digital Art 5" loading="lazy"></div>
                         <div class="grid-image-container"><img src="https://i.ibb.co/DHHXKGCD/Whats-App-Image-2025-09-25-at-10-43-44-07f0c119.jpg" alt="Digital Art 6" loading="lazy"></div>
@@ -1012,6 +1015,9 @@ audio { display: none; }
                         <div class="grid-image-container"><img src="https://i.ibb.co/JwHHY036/Whats-App-Image-2025-09-25-at-10-43-58-f568effa.jpg" alt="Digital Art 12" loading="lazy"></div>
                         <div class="grid-image-container"><img src="https://i.ibb.co/35qZH1n2/Whats-App-Image-2025-09-25-at-10-43-59-56aea764.jpg" alt="Digital Art 13" loading="lazy"></div>
                         <div class="grid-image-container"><img src="https://i.ibb.co/BXHjQV1/Whats-App-Image-2025-09-25-at-10-44-04-b0788d87.jpg" alt="Digital Art 14" loading="lazy"></div>
+                    </div>
+                    <div class="paintings-long-grid">
+                        <div class="grid-image-container"><img src="https://i.ibb.co/VWMhPWQ6/Whats-App-Image-2025-09-25-at-10-43-09-c29eee1c.jpg" alt="Digital Art 3" loading="lazy"></div>
                     </div>
                 </section>
                 
@@ -1036,7 +1042,7 @@ audio { display: none; }
                         <div class="album-card" data-album="poetry-competition"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation" loading="lazy"></div><div class="album-info"><h3>Hindi Poetry Competition</h3><p class="album-date">13-09-2025</p></div></div>
                         <div class="album-card" data-album="blood-donation"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation" loading="lazy"></div><div class="album-info"><h3>Blood Donation Camp</h3><p class="album-date">30-09-2025</p></div></div>
                         </div>
-                        <button id="scroll-right-btn" class="gallery-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+                        <button id="scroll-left-btn" class="gallery-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
                     </div>
                 </section>
             </div>
@@ -1369,7 +1375,7 @@ document.addEventListener('DOMContentLoaded', function() {
     'poetry-competition': { title: "Hindi Poetry Competition", images: ['https://via.placeholder.com/800x600.png?text=Hindi+Poetry+Winners'] },
     'blood-donation': { title: "Blood Donation Camp", images: ['https://via.placeholder.com/800x600.png?text=Blood+Donation+Drive'] }
   };
-  const digitalArtImages = ['https://i.ibb.co/XrFRDnhm/Whats-App-Image-2025-09-25-at-10-42-59-5ddc4c53.jpg', 'https://i.ibb.co/ynTYWYdj/Whats-App-Image-2025-09-25-at-10-42-59-fe32ec7d.jpg', 'https://i.ibb.co/VWMhPWQ6/Whats-App-Image-2025-09-25-at-10-43-09-c29eee1c.jpg', 'https://i.ibb.co/0RTkGqJT/Whats-App-Image-2025-09-25-at-10-43-43-2faace4f.jpg', 'https://i.ibb.co/TDwDvZb8/Whats-App-Image-2025-09-25-at-10-43-44-0f765733.jpg', 'https://i.ibb.co/DHHXKGCD/Whats-App-Image-2025-09-25-at-10-43-44-07f0c119.jpg', 'https://i.ibb.co/xSzbgkmX/Whats-App-Image-2025-09-25-at-10-43-45-3f6cade8.jpg', 'https://i.ibb.co/zHTN5bBc/Whats-App-Image-2025-09-25-at-10-43-55-3986b720.jpg', 'https://i.ibb.co/9m8stw0h/Whats-App-Image-2025-09-25-at-10-43-55-b67ab850.jpg', 'https://i.ibb.co/HD18k4Gb/Whats-App-Image-2025-09-25-at-10-43-56-9e8f944e.jpg', 'https://i.ibb.co/SDjP2q0v/Whats-App-Image-2025-09-25-at-10-43-57-5ef57689.jpg', 'https://i.ibb.co/JwHHY036/Whats-App-Image-2025-09-25-at-10-43-58-f568effa.jpg', 'https://i.ibb.co/35qZH1n2/Whats-App-Image-2025-09-25-at-10-43-59-56aea764.jpg', 'https://i.ibb.co/BXHjQV1/Whats-App-Image-2025-09-25-at-10-44-04-b0788d87.jpg'];
+  const digitalArtImages = ['https://i.ibb.co/XrFRDnhm/Whats-App-Image-2025-09-25-at-10-42-59-5ddc4c53.jpg', 'https://i.ibb.co/ynTYWYdj/Whats-App-Image-2025-09-25-at-10-42-59-fe32ec7d.jpg', 'https://i.ibb.co/0RTkGqJT/Whats-App-Image-2025-09-25-at-10-43-43-2faace4f.jpg', 'https://i.ibb.co/TDwDvZb8/Whats-App-Image-2025-09-25-at-10-43-44-0f765733.jpg', 'https://i.ibb.co/DHHXKGCD/Whats-App-Image-2025-09-25-at-10-43-44-07f0c119.jpg', 'https://i.ibb.co/xSzbgkmX/Whats-App-Image-2025-09-25-at-10-43-45-3f6cade8.jpg', 'https://i.ibb.co/zHTN5bBc/Whats-App-Image-2025-09-25-at-10-43-55-3986b720.jpg', 'https://i.ibb.co/9m8stw0h/Whats-App-Image-2025-09-25-at-10-43-55-b67ab850.jpg', 'https://i.ibb.co/HD18k4Gb/Whats-App-Image-2025-09-25-at-10-43-56-9e8f944e.jpg', 'https://i.ibb.co/SDjP2q0v/Whats-App-Image-2025-09-25-at-10-43-57-5ef57689.jpg', 'https://i.ibb.co/JwHHY036/Whats-App-Image-2025-09-25-at-10-43-58-f568effa.jpg', 'https://i.ibb.co/35qZH1n2/Whats-App-Image-2025-09-25-at-10-43-59-56aea764.jpg', 'https://i.ibb.co/BXHjQV1/Whats-App-Image-2025-09-25-at-10-44-04-b0788d87.jpg', 'https://i.ibb.co/VWMhPWQ6/Whats-App-Image-2025-09-25-at-10-43-09-c29eee1c.jpg'];
 
 
   // --- NEW: Gallery Scrolling Logic ---
@@ -1571,9 +1577,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // --- New Logic to handle paintings grid ---
-  const paintingsGrid = document.querySelector('.paintings-grid');
-  if(paintingsGrid){
-      const paintingImages = Array.from(paintingsGrid.querySelectorAll('img'));
+  const paintingsGrid = document.querySelector('#paintings .paintings-grid');
+  const paintingsLongGrid = document.querySelector('#paintings .paintings-long-grid');
+  if(paintingsGrid && paintingsLongGrid){
+      const paintingImages = Array.from(paintingsGrid.querySelectorAll('img')).concat(Array.from(paintingsLongGrid.querySelectorAll('img')));
       const paintingImageUrls = paintingImages.map(img => img.src);
       
       paintingImages.forEach((img, index) => {
