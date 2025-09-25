@@ -446,18 +446,19 @@ audio { display: none; }
 /* Grid Layouts */
 .article-list, .content-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
 .paintings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    display: block;
+    width: 100%;
+    max-width: 1140px;
 }
 .paintings-long-grid {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+    display: block;
     margin-top: 1rem;
+    width: 100%;
 }
+.paintings-grid .grid-image-container,
 .paintings-long-grid .grid-image-container {
-    max-width: 300px; /* Adjust as needed */
+    margin-bottom: 1rem; /* Add some spacing between images */
+    width: 100%; /* Make each image container take up the full width */
 }
 
 /* New style for images within the paintings grid */
