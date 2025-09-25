@@ -1071,7 +1071,14 @@ audio { display: none; }
                 <section id="videos" class="content-section">
                     <h2 class="section-title">Videos</h2>
                     <div class="content-grid">
-                        <div class="content-card"><div class="card-icon"><i class="fas fa-video"></i></div><h3>Event Highlights</h3><p>Capture the magic of our school events through engaging videos.</p></div>
+                        <div class="content-card">
+                            <div class="card-icon"><i class="fas fa-video"></i></div>
+                            <h3>Event Highlights</h3>
+                            <p>A dance performance reflecting dedication, teamwork, and artistry...</p>
+                            <div class="video-container" style="position: relative; padding-top: 56.25%; margin-top: 1rem;">
+                                <iframe width="914" height="514" src="https://www.youtube.com/embed/s-SB42Vs7I0" title="A dance performance reflecting dedication, teamwork, and artistry..." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;"></iframe>
+                            </div>
+                        </div>
                         <div class="content-card"><div class="card-icon"><i class="fas fa-film"></i></div><h3>Student Stories</h3><p>Personal narratives and experiences shared by our amazing students.</p></div>
                         <div class="content-card"><div class="card-icon"><i class="fas fa-play-circle"></i></div><h3>Educational Content</h3><p>Learning videos and tutorials created by students for students.</p></div>
                     </div>
@@ -1393,7 +1400,7 @@ document.addEventListener('DOMContentLoaded', function() {
     progressBar.addEventListener('click', (e) => {
       e.stopPropagation();
       const rect = progressBar.getBoundingClientRect();
-      audio.currentTime = ((e.clientX - rect.left) / e.rect.width) * audio.duration;
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
     });
     return { audio, togglePlay, isPlaying: () => isPlaying };
   }
