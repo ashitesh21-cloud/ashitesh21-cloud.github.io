@@ -816,6 +816,55 @@ audio { display: none; }
 /* END: ARTICLE SLIDE STYLES */
 /* =================================================== */
 
+/* NEW: FLOATING NAVIGATION BAR STYLES */
+.floating-nav {
+  position: fixed;
+  bottom: -100px; /* Start off-screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.75rem 1.5rem;
+  z-index: 999;
+  transition: bottom 0.5s ease-out;
+}
+
+.floating-nav.visible {
+  bottom: 20px;
+}
+
+.floating-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-gray);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.floating-nav a i {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.floating-nav a.active {
+  color: var(--accent-blue);
+  transform: scale(1.1);
+}
+
+.floating-nav a:hover {
+  color: var(--accent-blue);
+}
+
 /* =================================================== */
 /* START: MOBILE-SPECIFIC OPTIMIZATIONS */
 /* =================================================== */
@@ -1103,7 +1152,7 @@ audio { display: none; }
                         <div class="album-card" data-album="poetry-competition"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Poetry+Competition" alt="Hindi Poetry Recitation" loading="lazy"></div><div class="album-info"><h3>Hindi Poetry Competition</h3><p class="album-date">13-09-2025</p></div></div>
                         <div class="album-card" data-album="blood-donation"><div class="album-image-wrapper"><img src="https://via.placeholder.com/400x250.png?text=Blood+Donation" alt="Blood Donation" loading="lazy"></div><div class="album-info"><h3>Blood Donation Camp</h3><p class="album-date">30-09-2025</p></div></div>
                         </div>
-                        <button id="scroll-left-btn" class="gallery-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                        <button id="scroll-right-btn" class="gallery-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </section>
             </div>
@@ -1111,6 +1160,16 @@ audio { display: none; }
     </section>
 </div>
 
+
+<!-- NEW: FLOATING NAVIGATION BAR -->
+<nav id="floating-nav" class="floating-nav">
+  <a href="#articles"><i class="fas fa-book"></i><span>Articles</span></a>
+  <a href="#ebulletin"><i class="fas fa-newspaper"></i><span>E-Bulletin</span></a>
+  <a href="#videos"><i class="fas fa-video"></i><span>Videos</span></a>
+  <a href="#poems"><i class="fas fa-pencil-alt"></i><span>Poems</span></a>
+  <a href="#paintings"><i class="fas fa-paint-brush"></i><span>Paintings</span></a>
+  <a href="#gallery"><i class="fas fa-images"></i><span>Gallery</span></a>
+</nav>
 
 <div id="gallery-lightbox" class="lightbox-overlay">
   <span class="lightbox-close">&times;</span>
@@ -1156,6 +1215,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const contentPage = document.getElementById('content-page');
     const homeLink = document.querySelector('.back-to-home a');
     const contentSections = document.querySelectorAll('.content-section');
+    const floatingNav = document.getElementById('floating-nav');
+    const floatingNavLinks = floatingNav.querySelectorAll('a');
+
+    const updateFloatingNav = () => {
+        const contentPageRect = contentPage.getBoundingClientRect();
+        if (contentPageRect.left <= 0 && contentPageRect.right > 0) {
+            floatingNav.classList.add('visible');
+        } else {
+            floatingNav.classList.remove('visible');
+        }
+
+        // Highlight active link based on scroll position
+        const currentScrollY = contentPage.scrollTop + 100;
+        contentSections.forEach(section => {
+            const sectionRect = section.getBoundingClientRect();
+            const floatingNavLink = floatingNav.querySelector(`a[href="#${section.id}"]`);
+            if (floatingNavLink) {
+                if (sectionRect.top <= 100 && sectionRect.bottom > 100) {
+                    floatingNavLink.classList.add('active');
+                } else {
+                    floatingNavLink.classList.remove('active');
+                }
+            }
+        });
+    };
+
+    pageWrapper.addEventListener('scroll', updateFloatingNav);
+    contentPage.addEventListener('scroll', updateFloatingNav);
 
     // Show articles section by default when content page is loaded/scrolled to
     const observer = new IntersectionObserver((entries) => {
@@ -1190,12 +1277,28 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!targetFound) {
                  document.getElementById('articles').classList.add('active');
             }
-            // Scroll content page to top
-            contentPage.scrollTop = 0;
+            // Scroll content page to the target section
+            const targetSection = document.getElementById(targetId.substring(1));
+            if (targetSection) {
+                 contentPage.scrollTo({
+                     top: targetSection.offsetTop,
+                     behavior: 'smooth'
+                 });
+            } else {
+                 contentPage.scrollTop = 0;
+            }
         }, 100);
     }
 
     heroNavLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            switchContentSection(targetId);
+        });
+    });
+
+    floatingNavLinks.forEach(link => {
         link.addEventListener('click', e => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
@@ -1285,7 +1388,7 @@ document.addEventListener('DOMContentLoaded', function() {
     progressBar.addEventListener('click', (e) => {
       e.stopPropagation();
       const rect = progressBar.getBoundingClientRect();
-      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+      audio.currentTime = ((e.clientX - rect.left) / e.rect.width) * audio.duration;
     });
     return { audio, togglePlay, isPlaying: () => isPlaying };
   }
