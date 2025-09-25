@@ -927,6 +927,9 @@ audio { display: none; }
     color: white;
     padding: 4rem 2.5rem;
     will-change: transform;
+    display: flex; /* Added flexbox to center content */
+    flex-direction: column;
+    align-items: center;
 }
 #paintings::before {
     content: '';
@@ -958,6 +961,23 @@ audio { display: none; }
     #paintings {
         background-attachment: scroll; /* Disable fixed background on mobile for performance */
     }
+}
+.paintings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    width: 100%; /* Ensure the grid takes full width */
+    max-width: 1140px; /* Match container width for consistency */
+}
+.paintings-long-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+.paintings-long-grid .grid-image-container {
+    max-width: 300px;
 }
 
 </style>
