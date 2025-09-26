@@ -202,11 +202,12 @@ body {
 
 /* Cards */
 .content-card {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 1.25rem;
-  border: 1px solid #dee2e6;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   width: 100%;
   transition: all 0.3s ease;
   margin-bottom: 1rem;
@@ -214,7 +215,7 @@ body {
 #articles .content-card, #poems .content-card:not(.video-card) { cursor: pointer; }
 
 
-.content-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.08), 0 0 15px rgba(62, 146, 204, 0.1); }
+.content-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.15), 0 0 20px rgba(255, 255, 255, 0.1); }
 
 .card-icon { font-size: 1.6rem; color: var(--accent-blue); margin-bottom: 0.75rem; }
 
@@ -278,18 +279,18 @@ body {
   box-shadow: 0 15px 40px rgba(0,0,0,0.1);
   position: relative;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .gandhi-comprehensive {
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.05), rgba(138, 69, 19, 0.05), rgba(255, 215, 0, 0.08));
-  border: 2px solid rgba(255, 140, 0, 0.4);
+  border-color: rgba(255, 140, 0, 0.4);
 }
 .therese-comprehensive {
-  background: linear-gradient(135deg, rgba(248, 178, 195, 0.1), rgba(252, 228, 236, 0.08), rgba(173, 20, 87, 0.05));
-  border: 2px solid rgba(248, 178, 195, 0.4);
+  border-color: rgba(248, 178, 195, 0.4);
 }
 .dussehra-comprehensive {
-  background: linear-gradient(135deg, rgba(255, 69, 0, 0.05), rgba(255, 140, 0, 0.05), rgba(255, 215, 0, 0.08));
-  border: 2px solid rgba(255, 69, 0, 0.4);
+  border-color: rgba(255, 69, 0, 0.4);
 }
 
 .gandhi-comprehensive::before, .therese-comprehensive::before, .dussehra-comprehensive::before {
@@ -1169,6 +1170,28 @@ audio { display: none; }
                         <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/Y7yKQXDb/nunat15.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Carmelite Nun at 15</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nun-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Carmelite Nun at 15</div><div class="fact-progress-container"><span class="fact-time-display" id="nun-current-time">0:00</span><div class="fact-progress-bar" id="nun-progress-bar"></div><span class="fact-time-display" id="nun-duration">1:10</span></div></div></div></div><audio id="nun-audio" src="https://media.redcircle.com/2025/9/22/7/948f4e2a-7865-485b-aa36-f4393b254677_nunat15.mp3"></audio><div class="fact-text-content"><p>Despite her young age, Thérèse entered the Carmelite convent at Lisieux at age 15 in 1888. She joined her older sisters Pauline and Marie, and later her sister Céline also joined the same convent.</p></div></div></div>
                         <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/xK8nQnjB/autobiogarphy.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Story of a Soul</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="soul-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Story of a Soul</div><div class="fact-progress-container"><span class="fact-time-display" id="soul-current-time">0:00</span><div class="fact-progress-bar" id="soul-progress-bar"></div><span class="fact-time-display" id="soul-duration">1:35</span></div></div></div></div><audio id="soul-audio" src="https://media.redcircle.com/2025/9/22/7/9acbab64-d1d1-4d49-9b5a-051055b9d58f_death12.mp3"></audio><div class="fact-text-content"><p>Her autobiography "The Story of a Soul" was published after her death and became one of the most widely read spiritual autobiographies. It spread her "Little Way" teachings across the world and contributed to her rapid canonization.</p></div></div></div>
                         <div class="therese-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/RpHrFNXW/death23.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Death & Canonization</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="death-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Death & Canonization</div><div class="fact-progress-container"><span class="fact-time-display" id="death-current-time">0:00</span><div class="fact-progress-bar" id="death-progress-bar"></div><span class="fact-time-display" id="death-duration">1:25</span></div></div></div></div><audio id="death-audio" src="https://media.redcircle.com/2025/9/22/7/6a92be31-7d28-4236-add5-cb93a735e0fe_colony.mp3"></audio><div class="fact-text-content"><p>Died of tuberculosis on September 30, 1897, at age 24. Canonized by Pope Pius XI in 1925, just 28 years after her death. Her last words were "My God, I love you." She promised to "spend my heaven doing good on earth."</p></div></div></div>
+                        </div>
+                    </div>
+
+                    <div class="gandhi-comprehensive">
+                        <div class="gandhi-header">
+                        <h2>Gandhi Jayanti</h2>
+                        <p>"Be the change that you wish to see in the world"</p>
+                        </div>
+                        <div class="gandhi-grid">
+                            <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/6805k7p/gandhiji-1.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>International Day of Non-Violence</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="international-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">International Day of Non-Violence</div><div class="progress-container"><span class="fact-time-display" id="international-current-time">0:00</span><div class="fact-progress-bar" id="international-progress-bar"></div><span class="fact-time-display" id="international-duration">0:00</span></div></div></div></div><audio id="international-audio" src="https://via.placeholder.com/audio.mp3"></audio><div class="fact-text-content"><p>The United Nations General Assembly established October 2nd, Gandhi's birthday, as the International Day of Non-Violence in 2007 to disseminate the message of non-violence through education and public awareness.</p></div></div></div>
+                            <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/L8y2hB1/gandhiji-2.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Nobel Peace Prize Nominations</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="nobel-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Nobel Peace Prize Nominations</div><div class="fact-progress-container"><span class="fact-time-display" id="nobel-current-time">0:00</span><div class="fact-progress-bar" id="nobel-progress-bar"></div><span class="fact-time-display" id="nobel-duration">0:00</span></div></div></div></div><audio id="nobel-audio" src="https://via.placeholder.com/audio.mp3"></audio><div class="fact-text-content"><p>Mahatma Gandhi was nominated for the Nobel Peace Prize five times between 1937 and 1948 but never received it. The Nobel Committee has expressed regret for this omission, considering him the "missing laureate."</p></div></div></div>
+                            <div class="gandhi-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/yqg0sM5/gandhiji-3.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Educational Philosophy</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="education-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Educational Philosophy</div><div class="fact-progress-container"><span class="fact-time-display" id="education-current-time">0:00</span><div class="fact-progress-bar" id="education-progress-bar"></div><span class="fact-time-display" id="education-duration">0:00</span></div></div></div></div><audio id="education-audio" src="https://via.placeholder.com/audio.mp3"></audio><div class="fact-text-content"><p>Gandhi advocated for a system of education called 'Nai Talim' or Basic Education, which emphasized learning through practical skills and crafts, aiming to create self-reliant individuals and communities.</p></div></div></div>
+                        </div>
+                    </div>
+
+                    <div class="dussehra-comprehensive">
+                        <div class="dussehra-header">
+                            <h2>Dussehra: Victory of Good Over Evil</h2>
+                        </div>
+                        <div class="dussehra-grid">
+                            <div class="dussehra-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/mH4b2vj/dussehra-1.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>Symbolism of Ravana's Ten Heads</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="god1-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">Symbolism of Ravana's Ten Heads</div><div class="fact-progress-container"><span class="fact-time-display" id="god1-current-time">0:00</span><div class="fact-progress-bar" id="god1-progress-bar"></div><span class="fact-time-display" id="god1-duration">0:00</span></div></div></div></div><audio id="god1-audio" src="https://via.placeholder.com/audio.mp3"></audio><div class="fact-text-content"><p>The ten heads of Ravana symbolize the ten negative qualities that one should conquer: Kama (lust), Krodha (anger), Moha (attachment), Lobha (greed), Mada (pride), Matsara (jealousy), Swartha (selfishness), Anyaya (injustice), Amanavta (cruelty), and Ahankara (ego).</p></div></div></div>
+                            <div class="dussehra-fact-card text-only-card lazy-bg" data-bg="url('https://i.ibb.co/dG6x5p5/dussehra-2.jpg')"><div class="fact-content"><div class="fact-header"><div class="fact-text"><h4>The Story of Ramlila</h4></div></div><div class="fact-audio-player"><div class="fact-audio-controls"><button class="fact-play-btn" id="god2-play-btn"><i class="fas fa-play"></i></button><div class="fact-audio-info"><div class="fact-audio-title">The Story of Ramlila</div><div class="fact-progress-container"><span class="fact-time-display" id="god2-current-time">0:00</span><div class="fact-progress-bar" id="god2-progress-bar"></div><span class="fact-time-display" id="god2-duration">0:00</span></div></div></div></div><audio id="god2-audio" src="https://via.placeholder.com/audio.mp3"></audio><div class="fact-text-content"><p>Ramlila, the dramatic folk re-enactment of the life of Rama, is a significant tradition during the Navaratri festival preceding Dussehra. It was inscribed on UNESCO's list of Intangible Cultural Heritage of Humanity in 2008.</p></div></div></div>
                         </div>
                     </div>
                 </section>
@@ -2127,8 +2150,3 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
     </body>
 </html>
-
-
-
-
-
