@@ -135,12 +135,7 @@ body {
 /* Main Content Area (Second Page) */
 .main-content {
   padding: 4rem 2.5rem;
-  background: #f8f9fa;
-}
-
-.main-content.paintings-view {
-  padding: 0;
-  background: url('https://i.ibb.co/Mkd5VF0H/Whats-App-Image-2025-09-25-at-13-06-48-9e86cd72.jpg') center center/cover;
+  background: url('https://i.ibb.co/yFkvZ9Fn/2-10-51-39-a-1.jpg') center center/cover;
   background-attachment: fixed;
 }
 
@@ -1127,7 +1122,7 @@ audio { display: none; }
                             <div class="content-card featured-article">
                             <h3>The Boy Who Loved a Peach Tree</h3>
                             <div class="author-credit">-Suryansh Pandey Class VI B</div>
-                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-10"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Boy Who Loved a Peach Tree</div><div class="progress-container"><span class="time-display" id="current-time-10">0:00</span><div class="progress-bar" id="progress-bar-10"></div><span class="time-display" id="duration-10">0:00</span></div></div></div></div><audio id="peach-tree-audio" src="https://media.redcircle.com/2025/9/26/3/5ee4a913-c1b4-4f9e-a36a-afdf51187435_peachtee.mp3"></audio>
+                            <div class="audio-player"><div class="audio-controls"><button class="play-btn" id="play-btn-10"><i class="fas fa-play"></i></button><div class="audio-info"><div class="audio-title">The Boy Who Loved a Peach Tree</div><div class="progress-container"><span class="time-display" id="current-time-10">0:00</span><div class="progress-bar" id="progress-bar-10"></div><span class="time-display" id="duration-10">0:00</span></div></div></div></div><audio id="peach-tree-audio" src="https://audio2.redcircle.com/episodes/2122c245-ddc5-4f2b-816a-1b9fea683717/stream.mp3?forceRefreshToken=ee5ca728-0757-47b5-ba29-c3e4938209de"></audio>
                             <div id="peach-tree-text" class="animated-text"></div>
                             </div>
                             <div class="content-card featured-article">
@@ -1401,13 +1396,6 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
         
-        // Toggle background for paintings section
-        if (targetId === '#paintings') {
-            mainContent.classList.add('paintings-view');
-        } else {
-            mainContent.classList.remove('paintings-view');
-        }
-
         // Use a short delay to allow scroll to start before switching content
         setTimeout(() => {
             let targetFound = false;
@@ -2139,6 +2127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
     </body>
 </html>
+
 
 
 
