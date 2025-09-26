@@ -2278,32 +2278,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })();
     </script>
-  <script>
-function showSection(sectionId) {
-    // Hide all sections first
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach(section => {
-        section.style.display = 'none';
-    });
-    
-    // Show the requested section
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.style.display = 'block';
-    }
-    
-    // Hide home section and show content page
-    const homeSection = document.getElementById('home');
-    const contentPage = document.getElementById('content-page');
-    
-    if (homeSection) homeSection.style.display = 'none';
-    if (contentPage) contentPage.style.display = 'block';
-}
-
-// Initialize - show home section by default
-document.addEventListener('DOMContentLoaded', function() {
-    showSection('home');
-});
-</script>
 </body>
 </html>
