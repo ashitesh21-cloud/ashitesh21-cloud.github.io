@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -1038,7 +1038,45 @@ audio { display: none; }
     audio:hover {
         transform: scale(1.02);
     }
-    </style>
+    
+        /* Principal's Message Section */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .video-description {
+            margin-top: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Mobile responsive for video */
+        @media (max-width: 768px) {
+            .video-container {
+                margin: 15px 0;
+                border-radius: 8px;
+            }
+        }
+
+</style>
 </link></link></head>
 <body>
 <div class="page-wrapper">
@@ -1066,6 +1104,32 @@ audio { display: none; }
 <h2 class="section-title">Articles</h2>
 <div class="article-list">
 <!-- Article cards go here -->
+
+    <!-- Principal's Message Section -->
+    <section class="page-section" id="principal-message">
+        <div class="container">
+            <h2 class="section-title">Principal's Message</h2>
+            <div class="content-card featured-article">
+                <h3>A Message from Our Principal</h3>
+                <div class="video-container">
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/Sf7Kzj4Uork?si=dsn5V4T6QK1gV1Pa" 
+                        title="Principal's Message - Little Flower School" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="video-description">
+                    Welcome to Little Flower School Digital Magazine 2025-26. Listen to our Principal's inspiring message about our school's vision, values, and commitment to educational excellence.
+                </p>
+            </div>
+        </div>
+    </section>
+
 <div class="content-card featured-article">
 <h3>लतीफा</h3>
 <div class="author-credit">-आश्रय सिंह 11 B</div>
