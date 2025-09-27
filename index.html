@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -134,9 +134,24 @@ body {
 .main-content {
   padding: 4rem 2.5rem;
   background: url('https://i.ibb.co/5hTdtG1S/Whats-App-Image-2025-09-27-at-10-42-54-cee19a02.jpg') center center/cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
+}
+/* Desktop fix for main-content background */
+@media (min-width: 1024px) {
+  .main-content {
+    background-size: contain !important; /* Show full image */
+    background-repeat: no-repeat !important;
+    background-color: #fce4ec !important; /* Fill empty space */
+    background-attachment: scroll !important;
+  }
 }
 
+/* Mobile - keep cover for good appearance */
+@media (max-width: 767px) {
+  .main-content {
+    background-attachment: scroll !important; /* Fixed causes mobile issues */
+  }
+}
 .back-to-home {
     position: sticky;
     top: 20px;
