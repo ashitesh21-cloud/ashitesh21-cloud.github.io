@@ -918,23 +918,8 @@ audio { display: none; }
 /* END: MOBILE-SPECIFIC OPTIMIZATIONS */
 /* =================================================== */
 
-#paintings {
-    position: relative;
-    background-color: transparent;
-    color: white;
-    min-height: 100vh; /* This ensures the background covers the full screen height */
-    will-change: transform;
-}
-#paintings::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-}
+
+
 
 .paintings-content {
     position: relative;
@@ -957,9 +942,7 @@ audio { display: none; }
 }
 
 @media (max-width: 768px) {
-    #paintings {
-        background-attachment: scroll; /* Disable fixed background on mobile for performance */
-    }
+    
 }
 .paintings-grid {
     display: grid;
@@ -1125,6 +1108,27 @@ audio { display: none; }
             color: #000000 !important; /* Black quote text */
             font-size: 1.05rem !important;
         }
+
+
+/* Fixed Poems Section Styling */
+#poems {
+    background-color: transparent !important;
+    background-image: none !important;
+    color: var(--text-white);
+    padding: 4rem 2.5rem;
+}
+
+#poems .section-title {
+    color: var(--text-white);
+    border-bottom: 3px solid var(--accent-blue);
+}
+
+#poems .content-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-white);
+}
 
 </style>
 </link></link></head>
